@@ -1,5 +1,5 @@
 import Header from './layout/header';
-import Links from './home/links'
+import Links from './home/links';
 
 const Home = () =>
 <div>
