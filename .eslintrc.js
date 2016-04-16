@@ -6,6 +6,9 @@ module.exports = {
           "jsx": true
       }
   },
+  "globals": {
+    "React": true
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
