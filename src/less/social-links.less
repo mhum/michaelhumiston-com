@@ -20,12 +20,12 @@
 }
 
 .social-links {
+  text-align: center;
   a i {
    vertical-align: middle
- }
+  }
   .link-container {
-     clear: both;
-
+    display: inline-block;
     .icon {
       float: left;
 
@@ -43,30 +43,42 @@
       a {
        width: 310px;
        line-height: 42px;
-       text-align: center;
+       text-align: left;
        .social-links-boxes;
       }
     }
 
     :hover a {
-        color: #fff;
-        text-decoration: none;
+      color: #fff;
+      text-decoration: none;
     }
 
-    &.github:hover a {
+    .github {
+     clear: both;
+     &:hover a {
         background: @github;
+      }
     }
 
-    &.linkedin:hover a {
+    .linkedin {
+      clear: both;
+      &:hover a {
         background: @linkedin;
+      }
     }
 
-    &.flickr:hover a {
+    .flickr {
+      clear: both;
+      &:hover a {
         background: @flickr;
+      }
     }
 
-    &.facebook:hover a {
+    .facebook {
+      clear: both;
+      &:hover a {
         background: @facebook;
+      }
     }
   }
 }
