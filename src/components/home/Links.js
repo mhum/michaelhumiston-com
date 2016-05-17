@@ -1,4 +1,4 @@
-import Link from './link';
+import Link from './Link';
 
 const Links = ({ sites }) => (
   <div className="social-links">

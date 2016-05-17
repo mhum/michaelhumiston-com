@@ -15,7 +15,8 @@ module.exports = {
   plugins: [
     new webpack.ProvidePlugin({
       React: 'react'
-    })
+    }),
+    new webpack.optimize.UglifyJsPlugin()
   ],
   module: {
     loaders: [{

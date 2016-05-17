@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom';
-import Home from './components/home';
+import Home from './components/Home';
 
-require('less/styles.less');
+import './less/styles.less';
 
 ReactDOM.render(<Home />, document.getElementById('main'));
