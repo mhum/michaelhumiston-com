@@ -1,13 +1,13 @@
 const Link = ({ site }) => (
   <div className={site.name}>
     <div className="icon">
-      <a href={site.url} target="_blank">
-        <i className={`fa fa-${site.name} fa-3x`} aria-hidden="true"></i>
+      <a href={site.url} target="_blank" target="_blank" without rel="noopener noreferrer">
+        <i className={`fa fa-${site.name} fa-3x`} aria-hidden="true" />
       </a>
     </div>
 
     <div className="link">
-      <a href={site.url} target="_blank">
+      <a href={site.url} target="_blank" target="_blank" without rel="noopener noreferrer">
         {site.url}
       </a>
     </div>

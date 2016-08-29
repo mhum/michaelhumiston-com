@@ -20,7 +20,7 @@ module.exports = {
   ],
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: 'babel'
     }, {
       test: /\.less$/,
@@ -28,6 +28,7 @@ module.exports = {
     }]
   },
   resolve: {
-    root: [path.join(__dirname, './src')]
+    root: [path.join(__dirname, './src')],
+    extensions: ['', '.js', '.jsx']
   }
 };
