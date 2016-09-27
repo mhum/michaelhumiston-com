@@ -1,0 +1,26 @@
+#navbar {
+  background: @dark-blue;
+  min-height: 34px;
+  border-radius: initial;
+  border: initial;
+
+  .navbar-header {
+    padding: 7px 10px;
+    line-height: 20px;
+    font-size: 12px;
+
+    .navbar-link {
+      color: #fff;
+      padding: 10px;
+      transition: background .5s;
+      -moz-transition: background .5s;
+      -webkit-transition: background .5s;
+      -o-transition: background .5s;
+
+      &:hover {
+        background: rgba(255,255,255,.2);
+        text-decoration: none;
+      }
+    }
+  }
+}

@@ -1,11 +1,11 @@
 import { Navbar } from 'react-bootstrap';
 
 const Navmenu = () => (
-  <Navbar>
+  <Navbar id="navbar">
     <Navbar.Header>
-      <Navbar.Brand>
-        <a>Michael Humiston</a>
-      </Navbar.Brand>
+      <Navbar.Link>
+        Home
+      </Navbar.Link>
       <Navbar.Toggle />
     </Navbar.Header>
   </Navbar>
