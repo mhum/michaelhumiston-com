@@ -6,6 +6,11 @@ const Header = () => (
     <div id="logo">
       Michael Humiston
     </div>
+    <div id="page-header">
+      <h1>
+        Home
+      </h1>
+    </div>
   </div>
 );
 

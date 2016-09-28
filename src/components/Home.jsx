@@ -6,7 +6,6 @@ import SocialLinks from './home/SocialLinks';
 const Home = () =>
   <Grid>
     <Header />
-    <h3>Hello, world</h3>
     <SocialLinks />
   </Grid>;
 

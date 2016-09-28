@@ -2,7 +2,7 @@ import SocialLink from './SocialLink';
 
 const Links = ({ sites }) => (
   <div className="social-links">
-    <h1>Links</h1>
+    <h1>Social Links</h1>
     <div className="link-container">
       {
         sites.map((v, i) => (
