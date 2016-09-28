@@ -4,7 +4,7 @@ import HeaderContainer from './layout/header/HeaderContainer';
 import SocialLinks from './home/SocialLinks';
 
 const Home = () =>
-  <Grid>
+  <Grid id="container">
     <HeaderContainer />
     <SocialLinks />
   </Grid>;
