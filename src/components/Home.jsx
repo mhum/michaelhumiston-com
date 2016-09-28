@@ -1,12 +1,12 @@
 import { Grid } from 'react-bootstrap';
 
 import HeaderContainer from './layout/header/HeaderContainer';
-import SocialLinks from './home/SocialLinks';
+import HomeBody from './home/HomeBody';
 
 const Home = () =>
   <Grid id="container">
     <HeaderContainer />
-    <SocialLinks />
+    <HomeBody />
   </Grid>;
 
 export default Home;
