@@ -4,6 +4,7 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import App from './components/App';
 import About from './components/about/About';
 import Home from './components/home/Home';
+import Projects from './components/projects/Projects';
 
 import './less/styles.less';
 
@@ -11,6 +12,7 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
+      <Route path="projects" component={Projects} />
       <Route path="about" component={About} />
     </Route>
   </Router>
