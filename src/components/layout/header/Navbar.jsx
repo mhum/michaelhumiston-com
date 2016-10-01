@@ -12,7 +12,7 @@ const Navmenu = () => (
           <NavItem eventKey={1}>Home</NavItem>
         </IndexLinkContainer>
         <LinkContainer to="about">
-          <NavItem eventKey={2}>About</NavItem>
+          <NavItem eventKey={2}>About Me</NavItem>
         </LinkContainer>
       </Nav>
     </Navbar.Collapse>
