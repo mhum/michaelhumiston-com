@@ -44,7 +44,7 @@ Navmenu.defaultProps =
       isIndex: false
     }, {
       uri: 'about',
-      name: 'About',
+      name: 'About Me',
       isIndex: false
     }
   ]
