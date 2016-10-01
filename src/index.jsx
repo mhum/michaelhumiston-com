@@ -9,9 +9,9 @@ import './less/styles.less';
 
 ReactDOM.render(
   <Router history={hashHistory}>
-    <Route path="/" component={App}>
+    <Route name="Home" path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="about" component={About} />
+      <Route name="About" path="about" component={About} />
     </Route>
   </Router>
 , document.getElementById('main'));

@@ -1,13 +1,18 @@
-const PageHeader = ({ page }) => (
+import Breadcrumbs from 'react-breadcrumbs';
+
+const PageHeader = ({ routes, params }) => (
   <div id="page-header">
-    <h1>
-      { page }
-    </h1>
+    <Breadcrumbs
+      separator=" | "
+      routes={routes}
+      params={params}
+    />
   </div>
 );
 
 PageHeader.propTypes = {
-  page: React.PropTypes.string.isRequired
+  routes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  params: React.PropTypes.shape({}).isRequired
 };
 
 export default PageHeader;
