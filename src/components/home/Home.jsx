@@ -2,7 +2,7 @@ import { Col, Image, Row } from 'react-bootstrap';
 
 import SocialLinks from './SocialLinks';
 
-const HomeBody = () =>
+const Home = () =>
   <Row>
     <Col xs={7}>
       <Image src="/assets/images/springbrook.jpg" responsive />
@@ -16,4 +16,4 @@ const HomeBody = () =>
     </Col>
   </Row>;
 
-export default HomeBody;
+export default Home;
