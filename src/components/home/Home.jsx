@@ -16,4 +16,6 @@ const Home = () =>
     </Col>
   </Row>;
 
+Home.title = 'Home';
+
 export default Home;

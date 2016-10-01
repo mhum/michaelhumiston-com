@@ -30,4 +30,6 @@ const About = () =>
     </Col>
   </Row>;
 
+About.title = 'About Me';
+
 export default About;

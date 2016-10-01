@@ -2,17 +2,16 @@ import Logo from './Logo';
 import Navbar from './Navbar';
 import PageHeader from './PageHeader';
 
-const HeaderContainer = ({ routes, params }) => (
+const HeaderContainer = ({ title }) => (
   <div>
     <Navbar />
     <Logo />
-    <PageHeader routes={routes} params={params} />
+    <PageHeader title={title} />
   </div>
 );
 
 HeaderContainer.propTypes = {
-  routes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  params: React.PropTypes.shape({}).isRequired
+  title: React.PropTypes.string.isRequired
 };
 
 export default HeaderContainer;
