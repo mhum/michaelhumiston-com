@@ -5,6 +5,7 @@ import App from './components/App';
 import About from './components/about/About';
 import Home from './components/home/Home';
 import Projects from './components/projects/Projects';
+import Project from './components/projects/Project';
 
 import './less/styles.less';
 
@@ -13,6 +14,7 @@ ReactDOM.render(
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
       <Route path="projects" component={Projects} />
+      <Route path="/project/:projectName" component={Project} />
       <Route path="about" component={About} />
     </Route>
   </Router>

@@ -1,10 +1,8 @@
 import { Col, Image, Row } from 'react-bootstrap';
 
-const pageTitle = 'About Me';
-
 class About extends React.Component {
   componentDidMount() {
-    document.title = `${pageTitle} - Michael Humiston`;
+    this.props.setTitle(this.props.pageTitle);
   }
 
   render() {
@@ -41,6 +39,13 @@ class About extends React.Component {
   }
 }
 
-About.title = pageTitle;
+About.defaultProps = {
+  pageTitle: 'About Me'
+};
+
+About.propTypes = {
+  pageTitle: React.PropTypes.string.isRequired,
+  setTitle: React.PropTypes.func
+};
 
 export default About;
