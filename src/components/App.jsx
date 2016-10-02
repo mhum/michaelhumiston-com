@@ -53,7 +53,8 @@ const projects = [
     id: 'pia-updater',
     name: 'Private Internet Access Transmission Updater',
     description: 'Script for updating the port for Transmission with port from PIA.',
-    uri: 'project/pia-updater'
+    uri: 'project/pia-updater',
+    image: 'projects/pia-updater.png'
   }, {
     id: 'world-clock',
     name: 'World Office Clock',
