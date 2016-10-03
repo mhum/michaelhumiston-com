@@ -2,6 +2,13 @@ import { Col, Image, Row } from 'react-bootstrap';
 import _ from 'lodash';
 
 class Project extends React.Component {
+
+  static getProjectDescription(project) {
+    return {
+      __html: project.descriptionExtended
+    };
+  }
+
   componentDidMount() {
     const project = this.getProject(this.props.params.projectName);
 
@@ -29,12 +36,6 @@ class Project extends React.Component {
     return project;
   }
 
-  getProjectDescription(proj) {
-    return {
-      __html: proj.descriptionExtended
-    };
-  }
-
   render() {
     const project = this.getProject(this.props.params.projectName);
     return (
@@ -45,7 +46,7 @@ class Project extends React.Component {
         <Col xs={5}>
           <div
             className="project-description"
-            dangerouslySetInnerHTML={this.getProjectDescription(project)}
+            dangerouslySetInnerHTML={Project.getProjectDescription(project)}
           />
           <div className="project-points">
             <ul>

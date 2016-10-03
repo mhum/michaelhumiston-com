@@ -1,4 +1,4 @@
-import { Col, Row } from 'react-bootstrap';
+import { Col, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 class Projects extends React.Component {
@@ -13,9 +13,10 @@ class Projects extends React.Component {
         {
           projects.map((v, i) =>
             <Link to={v.uri} key={i}>
-              <Col xs={4} className="project-block">
+              <Col xs={6} className="project-block" >
                 <h3>{v.name}</h3>
                 <p>{v.description}</p>
+                <Image src={`/assets/images/${v.image}`} responsive />
               </Col>
             </Link>
           )
