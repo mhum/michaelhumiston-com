@@ -29,6 +29,12 @@ class Project extends React.Component {
     return project;
   }
 
+  getProjectDescription(proj) {
+    return {
+      __html: proj.descriptionExtended
+    };
+  }
+
   render() {
     const project = this.getProject(this.props.params.projectName);
     return (
@@ -37,7 +43,26 @@ class Project extends React.Component {
           <Image src={`/assets/images/${project.image}`} responsive />
         </Col>
         <Col xs={5}>
-
+          <div
+            className="project-description"
+            dangerouslySetInnerHTML={this.getProjectDescription(project)}
+          />
+          <div className="project-points">
+            <ul>
+              <li> <span>Name:</span> {project.name}</li>
+              <li> <span>Language:</span> {project.language}</li>
+              <li> <span>Framework:</span> {project.framework}</li>
+              <li> <span>Repository: </span>
+                <a
+                  href={project.repo}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                >
+                  {project.repo}
+                </a>
+              </li>
+            </ul>
+          </div>
         </Col>
       </Row>
     );
