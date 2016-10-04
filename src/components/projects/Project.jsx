@@ -1,13 +1,9 @@
-import { Col, Image, Row } from 'react-bootstrap';
 import _ from 'lodash';
 
-class Project extends React.Component {
+import TopView from './TopView';
+import SideView from './SideView';
 
-  static getProjectDescription(project) {
-    return {
-      __html: project.descriptionExtended
-    };
-  }
+class Project extends React.Component {
 
   componentDidMount() {
     const project = this.getProject(this.props.params.projectName);
@@ -38,34 +34,20 @@ class Project extends React.Component {
 
   render() {
     const project = this.getProject(this.props.params.projectName);
+    let View;
+
+    switch (project.pageStyle) {
+      case 'top':
+        View = TopView;
+        break;
+      case 'side':
+        View = SideView;
+        break;
+      default:
+        break;
+    }
     return (
-      <Row>
-        <Col xs={7}>
-          <Image src={`/assets/images/${project.image}`} responsive />
-        </Col>
-        <Col xs={5}>
-          <div
-            className="project-description"
-            dangerouslySetInnerHTML={Project.getProjectDescription(project)}
-          />
-          <div className="project-points">
-            <ul>
-              <li> <span>Name:</span> {project.name}</li>
-              <li> <span>Language:</span> {project.language}</li>
-              <li> <span>Framework:</span> {project.framework}</li>
-              <li> <span>Repository: </span>
-                <a
-                  href={project.repo}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                >
-                  {project.repo}
-                </a>
-              </li>
-            </ul>
-          </div>
-        </Col>
-      </Row>
+      <View project={project} />
     );
   }
 }
