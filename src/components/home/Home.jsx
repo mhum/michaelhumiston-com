@@ -2,11 +2,9 @@ import { Col, Image, Row } from 'react-bootstrap';
 
 import SocialLinks from './SocialLinks';
 
-const pageTitle = 'Home';
-
 class Home extends React.Component {
   componentDidMount() {
-    document.title = `${pageTitle} - Michael Humiston`;
+    this.props.setTitle(this.props.pageTitle);
   }
 
   render() {
@@ -27,6 +25,13 @@ class Home extends React.Component {
   }
 }
 
-Home.title = pageTitle;
+Home.defaultProps = {
+  pageTitle: 'Home'
+};
+
+Home.propTypes = {
+  pageTitle: React.PropTypes.string.isRequired,
+  setTitle: React.PropTypes.func
+};
 
 export default Home;
