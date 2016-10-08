@@ -49,7 +49,32 @@ const projects = [
     language: 'Ruby',
     framework: 'Ruby on Rails',
     repo: 'https://github.com/mhum/lean-coffee',
-    pageStyle: 'top'
+    pageStyle: 'top',
+    currentVersion: '2.3'
+  }, {
+    id: 'pia-updater',
+    name: 'Private Internet Access Transmission Updater',
+    description: 'Script for updating the port for Transmission with port from PIA.',
+    uri: 'project/pia-updater',
+    image: 'projects/pia-updater.png',
+    descriptionExtended: '<p>This script will update the A DNS record for a subdomain at NearlyFreeSpeech.NET with the public IP address for the machine the script runs on. Run this script on a server in which the public IP address is dynamic and changes so your subdomain is always up to date.</p><p>There are two steps to this script. First, it retrieves the configured IP address for the subdomain, the current public IP address of the server, and then compares the two. If the public IP address is different, it updates the A record of the subdomain with the new IP address.</p>',
+    language: 'Tcl',
+    framework: 'None',
+    repo: 'https://github.com/mhum/pia-transmission-updater',
+    pageStyle: 'side',
+    currentVersion: '2.1'
+  }, {
+    id: 'nfs-dynamic-dns',
+    name: 'NearlyFreeSpeech.NET Dynamic DNS',
+    description: 'Script for updating NearlyFreeSpeech DNS entry',
+    uri: 'project/nfs-dynamic-dns',
+    image: 'projects/nfs-dynamic-dns.png',
+    descriptionExtended: '<p>This script will update the listening port for Transmission with the forwarding port for users of Private Internet Access. <p>There are three steps to this script. First, it makes a remote procedure call to Transmission to see if the current listening port is still open. If it isn’t, the script gathers the local ip address for the VPN device, and makes a request to PIA with your user name, password, and client id for the current forwarding port. Finally, another remote procedure call is made to Transmission to update the listening port with the forwarding port sent back by PIA.',
+    language: 'Tcl',
+    framework: 'None',
+    repo: 'https://github.com/mhum/nfs-dynamic-dns',
+    pageStyle: 'side',
+    currentVersion: '1.0'
   }, {
     id: 'workout-tracker',
     name: 'Workout Tracker',
@@ -60,18 +85,8 @@ const projects = [
     language: 'Ruby',
     framework: 'Ruby on Rails & Bootstrap',
     repo: 'https://github.com/mhum/workout-tracker',
-    pageStyle: 'side'
-  }, {
-    id: 'pia-updater',
-    name: 'Private Internet Access Transmission Updater',
-    description: 'Script for updating the port for Transmission with port from PIA.',
-    uri: 'project/pia-updater',
-    image: 'projects/pia-updater.png',
-    descriptionExtended: '<p>This script will update the listening port for Transmission with the forwarding port for users of Private Internet Access. <p>There are three steps to this script. First, it makes a remote procedure call to Transmission to see if the current listening port is still open. If it isn’t, the script gathers the local ip address for the VPN device, and makes a request to PIA with your user name, password, and client id for the current forwarding port. Finally, another remote procedure call is made to Transmission to update the listening port with the forwarding port sent back by PIA.',
-    language: 'Tcl',
-    framework: 'None',
-    repo: 'https://github.com/mhum/pia-transmission-updater',
-    pageStyle: 'side'
+    pageStyle: 'side',
+    currentVersion: '1.0'
   }, {
     id: 'world-clock',
     name: 'World Office Clock',
@@ -82,7 +97,8 @@ const projects = [
     language: 'Javascript',
     framework: 'Ext JS',
     repo: 'https://github.com/mhum/world-clock',
-    pageStyle: 'side'
+    pageStyle: 'side',
+    currentVersion: 'N/A'
   }, {
     id: 'enhanced-world-clock',
     name: 'Enhanced World Office Clock',
@@ -93,7 +109,8 @@ const projects = [
     language: 'Java',
     framework: 'JavaServer Faces with Primefaces',
     repo: 'https://github.com/mhum/world-clockv2',
-    pageStyle: 'side'
+    pageStyle: 'side',
+    currentVersion: 'N/A'
   }
 ];
 

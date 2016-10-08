@@ -13,6 +13,7 @@ const ProjectPoints = ({ project, className }) => (
           {project.repo}
         </a>
       </li>
+      <li> <span>Current Version:</span> {project.currentVersion}</li>
     </ul>
   </div>
 );
@@ -22,7 +23,8 @@ ProjectPoints.propTypes = {
     name: React.PropTypes.string.isRequired,
     language: React.PropTypes.string.isRequired,
     framework: React.PropTypes.string.isRequired,
-    repo: React.PropTypes.string.isRequired
+    repo: React.PropTypes.string.isRequired,
+    currentVersion: React.PropTypes.string.isRequired
   }).isRequired,
   className: React.PropTypes.string.isRequired
 };
