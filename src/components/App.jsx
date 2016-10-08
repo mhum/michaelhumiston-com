@@ -142,6 +142,11 @@ App.defaultProps = {
       name: 'About Me',
       isIndex: false,
       hasSubMenu: false
+    }, {
+      uri: 'contact',
+      name: 'Contact',
+      isIndex: false,
+      hasSubMenu: false
     }
   ]
 };
