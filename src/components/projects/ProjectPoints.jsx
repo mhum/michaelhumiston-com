@@ -3,7 +3,7 @@ const ProjectPoints = ({ project, className }) => (
     <ul className="project-points">
       <li> <span>Name:</span> {project.name}</li>
       <li> <span>Language:</span> {project.language}</li>
-      <li> <span>Framework:</span> {project.framework}</li>
+      <li> <span>Frameworks:</span> {project.framework}</li>
       <li> <span>Repository: </span>
         <a
           href={project.repo}
