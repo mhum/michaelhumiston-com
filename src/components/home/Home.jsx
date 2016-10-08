@@ -11,10 +11,10 @@ class Home extends React.Component {
   render() {
     return (
       <Row>
-        <Col xs={7}>
-          <Image src="/assets/images/springbrook.jpg" responsive />
+        <Col xs={8}>
+          <Image src="/assets/images/home.jpg" responsive />
         </Col>
-        <Col xs={5}>
+        <Col xs={4}>
           <div className="home-links">
             <div>
               <Link to="projects">Projects</Link>
