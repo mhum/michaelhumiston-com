@@ -22,7 +22,18 @@ class Contact extends React.Component {
 
   submitForm() {
     this.setState({ isLoading: true });
-    console.log(this.state);
+    fetch('https://formspree.io/michael@michaelhumiston.com', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: this.state.message
+      })
+    }).then(() => {
+      this.setState({ isLoading: false });
+    });
   }
 
   render() {
