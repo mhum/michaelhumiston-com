@@ -14,7 +14,8 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      React: 'react'
+      React: 'react',
+      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
     new webpack.optimize.UglifyJsPlugin()
   ],
