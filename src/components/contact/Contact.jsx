@@ -1,4 +1,5 @@
-import { Button, Col, ControlLabel, Form, FormControl, FormGroup, Row } from 'react-bootstrap';
+import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
+  Row } from 'react-bootstrap';
 
 class Contact extends React.Component {
   constructor(props) {
@@ -6,18 +7,31 @@ class Contact extends React.Component {
     this.state = {
       email: '',
       message: '',
-      isLoading: false
+      name: '',
+      isLoading: false,
+      showSuccess: false,
+      showError: false
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.onDismissSuccess = this.onDismissSuccess.bind(this);
+    this.onDismissError = this.onDismissError.bind(this);
   }
   componentDidMount() {
     this.props.setTitle(this.props.pageTitle);
   }
 
-  handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+  onDismissSuccess() {
+    this.setState({
+      showSuccess: false
+    });
+  }
+
+  onDismissError() {
+    this.setState({
+      showError: false
+    });
   }
 
   submitForm() {
@@ -29,18 +43,60 @@ class Contact extends React.Component {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        message: this.state.message
+        email: this.state.email,
+        _replyto: this.state.email,
+        name: this.state.name,
+        message: this.state.message,
+        _subject: 'Contact Submission - Michael Humiston'
       })
     }).then(() => {
-      this.setState({ isLoading: false });
+      this.setState({
+        isLoading: false,
+        showSuccess: true,
+        email: '',
+        message: '',
+        name: ''
+      });
+    }).catch(() => {
+      this.setState({
+        isLoading: false,
+        showError: true
+      });
     });
+  }
+
+  handleChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   render() {
     return (
       <Row>
         <Col xs={12}>
+          <Alert bsStyle="success" hidden={!this.state.showSuccess} onDismiss={this.onDismiss}>
+            <strong>Thanks! Message successfully sent.</strong>
+          </Alert>
+
+          <Alert bsStyle="danger" hidden={!this.state.showError} onDismiss={this.onDismissError}>
+            <strong>There was a problem sending the message...</strong>
+          </Alert>
+
           <Form horizontal>
+            <FormGroup controlId="formHorizontalName">
+              <Col componentClass={ControlLabel} sm={2}>
+                Name
+              </Col>
+              <Col sm={4}>
+                <FormControl
+                  name="name"
+                  type="text"
+                  placeholder="Name"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                />
+              </Col>
+            </FormGroup>
+
             <FormGroup controlId="formHorizontalEmail">
               <Col componentClass={ControlLabel} sm={2}>
                 Email
