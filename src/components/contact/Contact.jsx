@@ -115,10 +115,9 @@ class Contact extends React.Component {
 
     fetch('https://formspree.io/michael@michaelhumiston.com', {
       method: 'POST',
-      mode: 'no-cors',
       headers: {
         Accept: 'application/json',
-        'Content-type': 'application/x-www-form-urlencoded'
+        'Content-type': 'application/json'
       },
       body: JSON.stringify({
         email: this.state.email.value,
@@ -161,7 +160,11 @@ class Contact extends React.Component {
     return (
       <Row>
         <Col xs={12}>
-          <Alert bsStyle="success" hidden={!this.state.showSuccess} onDismiss={this.onDismiss}>
+          <Alert
+            bsStyle="success"
+            hidden={!this.state.showSuccess}
+            onDismiss={this.onDismissSuccess}
+          >
             <strong>Thanks! Message successfully sent.</strong>
           </Alert>
 
@@ -247,7 +250,7 @@ class Contact extends React.Component {
                 >
                   <Glyphicon
                     glyph="refresh"
-                    className={this.state.isLoading ? 'spinning' : 'hidden'}
+                    className={this.state.isLoading ? 'spinning' : 'spinning-hidden'}
                   />
                   {this.state.isLoading ? 'Submitting...' : 'Submit'}
                 </Button>
