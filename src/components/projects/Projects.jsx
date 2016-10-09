@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 
 class Projects extends React.Component {
   componentDidMount() {
-    this.props.setTitle(this.props.pageTitle);
+    if (!this.props.children) {
+      this.props.setTitle(this.props.pageTitle);
+    }
   }
 
   render() {
