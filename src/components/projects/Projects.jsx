@@ -10,7 +10,11 @@ class Projects extends React.Component {
     const projects = this.props.projects;
     return (
       <Row>
-        {
+        {this.props.children ?
+          React.cloneElement(this.props.children, {
+            setTitle: this.props.setTitle,
+            projects: this.props.projects
+          }) :
           projects.map((v, i) =>
             <Col xs={6} key={i} className="project-block" >
               <Link to={v.uri}>
@@ -33,6 +37,7 @@ Projects.defaultProps = {
 };
 
 Projects.propTypes = {
+  children: React.PropTypes.shape({}),
   pageTitle: React.PropTypes.string.isRequired,
   projects: React.PropTypes.arrayOf(React.PropTypes.object),
   setTitle: React.PropTypes.func

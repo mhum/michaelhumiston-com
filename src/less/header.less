@@ -27,6 +27,7 @@
 
     > .active > a {
       background-color: transparent;
+      background: rgba(255,255,255,.2);
     }
 
     .dropdown {
@@ -35,6 +36,15 @@
           color: @dark-blue;
           font-size: 12px;
           font-family: Lato;
+
+          &:hover {
+            background: @light-grey;
+          }
+        }
+
+        > .active > a {
+          background-color: transparent;
+          background: @light-grey;
         }
       }
       @media (min-width: 979px) {

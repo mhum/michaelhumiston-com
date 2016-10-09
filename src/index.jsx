@@ -14,8 +14,9 @@ ReactDOM.render(
   <Router history={hashHistory}>
     <Route path="/" component={App}>
       <IndexRoute component={Home} />
-      <Route path="projects" component={Projects} />
-      <Route path="/project/:projectName" component={Project} />
+      <Route path="projects" component={Projects}>
+        <Route path="/projects/:projectName" component={Project} />
+      </Route>
       <Route path="about" component={About} />
       <Route path="contact" component={Contact} />
     </Route>
