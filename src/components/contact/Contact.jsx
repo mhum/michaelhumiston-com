@@ -1,23 +1,45 @@
+import _ from 'lodash';
 import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
-  Row } from 'react-bootstrap';
+  Glyphicon, HelpBlock, Row } from 'react-bootstrap';
+import validate from 'validate.js';
 
 class Contact extends React.Component {
+  static getFormInitial() {
+    return {
+      name: {
+        value: '',
+        valid: true,
+        errorMsg: ''
+      },
+      email: {
+        value: '',
+        valid: true,
+        errorMsg: ''
+      },
+      message: {
+        value: '',
+        valid: true,
+        errorMsg: ''
+      }
+    };
+  }
+
   constructor(props) {
     super(props);
-    this.state = {
-      email: '',
-      message: '',
-      name: '',
-      isLoading: false,
-      showSuccess: false,
-      showError: false
-    };
+    this.state =
+      _.merge({
+        isLoading: false,
+        showSuccess: false,
+        showError: false
+      }, Contact.getFormInitial());
 
     this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
     this.onDismissSuccess = this.onDismissSuccess.bind(this);
     this.onDismissError = this.onDismissError.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
+
   componentDidMount() {
     this.props.setTitle(this.props.pageTitle);
   }
@@ -34,39 +56,105 @@ class Contact extends React.Component {
     });
   }
 
+  validateForm() {
+    let valid = true;
+    const newState = {
+      name: {
+        valid: true,
+        errorMsg: ''
+      },
+      email: {
+        valid: true,
+        errorMsg: ''
+      },
+      message: {
+        valid: true,
+        errorMsg: ''
+      }
+    };
+    const constraints = {
+      name: {
+        presence: true
+      },
+      email: {
+        presence: true,
+        email: true
+      },
+      message: {
+        presence: true
+      }
+    };
+
+    const errors = validate({
+      name: this.state.name.value,
+      email: this.state.email.value,
+      message: this.state.message.value
+    }, constraints);
+
+    if (errors) {
+      _.forOwn(errors, ((errs, key) => {
+        newState[key] = {};
+        newState[key].valid = false;
+        newState[key].errorMsg = errs[0];
+      }));
+
+      valid = false;
+    }
+
+    this.setState(_.merge(this.state, newState));
+
+    return valid;
+  }
+
   submitForm() {
+    if (!this.validateForm()) {
+      return false;
+    }
+
     this.setState({ isLoading: true });
+
     fetch('https://formspree.io/michael@michaelhumiston.com', {
       method: 'POST',
+      mode: 'no-cors',
       headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Content-type': 'application/x-www-form-urlencoded'
       },
       body: JSON.stringify({
-        email: this.state.email,
-        _replyto: this.state.email,
-        name: this.state.name,
-        message: this.state.message,
+        email: this.state.email.value,
+        _replyto: this.state.email.value,
+        name: this.state.name.value,
+        message: this.state.message.value,
         _subject: 'Contact Submission - Michael Humiston'
       })
-    }).then(() => {
-      this.setState({
-        isLoading: false,
-        showSuccess: true,
-        email: '',
-        message: '',
-        name: ''
-      });
+    }).then((response) => {
+      if (response.status >= 200 && response.status < 300) {
+        this.setState(
+          _.merge({
+            isLoading: false,
+            showSuccess: true
+          }, Contact.getFormInitial())
+        );
+      } else {
+        throw new Error(response.statusText || response.status);
+      }
     }).catch(() => {
       this.setState({
         isLoading: false,
         showError: true
       });
     });
+
+    return true;
   }
 
   handleChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState(
+      _.merge(this.state[event.target.name],
+        {
+          value: event.target.value
+        })
+    );
   }
 
   render() {
@@ -82,7 +170,10 @@ class Contact extends React.Component {
           </Alert>
 
           <Form horizontal>
-            <FormGroup controlId="formHorizontalName">
+            <FormGroup
+              controlId="formHorizontalName"
+              validationState={this.state.name.valid ? null : 'error'}
+            >
               <Col componentClass={ControlLabel} sm={2}>
                 Name
               </Col>
@@ -90,14 +181,21 @@ class Contact extends React.Component {
                 <FormControl
                   name="name"
                   type="text"
-                  placeholder="Name"
-                  value={this.state.name}
+                  placeholder="Name (Required)"
+                  value={this.state.name.value}
                   onChange={this.handleChange}
                 />
+                <FormControl.Feedback />
+              </Col>
+              <Col sm={4}>
+                {this.state.name.valid ? null : <HelpBlock>{this.state.name.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
-            <FormGroup controlId="formHorizontalEmail">
+            <FormGroup
+              controlId="formHorizontalEmail"
+              validationState={this.state.email.valid ? null : 'error'}
+            >
               <Col componentClass={ControlLabel} sm={2}>
                 Email
               </Col>
@@ -105,14 +203,21 @@ class Contact extends React.Component {
                 <FormControl
                   name="email"
                   type="email"
-                  placeholder="Email"
-                  value={this.state.email}
+                  placeholder="Email (Required)"
+                  value={this.state.email.value}
                   onChange={this.handleChange}
                 />
+                <FormControl.Feedback />
+              </Col>
+              <Col sm={4}>
+                {this.state.email.valid ? null : <HelpBlock>{this.state.email.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
-            <FormGroup controlId="formHorizontalMessage">
+            <FormGroup
+              controlId="formHorizontalMessage"
+              validationState={this.state.message.valid ? null : 'error'}
+            >
               <Col componentClass={ControlLabel} sm={2}>
                 Message
               </Col>
@@ -121,10 +226,15 @@ class Contact extends React.Component {
                   name="message"
                   componentClass="textarea"
                   rows={3}
-                  placeholder="Message"
-                  value={this.state.message}
+                  placeholder="Message (Required)"
+                  value={this.state.message.value}
                   onChange={this.handleChange}
                 />
+                <FormControl.Feedback />
+              </Col>
+              <Col sm={4}>
+                {this.state.message.valid ? null :
+                  <HelpBlock>{this.state.message.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
@@ -135,6 +245,10 @@ class Contact extends React.Component {
                   disabled={this.state.isLoading}
                   onClick={!this.state.isLoading ? this.submitForm : null}
                 >
+                  <Glyphicon
+                    glyph="refresh"
+                    className={this.state.isLoading ? 'spinning' : 'hidden'}
+                  />
                   {this.state.isLoading ? 'Submitting...' : 'Submit'}
                 </Button>
               </Col>
