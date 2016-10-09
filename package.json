@@ -27,6 +27,7 @@
     "react-dom": "^15.3.2",
     "react-router": "^2.8.1",
     "react-router-bootstrap": "^0.23.1",
+    "validate.js": "^0.10.0",
     "webpack": "^1.12.2",
     "webpack-dev-server": "^1.16.1",
     "whatwg-fetch": "^1.0.0"
@@ -44,6 +45,8 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.0",
     "eslint-plugin-react": "^6.1.0",
+    "exports-loader": "^0.6.3",
+    "imports-loader": "^0.6.5",
     "less": "^2.6.1",
     "less-loader": "^2.2.3",
     "react": "^15.0.0",
