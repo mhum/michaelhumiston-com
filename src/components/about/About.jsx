@@ -8,7 +8,10 @@ class About extends React.Component {
   render() {
     return (
       <Row>
-        <Col xs={7}>
+        <Col xs={12} sm={5} smPush={7}>
+          <Image src="/assets/images/about.jpg" responsive />
+        </Col>
+        <Col xs={12} sm={7} smPull={5}>
           <p>
             Information technology has been my calling for a long time. I was introduced to
             technology and the wider Internet at a young age through an old Packard Bell running
@@ -34,9 +37,6 @@ class About extends React.Component {
             , <a href="https://angularjs.org/" target="_blank" rel="noreferrer noopener">Angular</a>
             , and <a href="http://spring.io/" target="_blank" rel="noreferrer noopener">Spring</a>.
           </p>
-        </Col>
-        <Col xs={5}>
-          <Image src="/assets/images/about.jpg" responsive />
         </Col>
       </Row>
     );
