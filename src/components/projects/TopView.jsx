@@ -1,4 +1,4 @@
-import { Col, Image, Row } from 'react-bootstrap';
+import { Col, Image } from 'react-bootstrap';
 
 import ProjectPoints from './ProjectPoints';
 
@@ -9,31 +9,25 @@ const getProjectDescription = project => (
 );
 
 const TopView = ({ project }) => (
-  <Row>
+  <div>
     <Col xs={12}>
-      <Row>
-        <Col xs={12}>
-          <Image src={`/assets/images/${project.image}`} responsive />
-        </Col>
-      </Row>
+      <Image src={`/assets/images/${project.image}`} responsive />
     </Col>
-    <Col xs={12}>
-      <Row className="project-info">
-        <Col xs={8}>
-          <div
-            className="project-description"
-            dangerouslySetInnerHTML={getProjectDescription(project)}
-          />
-        </Col>
-        <Col xs={4}>
-          <ProjectPoints
-            className="project-points-top"
-            project={project}
-          />
-        </Col>
-      </Row>
+    <Col xs={12} className="project-info">
+      <Col xs={12} lg={4}>
+        <ProjectPoints
+          className="project-points-top"
+          project={project}
+        />
+      </Col>
+      <Col xs={12} lg={8}>
+        <div
+          className="project-description"
+          dangerouslySetInnerHTML={getProjectDescription(project)}
+        />
+      </Col>
     </Col>
-  </Row>
+  </div>
 );
 
 TopView.propTypes = {

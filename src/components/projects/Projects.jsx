@@ -3,7 +3,9 @@ import { Link } from 'react-router';
 
 class Projects extends React.Component {
   componentDidMount() {
-    this.props.setTitle(this.props.pageTitle);
+    if (!this.props.children) {
+      this.props.setTitle(this.props.pageTitle);
+    }
   }
 
   render() {
@@ -16,7 +18,7 @@ class Projects extends React.Component {
             projects: this.props.projects
           }) :
           projects.map((v, i) =>
-            <Col xs={6} key={i} className="project-block" >
+            <Col xs={12} md={6} key={i} className="project-block" >
               <Link to={v.uri}>
                 <div>
                   <h3>{v.name}</h3>
