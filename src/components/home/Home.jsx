@@ -12,7 +12,7 @@ class Home extends React.Component {
     return (
       <Row>
         <Col sm={12} md={8}>
-          <Image src="/assets/images/home.jpg" responsive />
+          <Image src="assets/images/home.jpg" responsive />
         </Col>
         <Col sm={12} md={4}>
           <div className="home-links">

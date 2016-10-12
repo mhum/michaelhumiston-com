@@ -9,7 +9,7 @@ class About extends React.Component {
     return (
       <Row>
         <Col xs={12} sm={5} smPush={7}>
-          <Image src="/assets/images/about.jpg" responsive />
+          <Image src="assets/images/about.jpg" responsive />
         </Col>
         <Col xs={12} sm={7} smPull={5}>
           <p>

@@ -23,7 +23,7 @@ class Projects extends React.Component {
                 <div>
                   <h3>{v.name}</h3>
                   <p>{v.description}</p>
-                  <Image src={`/assets/images/${v.image}`} responsive />
+                  <Image src={`assets/images/${v.image}`} responsive />
                 </div>
               </Link>
             </Col>

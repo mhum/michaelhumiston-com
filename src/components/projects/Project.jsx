@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _find from 'lodash/find';
 
 import TopView from './TopView';
 import SideView from './SideView';
@@ -27,7 +27,7 @@ class Project extends React.Component {
     }
 
     const projects = this.props.projects;
-    project = _.find(projects, { id: projectName });
+    project = _find(projects, { id: projectName });
 
     return project;
   }
