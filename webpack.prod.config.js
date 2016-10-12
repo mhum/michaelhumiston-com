@@ -2,11 +2,10 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
     './src/index'
   ],
   output: {
@@ -19,7 +18,20 @@ module.exports = {
       React: 'react',
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      minimize: true,
+      comments: false
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new ExtractTextPlugin('../css/styles.css')
   ],
   module: {
     loaders: [{
@@ -27,7 +39,7 @@ module.exports = {
       loader: 'babel'
     }, {
       test: /\.less$/,
-      loader: 'style!css!less'
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
     }]
   },
   resolve: {
