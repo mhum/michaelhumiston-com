@@ -1,4 +1,4 @@
-import { Col, Image, Row } from 'react-bootstrap';
+import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router';
 
 import SocialLinks from './SocialLinks';
@@ -11,21 +11,16 @@ class Home extends React.Component {
   render() {
     return (
       <Row>
-        <Col sm={12} md={8}>
-          <Image src="assets/images/home.jpg" responsive />
+        <Col xs={12} md={4} className="home-link">
+          <Link to="projects">Projects</Link>
         </Col>
-        <Col sm={12} md={4}>
-          <div className="home-links">
-            <div>
-              <Link to="projects">Projects</Link>
-            </div>
-            <div>
-              <Link to="about">About Me</Link>
-            </div>
-            <div>
-              <Link to="contact">Contact</Link>
-            </div>
-          </div>
+        <Col xs={12} md={4} className="home-link">
+          <Link to="about">About Me</Link>
+        </Col>
+        <Col xs={12} md={4} className="home-link">
+          <Link to="contact">Contact</Link>
+        </Col>
+        <Col xs={12}>
           <SocialLinks />
         </Col>
       </Row>
