@@ -76,6 +76,18 @@ const projects = [
     pageStyle: 'side',
     currentVersion: '1.0'
   }, {
+    id: 'michael-humiston',
+    name: 'MichaelHumiston.com',
+    description: 'This website! My personal website.',
+    uri: 'projects/michael-humiston',
+    image: 'projects/michael-humiston.png',
+    descriptionExtended: '<p>This website was written as a sigle-page application with React. It is also designed to be mobile-responsive using Bootstrap.</p>',
+    language: 'JavaScript',
+    framework: 'React',
+    repo: 'https://github.com/mhum/michaelhumiston-com',
+    pageStyle: 'side',
+    currentVersion: 'N/A'
+  }, {
     id: 'workout-tracker',
     name: 'Workout Tracker',
     description: 'A workout tracker written using the Ruby on Rails framework.',
