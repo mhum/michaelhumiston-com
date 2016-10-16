@@ -11,7 +11,7 @@ const getProjectDescription = project => (
 const TopView = ({ project }) => (
   <div>
     <Col xs={12}>
-      <Image src={`/assets/images/${project.image}`} responsive />
+      <Image src={`assets/images/${project.image}`} responsive />
     </Col>
     <Col xs={12} className="project-info">
       <Col xs={12} lg={4}>

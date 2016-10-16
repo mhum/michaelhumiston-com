@@ -1,4 +1,5 @@
-import _ from 'lodash';
+import _forOwn from 'lodash/forOwn';
+import _merge from 'lodash/merge';
 import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
   Glyphicon, HelpBlock, Row } from 'react-bootstrap';
 import validate from 'validate.js';
@@ -27,7 +28,7 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state =
-      _.merge({
+      _merge({
         isLoading: false,
         showSuccess: false,
         showError: false
@@ -92,7 +93,7 @@ class Contact extends React.Component {
     }, constraints);
 
     if (errors) {
-      _.forOwn(errors, ((errs, key) => {
+      _forOwn(errors, ((errs, key) => {
         newState[key] = {};
         newState[key].valid = false;
         newState[key].errorMsg = errs[0];
@@ -101,7 +102,7 @@ class Contact extends React.Component {
       valid = false;
     }
 
-    this.setState(_.merge(this.state, newState));
+    this.setState(_merge(this.state, newState));
 
     return valid;
   }
@@ -129,7 +130,7 @@ class Contact extends React.Component {
     }).then((response) => {
       if (response.status >= 200 && response.status < 300) {
         this.setState(
-          _.merge({
+          _merge({
             isLoading: false,
             showSuccess: true
           }, Contact.getFormInitial())
@@ -149,7 +150,7 @@ class Contact extends React.Component {
 
   handleChange(event) {
     this.setState(
-      _.merge(this.state[event.target.name],
+      _merge(this.state[event.target.name],
         {
           value: event.target.value
         })

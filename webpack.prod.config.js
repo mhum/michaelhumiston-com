@@ -2,27 +2,42 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
     './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    publicPath: 'assets'
   },
   plugins: [
     new webpack.ProvidePlugin({
       React: 'react',
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
-    new webpack.optimize.UglifyJsPlugin(),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false
+      },
+      minimize: true,
+      comments: false
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new ExtractTextPlugin('css/styles.css'),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      inject: 'body'
+      inject: 'body',
+      filename: '../index.html',
+      hash: true
     })
   ],
   module: {
@@ -31,7 +46,7 @@ module.exports = {
       loader: 'babel'
     }, {
       test: /\.less$/,
-      loader: 'style!css!less'
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
     }]
   },
   resolve: {
