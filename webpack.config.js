@@ -2,6 +2,7 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   devtool: 'eval',
@@ -11,15 +12,18 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/assets/js'
+    filename: 'bundle.js'
   },
   plugins: [
     new webpack.ProvidePlugin({
       React: 'react',
       fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    new webpack.optimize.UglifyJsPlugin(),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject: 'body'
+    })
   ],
   module: {
     loaders: [{

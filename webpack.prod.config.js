@@ -3,6 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
@@ -11,7 +12,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/assets/js'
+    publicPath: 'assets'
   },
   plugins: [
     new webpack.ProvidePlugin({
@@ -31,7 +32,13 @@ module.exports = {
       }
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new ExtractTextPlugin('../css/styles.css')
+    new ExtractTextPlugin('css/styles.css'),
+    new HtmlWebpackPlugin({
+      template: 'src/index.html',
+      inject: 'body',
+      filename: '../index.html',
+      hash: true
+    })
   ],
   module: {
     loaders: [{
