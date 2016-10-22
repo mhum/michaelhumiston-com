@@ -10,7 +10,7 @@ const getProjectDescription = project => (
 
 const TopView = ({ project }) => (
   <div>
-    <Col sm={12} md={7}>
+    <Col sm={12} md={7} className="project-image">
       <Image src={`assets/images/${project.image}`} responsive />
     </Col>
     <Col sm={12} md={5}>
