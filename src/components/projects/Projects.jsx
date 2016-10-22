@@ -8,6 +8,12 @@ class Projects extends React.Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.children && this.props.children) {
+      this.props.setTitle(this.props.pageTitle);
+    }
+  }
+
   render() {
     const projects = this.props.projects;
     return (
