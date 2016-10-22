@@ -1,7 +1,9 @@
+import { Link } from 'react-router';
+
 const Logo = () => (
-  <div id="logo">
-    Michael Humiston
-  </div>
+  <Link to="/" className="logo">
+      Michael Humiston
+  </Link>
 );
 
 export default Logo;
