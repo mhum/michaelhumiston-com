@@ -7,6 +7,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
+    'babel-polyfill',
+    'whatwg-fetch',
     './src/index'
   ],
   output: {
@@ -16,8 +18,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      React: 'react',
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      React: 'react'
     }),
     new webpack.optimize.UglifyJsPlugin({
       compress: {

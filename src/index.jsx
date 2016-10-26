@@ -1,3 +1,6 @@
+import 'babel-polyfill';
+import 'whatwg-fetch';
+
 import ReactDOM from 'react-dom';
 import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 

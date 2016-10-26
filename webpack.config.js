@@ -8,6 +8,8 @@ module.exports = {
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
+    'babel-polyfill',
+    'whatwg-fetch',
     './src/index'
   ],
   output: {
@@ -16,8 +18,7 @@ module.exports = {
   },
   plugins: [
     new webpack.ProvidePlugin({
-      React: 'react',
-      fetch: 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+      React: 'react'
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
