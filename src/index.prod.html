@@ -23,5 +23,20 @@
       ga('create', 'UA-18739556-2', 'auto');
       ga('send', 'pageview');
     </script>
+
+    <script>
+      var $buoop = {
+        vs:{i:10,f:-8,o:-8,s:7,c:-8},
+        mobile:false,
+        c:4
+      };
+      function $buo_f(){
+        var e = document.createElement("script");
+        e.src = "//browser-update.org/update.min.js";
+        document.body.appendChild(e);
+      };
+      try {document.addEventListener("DOMContentLoaded", $buo_f,false)}
+      catch(e){window.attachEvent("onload", $buo_f)}
+    </script>
   </body>
 </html>
