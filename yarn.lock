@@ -2579,10 +2579,6 @@ html-webpack-plugin@^2.22.0:
     pretty-error "^2.0.2"
     toposort "^1.0.0"
 
-html-webpack-template@^5.4.1:
-  version "5.4.1"
-  resolved "https://registry.yarnpkg.com/html-webpack-template/-/html-webpack-template-5.4.1.tgz#ae6a0f1c5b1eeefd86d06842a15cd75898ed5aac"
-
 htmlparser2@~3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/htmlparser2/-/htmlparser2-3.3.0.tgz#cc70d05a59f6542e43f0e685c982e14c924a9efe"
