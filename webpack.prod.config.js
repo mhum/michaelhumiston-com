@@ -4,7 +4,6 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const HtmlWebpackTemplate = require('html-webpack-template');
 
 module.exports = {
   entry: [
@@ -36,21 +35,9 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin('css/styles.css'),
     new HtmlWebpackPlugin({
-      inject: false,
-      template: HtmlWebpackTemplate,
-      title: 'Home - Michael Humiston',
-      links: [
-        'https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css',
-        'https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css',
-        'https://fonts.googleapis.com/css?family=Lato|Pacifico'
-      ],
+      template: 'src/index.prod.html',
+      inject: 'body',
       filename: '../index.html',
-      mobile: true,
-      appMountId: 'main',
-      googleAnalytics: {
-        trackingId: 'UA-18739556-2',
-        pageViewOnLoad: true
-      },
       hash: true
     })
   ],
