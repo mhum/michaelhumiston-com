@@ -1,42 +1,23 @@
 import { Grid } from 'react-bootstrap';
+import { connect } from 'react-redux';
 
 import HeaderContainer from './layout/header/HeaderContainer';
+import { setPageTitle } from '../redux/actions';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      pageTitle: 'Page Title'
-    };
-
-    this.setTitle = this.setTitle.bind(this);
-  }
-
-  setTitle(pageTitle) {
-    this.setState({
-      pageTitle
-    });
-    document.title = `${pageTitle} - Michael Humiston`;
-  }
-
-  render() {
-    return (
-      <Grid id="container">
-        <HeaderContainer
-          title={this.state.pageTitle}
-          links={this.props.links}
-        />
-        {
-          React.cloneElement(this.props.children, {
-            setTitle: this.setTitle,
-            projects: this.props.projects
-          })
-        }
-      </Grid>
-    );
-  }
-}
+const App = ({ pageTitle, links, projects, setTitle, children }) => (
+  <Grid id="container">
+    <HeaderContainer
+      title={pageTitle}
+      links={links}
+    />
+    {
+      React.cloneElement(children, {
+        setTitle,
+        projects
+      })
+    }
+  </Grid>
+);
 
 const projects = [
   {
@@ -132,7 +113,9 @@ App.propTypes = {
     url: React.PropTypes.string
   }).isRequired,
   projects: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+  links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  pageTitle: React.PropTypes.string,
+  setTitle: React.PropTypes.func
 };
 
 App.defaultProps = {
@@ -163,4 +146,23 @@ App.defaultProps = {
   ]
 };
 
-export default App;
+const mapStateToProps = state => (
+  {
+    pageTitle: state.reducers.pageTitle
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    setTitle: (text) => {
+      dispatch(setPageTitle(text));
+    }
+  }
+);
+
+const ReduxApp = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
+
+export default ReduxApp;
