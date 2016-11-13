@@ -238,7 +238,7 @@ class Contact extends React.Component {
               </Col>
               <Col sm={4}>
                 {this.state.message.valid ? null :
-                  <HelpBlock>{this.state.message.errorMsg}</HelpBlock>}
+                <HelpBlock>{this.state.message.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 

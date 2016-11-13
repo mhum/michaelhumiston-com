@@ -1,3 +1,5 @@
+/* eslint-disable import/no-extraneous-dependencies, no-console */
+
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
