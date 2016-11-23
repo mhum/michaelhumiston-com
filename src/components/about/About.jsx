@@ -26,10 +26,10 @@ class About extends React.Component {
             and <a href="http://www.sencha.com/products/extjs/" target="_blank" rel="noreferrer noopener">ExtJS</a> for internal projects.
           </p>
           <p>
-            Currently, I work as a consultant developing online gambling and betting software.
-            There, I use a wide-variety of tools and technologies doing everything from requirements
-            analysis to live deployments on a high volume software stack. I develop in languages
-            such as <a href="https://tcl.tk" target="_blank" rel="noreferrer noopener">Tcl</a>
+            I also worked as a consultant developing online gambling and betting software.
+            There, I used a wide-variety of tools and technologies doing everything from
+            requirements analysis to live deployments on a high volume software stack. I developed
+            in languages such as <a href="https://tcl.tk" target="_blank" rel="noreferrer noopener">Tcl</a>
             , <a href="https://www.ruby-lang.org/en" target="_blank" rel="noreferrer noopener">Ruby</a>
             , <a href="http://www.java.com/en" target="_blank" rel="noreferrer noopener">Java</a>,
             and <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" rel="noreferrer noopener">JavaScript</a> using
