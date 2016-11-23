@@ -21,7 +21,7 @@ gulp.task('js-lint', () =>
 );
 
 gulp.task('lint-soft', () =>
-    gulp.src(['src/client.**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
+    gulp.src(['src/client/**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
         .pipe(eslint())
         .pipe(eslint.format())
 );

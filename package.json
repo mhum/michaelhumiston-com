@@ -21,7 +21,7 @@
   "homepage": "https://github.com/mhum/michaelhumiston-com#readme",
   "dependencies": {
     "babel-polyfill": "^6.16.0",
-    "hapi": "^14.2.0",
+    "hapi": "^15.2.0",
     "lodash": "^4.16.6",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",

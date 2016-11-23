@@ -26,4 +26,9 @@ const Root = ({ store, history }) => (
   </Provider>
 );
 
+Root.propTypes = {
+  store: React.PropTypes.shape({}).isRequired,
+  history: React.PropTypes.shape({}).isRequired
+};
+
 export default Root;

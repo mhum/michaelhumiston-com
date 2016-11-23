@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 import 'babel-polyfill';
 import 'whatwg-fetch';
 
@@ -28,14 +30,14 @@ ReactDOM.render(
 , document.getElementById('main'));
 
 if (module.hot) {
-   module.hot.accept('./components/Root', () => {
-     // If you use Webpack 2 in ES modules mode, you can
-     // use <Assignments /> here rather than require() a <NextAssignments />.
-     const NextRoot = require('./components/Root').default;
-     ReactDOM.render(
-       <AppContainer>
-         <NextRoot store={store} history={history} />
-       </AppContainer>
-     , document.getElementById('main'));
-   });
+  module.hot.accept('./components/Root', () => {
+    // If you use Webpack 2 in ES modules mode, you can
+    // use <Root /> here rather than require() a <NextRoot />.
+    const NextRoot = require('./components/Root').default;
+    ReactDOM.render(
+      <AppContainer>
+        <NextRoot store={store} history={history} />
+      </AppContainer>
+    , document.getElementById('main'));
+  });
 }
