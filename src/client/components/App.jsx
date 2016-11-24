@@ -2,33 +2,45 @@ import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import HeaderContainer from './layout/header/HeaderContainer';
-import { setPageTitle } from '../redux/actions';
+import { setPageTitle, getProjects } from '../redux/actions';
 
-const App = ({ pageTitle, links, projects, setTitle, children }) => (
-  <Grid id="container">
-    <HeaderContainer
-      title={pageTitle}
-      links={links}
-      projects={projects}
-    />
-    {
-      React.cloneElement(children, {
-        setTitle,
-        projects
-      })
-    }
-  </Grid>
-);
+class App extends React.Component {
+  componentDidMount() {
+    this.props.getProjectList();
+  }
+
+  render() {
+    return (
+      <Grid id="container">
+        <HeaderContainer
+          title={this.props.pageTitle}
+          links={this.props.links}
+          projects={this.props.projects.list}
+        />
+        {
+          React.cloneElement(this.props.children, {
+            setTitle: this.props.setTitle,
+            projects: this.props.projects.list
+          })
+        }
+      </Grid>
+    );
+  }
+}
 
 App.propTypes = {
   children: React.PropTypes.shape({
     name: React.PropTypes.string,
     url: React.PropTypes.string
   }).isRequired,
-  projects: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+  projects: React.PropTypes.shape({
+    list: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    fetching: React.PropTypes.bool
+  }).isRequired,
   links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   pageTitle: React.PropTypes.string,
-  setTitle: React.PropTypes.func
+  setTitle: React.PropTypes.func,
+  getProjectList: React.PropTypes.func
 };
 
 App.defaultProps = {
@@ -68,6 +80,9 @@ const mapDispatchToProps = dispatch => (
   {
     setTitle: (text) => {
       dispatch(setPageTitle(text));
+    },
+    getProjectList: () => {
+      dispatch(getProjects());
     }
   }
 );
