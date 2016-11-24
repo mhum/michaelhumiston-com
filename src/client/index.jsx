@@ -6,7 +6,9 @@ import 'whatwg-fetch';
 import ReactDOM from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { hashHistory } from 'react-router';
-import { createStore, combineReducers } from 'redux';
+
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
 
 import reducers from './redux/reducers';
@@ -18,7 +20,10 @@ const store = createStore(
   combineReducers({
     reducers,
     routing: routerReducer
-  })
+  }),
+  applyMiddleware(
+    thunkMiddleware
+  )
 );
 
 const history = syncHistoryWithStore(hashHistory, store);
