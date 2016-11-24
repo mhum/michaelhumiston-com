@@ -14,14 +14,14 @@ gulp.task('clean', () =>
 );
 
 gulp.task('js-lint', () =>
-    gulp.src(['src/**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
+    gulp.src(['src/client/**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
 );
 
 gulp.task('lint-soft', () =>
-    gulp.src(['src/**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
+    gulp.src(['src/client/**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
         .pipe(eslint())
         .pipe(eslint.format())
 );
@@ -29,7 +29,7 @@ gulp.task('lint-soft', () =>
 gulp.task('test', ['js-lint']);
 
 gulp.task('build-assets', ['test', 'clean'], () =>
-  gulp.src('src/index.jsx')
+  gulp.src('src/client/index.jsx')
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest('dist/assets/'))
 );

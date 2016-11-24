@@ -9,7 +9,7 @@ module.exports = {
   entry: [
     'babel-polyfill',
     'whatwg-fetch',
-    './src/index'
+    './src/client/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -35,7 +35,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin('css/styles.css'),
     new HtmlWebpackPlugin({
-      template: 'src/index.prod.html',
+      template: 'src/client/index.prod.html',
       inject: 'body',
       filename: '../index.html',
       hash: true
@@ -51,7 +51,7 @@ module.exports = {
     }]
   },
   resolve: {
-    root: [path.join(__dirname, './src')],
+    root: [path.join(__dirname, './src/client')],
     extensions: ['', '.js', '.jsx']
   }
 };

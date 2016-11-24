@@ -7,22 +7,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
+    'webpack-hot-middleware/client',
+    'react-hot-loader/patch',
     'babel-polyfill',
     'whatwg-fetch',
-    './src/index'
+    './src/client/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
     new webpack.ProvidePlugin({
       React: 'react'
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
+      template: 'src/client/index.html',
       inject: 'body'
     })
   ],
@@ -36,7 +38,12 @@ module.exports = {
     }]
   },
   resolve: {
-    root: [path.join(__dirname, './src')],
+    root: [path.join(__dirname, './src/client')],
     extensions: ['', '.js', '.jsx']
+  },
+  assets: {
+    stats: {
+      colors: true
+    }
   }
 };
