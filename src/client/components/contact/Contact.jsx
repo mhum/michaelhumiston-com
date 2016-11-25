@@ -114,21 +114,15 @@ class Contact extends React.Component {
 
     this.setState({ isLoading: true });
 
-    fetch('https://formspree.io/michael@michaelhumiston.com', {
+    fetch('/contact', {
       method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-type': 'application/json'
-      },
       body: JSON.stringify({
         email: this.state.email.value,
-        _replyto: this.state.email.value,
         name: this.state.name.value,
-        message: this.state.message.value,
-        _subject: 'Contact Submission - Michael Humiston'
+        message: this.state.message.value
       })
     }).then((response) => {
-      if (response.status >= 200 && response.status < 300) {
+      if (response.ok) {
         this.setState(
           _merge({
             isLoading: false,
