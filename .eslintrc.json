@@ -1,27 +1,14 @@
 {
   "parserOptions": {
       "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-          "jsx": true
-      }
-  },
-  "globals": {
-    "React": true
+      "sourceType": "module"
   },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
     "airbnb"
   ],
-  "plugins": [
-      "react"
-  ],
   "rules": {
-    "comma-dangle": ["error", "never"],
-    "react/no-unused-prop-types": [2, {"skipShapeProps": true}]
-  },
-  "env": {
-    "browser": true
+    "comma-dangle": ["error", "never"]
   }
 }

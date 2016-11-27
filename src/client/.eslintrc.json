@@ -1,0 +1,19 @@
+{
+  "parserOptions": {
+      "ecmaFeatures": {
+          "jsx": true
+      }
+  },
+  "globals": {
+    "React": true
+  },
+  "plugins": [
+      "react"
+  ],
+  "rules": {
+    "react/no-unused-prop-types": [2, {"skipShapeProps": true}]
+  },
+  "env": {
+    "browser": true
+  }
+}
