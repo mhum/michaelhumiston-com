@@ -7,7 +7,7 @@ const user = Config.contact.user_name;
 const pass = Config.contact.password;
 
 function submitContact(request, reply) {
-  const payload = request.payload;
+  const payload = JSON.parse(request.payload);
 
   // create reusable transporter object using the default SMTP transport
   const transporter = Nodemailer.createTransport(`smtps://${user}:${pass}@smtp.gmail.com`);
