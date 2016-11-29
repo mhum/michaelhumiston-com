@@ -28,11 +28,7 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.state =
-      _merge({
-        isLoading: false,
-        showSuccess: false,
-        showError: false
-      }, Contact.getFormInitial());
+      _merge(this.state, Contact.getFormInitial());
 
     this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
@@ -112,32 +108,14 @@ class Contact extends React.Component {
       return false;
     }
 
-    this.setState({ isLoading: true });
+    const details = {
+      email: this.state.email.value,
+      name: this.state.name.value,
+      message: this.state.message.value
+    }
 
-    fetch('/contact', {
-      method: 'POST',
-      body: JSON.stringify({
-        email: this.state.email.value,
-        name: this.state.name.value,
-        message: this.state.message.value
-      })
-    }).then((response) => {
-      if (response.ok) {
-        this.setState(
-          _merge({
-            isLoading: false,
-            showSuccess: true
-          }, Contact.getFormInitial())
-        );
-      } else {
-        throw new Error(response.statusText || response.status);
-      }
-    }).catch(() => {
-      this.setState({
-        isLoading: false,
-        showError: true
-      });
-    });
+    this.props.submitContact(details);
+
 
     return true;
   }
@@ -157,13 +135,17 @@ class Contact extends React.Component {
         <Col xs={12}>
           <Alert
             bsStyle="success"
-            hidden={!this.state.showSuccess}
+            hidden={!this.props.contact.showSuccess}
             onDismiss={this.onDismissSuccess}
           >
             <strong>Thanks! Message successfully sent.</strong>
           </Alert>
 
-          <Alert bsStyle="danger" hidden={!this.state.showError} onDismiss={this.onDismissError}>
+          <Alert
+            bsStyle="danger"
+            hidden={!this.props.contact.showError}
+            onDismiss={this.onDismissError}
+          >
             <strong>There was a problem sending the message...</strong>
           </Alert>
 
@@ -240,14 +222,14 @@ class Contact extends React.Component {
               <Col smOffset={2} sm={10}>
                 <Button
                   type="button"
-                  disabled={this.state.isLoading}
-                  onClick={!this.state.isLoading ? this.submitForm : null}
+                  disabled={this.props.contact.isLoading}
+                  onClick={!this.props.contact.isLoading ? this.submitForm : null}
                 >
                   <Glyphicon
                     glyph="refresh"
-                    className={this.state.isLoading ? 'spinning' : 'spinning-hidden'}
+                    className={this.props.contact.isLoading ? 'spinning' : 'spinning-hidden'}
                   />
-                  {this.state.isLoading ? 'Submitting...' : 'Submit'}
+                {this.props.contact.isLoading ? 'Submitting...' : 'Submit'}
                 </Button>
               </Col>
             </FormGroup>
@@ -263,8 +245,10 @@ Contact.defaultProps = {
 };
 
 Contact.propTypes = {
+  contact: React.PropTypes.shape({}).isRequired,
   pageTitle: React.PropTypes.string.isRequired,
-  setTitle: React.PropTypes.func
+  setTitle: React.PropTypes.func,
+  submitContact: React.PropTypes.func
 };
 
 export default Contact;
