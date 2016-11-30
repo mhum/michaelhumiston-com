@@ -2,7 +2,7 @@ import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import HeaderContainer from './layout/header/HeaderContainer';
-import { setPageTitle, getProjects, sendEmail, dismissSuccess, dismissError } from '../redux/actions';
+import { setPageTitle, getProjects, sendEmail, dismissSuccess, dismissError, updateField } from '../redux/actions';
 
 class App extends React.Component {
   componentDidMount() {
@@ -24,7 +24,8 @@ class App extends React.Component {
             submitContact: this.props.submitContact,
             contact: this.props.contact,
             dismissContactSuccess: this.props.dismissContactSuccess,
-            dismissContactError: this.props.dismissContactError
+            dismissContactError: this.props.dismissContactError,
+            updateContactField: this.props.updateContactField
           })
         }
       </Grid>
@@ -48,7 +49,8 @@ App.propTypes = {
   submitContact: React.PropTypes.func,
   contact: React.PropTypes.shape({}),
   dismissContactSuccess: React.PropTypes.func,
-  dismissContactError: React.PropTypes.func
+  dismissContactError: React.PropTypes.func,
+  updateContactField: React.PropTypes.func
 };
 
 App.defaultProps = {
@@ -101,7 +103,11 @@ const mapDispatchToProps = dispatch => (
     },
     dismissContactError: () => {
       dispatch(dismissError());
+    },
+    updateContactField: (event) => {
+      dispatch(updateField(event));
     }
+
   }
 );
 

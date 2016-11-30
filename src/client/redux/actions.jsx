@@ -5,6 +5,7 @@ export const SEND_EMAIL = 'SEND_EMAIL';
 export const RECEIVE_EMAIL = 'RECEIVE_EMAIL';
 export const DISMISS_SUCCESS = 'DISMISS_SUCCESS';
 export const DISMISS_ERROR = 'DISMISS_ERROR';
+export const UPDATE_FIELD = 'UPDATE_FIELD';
 
 function requestProjects() {
   return { type: FETCH_PROJECTS };
@@ -52,4 +53,8 @@ export function dismissSuccess() {
 
 export function dismissError() {
   return { type: DISMISS_ERROR };
+}
+
+export function updateField(event) {
+  return { type: UPDATE_FIELD, event };
 }

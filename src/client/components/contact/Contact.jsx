@@ -5,30 +5,8 @@ import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
 import validate from 'validate.js';
 
 class Contact extends React.Component {
-  static getFormInitial() {
-    return {
-      name: {
-        value: '',
-        valid: true,
-        errorMsg: ''
-      },
-      email: {
-        value: '',
-        valid: true,
-        errorMsg: ''
-      },
-      message: {
-        value: '',
-        valid: true,
-        errorMsg: ''
-      }
-    };
-  }
-
   constructor(props) {
     super(props);
-    this.state =
-      _merge(this.state, Contact.getFormInitial());
 
     this.handleChange = this.handleChange.bind(this);
     this.submitForm = this.submitForm.bind(this);
@@ -117,12 +95,7 @@ class Contact extends React.Component {
   }
 
   handleChange(event) {
-    this.setState(
-      _merge(this.state[event.target.name],
-        {
-          value: event.target.value
-        })
-    );
+    this.props.updateContactField(event);
   }
 
   render() {
@@ -148,7 +121,7 @@ class Contact extends React.Component {
           <Form horizontal>
             <FormGroup
               controlId="formHorizontalName"
-              validationState={this.state.name.valid ? null : 'error'}
+              validationState={this.props.contact.fields.name.valid ? null : 'error'}
             >
               <Col componentClass={ControlLabel} sm={2}>
                 Name
@@ -158,19 +131,20 @@ class Contact extends React.Component {
                   name="name"
                   type="text"
                   placeholder="Name (Required)"
-                  value={this.state.name.value}
+                  value={this.props.contact.fields.name.value}
                   onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
               </Col>
               <Col sm={4}>
-                {this.state.name.valid ? null : <HelpBlock>{this.state.name.errorMsg}</HelpBlock>}
+                {this.props.contact.fields.name.valid ? null : <HelpBlock>
+                  {this.props.contact.fields.name.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
             <FormGroup
               controlId="formHorizontalEmail"
-              validationState={this.state.email.valid ? null : 'error'}
+              validationState={this.props.contact.fields.email.valid ? null : 'error'}
             >
               <Col componentClass={ControlLabel} sm={2}>
                 Email
@@ -180,19 +154,20 @@ class Contact extends React.Component {
                   name="email"
                   type="email"
                   placeholder="Email (Required)"
-                  value={this.state.email.value}
+                  value={this.props.contact.fields.email.value}
                   onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
               </Col>
               <Col sm={4}>
-                {this.state.email.valid ? null : <HelpBlock>{this.state.email.errorMsg}</HelpBlock>}
+                {this.props.contact.fields.email.valid ? null : <HelpBlock>
+                  {this.props.contact.fields.email.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
             <FormGroup
               controlId="formHorizontalMessage"
-              validationState={this.state.message.valid ? null : 'error'}
+              validationState={this.props.contact.fields.message.valid ? null : 'error'}
             >
               <Col componentClass={ControlLabel} sm={2}>
                 Message
@@ -203,14 +178,14 @@ class Contact extends React.Component {
                   componentClass="textarea"
                   rows={3}
                   placeholder="Message (Required)"
-                  value={this.state.message.value}
+                  value={this.props.contact.fields.message.value}
                   onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
               </Col>
               <Col sm={4}>
-                {this.state.message.valid ? null :
-                <HelpBlock>{this.state.message.errorMsg}</HelpBlock>}
+                {this.props.contact.fields.message.valid ? null :
+                <HelpBlock>{this.props.contact.fields.message.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
@@ -244,13 +219,31 @@ Contact.propTypes = {
   contact: React.PropTypes.shape({
     isLoading: React.PropTypes.bool,
     showError: React.PropTypes.bool,
-    showSuccess: React.PropTypes.bool
-  }).isRequired,
+    showSuccess: React.PropTypes.bool,
+    fields: React.PropTypes.shape({
+      name: React.PropTypes.shape({
+        value: React.PropTypes.string,
+        valid: React.PropTypes.bool,
+        errorMsg: React.PropTypes.string
+      }),
+      email: React.PropTypes.shape({
+        value: React.PropTypes.string,
+        valid: React.PropTypes.bool,
+        errorMsg: React.PropTypes.string
+      }),
+      message: React.PropTypes.shape({
+        value: React.PropTypes.string,
+        valid: React.PropTypes.bool,
+        errorMsg: React.PropTypes.string
+      })
+    })
+  }),
   pageTitle: React.PropTypes.string.isRequired,
   setTitle: React.PropTypes.func,
   submitContact: React.PropTypes.func,
   dismissContactSuccess: React.PropTypes.func,
-  dismissContactError: React.PropTypes.func
+  dismissContactError: React.PropTypes.func,
+  updateContactField: React.PropTypes.func
 };
 
 export default Contact;
