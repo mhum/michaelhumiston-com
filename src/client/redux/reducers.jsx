@@ -1,3 +1,4 @@
+import _find from 'lodash/find';
 import _merge from 'lodash/merge';
 
 import { SET_TITLE, FETCH_PROJECTS, RECEIVE_PROJECTS, SEND_EMAIL, RECEIVE_EMAIL, DISMISS_SUCCESS,
@@ -13,23 +14,26 @@ const initialState = {
     isLoading: false,
     showSuccess: false,
     showError: false,
-    fields: {
-      name: {
+    fields: [
+      {
+        name: 'name',
         value: '',
         valid: true,
         errorMsg: ''
       },
-      email: {
+      {
+        name: 'email',
         value: '',
         valid: true,
         errorMsg: ''
       },
-      message: {
+      {
+        name: 'message',
         value: '',
         valid: true,
         errorMsg: ''
       }
-    }
+    ]
   }
 };
 
@@ -88,16 +92,13 @@ function reduce(state = initialState, action) {
           showError: false
         }
       });
-    case UPDATE_FIELD:
-      return _merge({}, state, {
-        contact: {
-          fields: {
-            [action.event.target.name]: {
-              value: action.event.target.value
-            }
-          }
-        }
-      });
+    case UPDATE_FIELD: {
+      const tempState = Object.assign({}, state);
+      const field = _find(tempState.contact.fields, { name: action.event.target.name });
+      field.value = action.event.target.value;
+
+      return _merge({}, state, tempState);
+    }
     default:
       return state;
   }

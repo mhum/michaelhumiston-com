@@ -1,3 +1,4 @@
+import _find from 'lodash/find';
 import _forOwn from 'lodash/forOwn';
 import _merge from 'lodash/merge';
 import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
@@ -99,6 +100,11 @@ class Contact extends React.Component {
   }
 
   render() {
+    const fields = this.props.contact.fields;
+    const name = _find(fields, { name: 'name' });
+    const email = _find(fields, { name: 'email' });
+    const message = _find(fields, { name: 'message' });
+
     return (
       <Row>
         <Col xs={12}>
@@ -121,7 +127,7 @@ class Contact extends React.Component {
           <Form horizontal>
             <FormGroup
               controlId="formHorizontalName"
-              validationState={this.props.contact.fields.name.valid ? null : 'error'}
+              validationState={name.valid ? null : 'error'}
             >
               <Col componentClass={ControlLabel} sm={2}>
                 Name
@@ -131,20 +137,19 @@ class Contact extends React.Component {
                   name="name"
                   type="text"
                   placeholder="Name (Required)"
-                  value={this.props.contact.fields.name.value}
+                  value={name.value}
                   onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
               </Col>
               <Col sm={4}>
-                {this.props.contact.fields.name.valid ? null : <HelpBlock>
-                  {this.props.contact.fields.name.errorMsg}</HelpBlock>}
+                {name.valid ? null : <HelpBlock> {name.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
             <FormGroup
               controlId="formHorizontalEmail"
-              validationState={this.props.contact.fields.email.valid ? null : 'error'}
+              validationState={email.valid ? null : 'error'}
             >
               <Col componentClass={ControlLabel} sm={2}>
                 Email
@@ -154,20 +159,19 @@ class Contact extends React.Component {
                   name="email"
                   type="email"
                   placeholder="Email (Required)"
-                  value={this.props.contact.fields.email.value}
+                  value={email.value}
                   onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
               </Col>
               <Col sm={4}>
-                {this.props.contact.fields.email.valid ? null : <HelpBlock>
-                  {this.props.contact.fields.email.errorMsg}</HelpBlock>}
+                {email.valid ? null : <HelpBlock>{email.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
             <FormGroup
               controlId="formHorizontalMessage"
-              validationState={this.props.contact.fields.message.valid ? null : 'error'}
+              validationState={message.valid ? null : 'error'}
             >
               <Col componentClass={ControlLabel} sm={2}>
                 Message
@@ -178,14 +182,13 @@ class Contact extends React.Component {
                   componentClass="textarea"
                   rows={3}
                   placeholder="Message (Required)"
-                  value={this.props.contact.fields.message.value}
+                  value={message.value}
                   onChange={this.handleChange}
                 />
                 <FormControl.Feedback />
               </Col>
               <Col sm={4}>
-                {this.props.contact.fields.message.valid ? null :
-                <HelpBlock>{this.props.contact.fields.message.errorMsg}</HelpBlock>}
+                {message.valid ? null : <HelpBlock>{message.errorMsg}</HelpBlock>}
               </Col>
             </FormGroup>
 
@@ -220,23 +223,7 @@ Contact.propTypes = {
     isLoading: React.PropTypes.bool,
     showError: React.PropTypes.bool,
     showSuccess: React.PropTypes.bool,
-    fields: React.PropTypes.shape({
-      name: React.PropTypes.shape({
-        value: React.PropTypes.string,
-        valid: React.PropTypes.bool,
-        errorMsg: React.PropTypes.string
-      }),
-      email: React.PropTypes.shape({
-        value: React.PropTypes.string,
-        valid: React.PropTypes.bool,
-        errorMsg: React.PropTypes.string
-      }),
-      message: React.PropTypes.shape({
-        value: React.PropTypes.string,
-        valid: React.PropTypes.bool,
-        errorMsg: React.PropTypes.string
-      })
-    })
+    fields: React.PropTypes.arrayOf(React.PropTypes.object)
   }),
   pageTitle: React.PropTypes.string.isRequired,
   setTitle: React.PropTypes.func,
