@@ -16,7 +16,7 @@ server.connection({
   port: 3000,
   routes: {
     files: {
-      relativeTo: Path.join(__dirname, './src/server/views')
+      relativeTo: Path.join(__dirname, '.')
     }
   }
 });
@@ -44,6 +44,21 @@ server.register([
  * Add routes
  */
 server.route(routes);
+
+/**
+ * Add static route
+ */
+server.route({
+  method: 'GET',
+  path: '/{param*}',
+  handler: {
+    directory: {
+      path: '.',
+      redirectToSlash: true,
+      index: true
+    }
+  }
+});
 
 /**
  * Start server

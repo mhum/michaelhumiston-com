@@ -2,7 +2,7 @@ import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import HeaderContainer from './layout/header/HeaderContainer';
-import { setPageTitle, getProjects } from '../redux/actions';
+import { setPageTitle, getProjects, sendEmail, dismissSuccess, dismissError, updateField, updateFields } from '../redux/actions';
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,7 +20,13 @@ class App extends React.Component {
         {
           React.cloneElement(this.props.children, {
             setTitle: this.props.setTitle,
-            projects: this.props.projects.list
+            projects: this.props.projects.list,
+            submitContact: this.props.submitContact,
+            contact: this.props.contact,
+            dismissContactSuccess: this.props.dismissContactSuccess,
+            dismissContactError: this.props.dismissContactError,
+            updateContactField: this.props.updateContactField,
+            updateContactFields: this.props.updateContactFields
           })
         }
       </Grid>
@@ -40,7 +46,13 @@ App.propTypes = {
   links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   pageTitle: React.PropTypes.string,
   setTitle: React.PropTypes.func,
-  getProjectList: React.PropTypes.func
+  getProjectList: React.PropTypes.func,
+  submitContact: React.PropTypes.func,
+  contact: React.PropTypes.shape({}),
+  dismissContactSuccess: React.PropTypes.func,
+  dismissContactError: React.PropTypes.func,
+  updateContactField: React.PropTypes.func,
+  updateContactFields: React.PropTypes.func
 };
 
 App.defaultProps = {
@@ -72,7 +84,8 @@ App.defaultProps = {
 const mapStateToProps = state => (
   {
     pageTitle: state.reducers.pageTitle,
-    projects: state.reducers.projects
+    projects: state.reducers.projects,
+    contact: state.reducers.contact
   }
 );
 
@@ -83,7 +96,23 @@ const mapDispatchToProps = dispatch => (
     },
     getProjectList: () => {
       dispatch(getProjects());
+    },
+    submitContact: (details) => {
+      dispatch(sendEmail(details));
+    },
+    dismissContactSuccess: () => {
+      dispatch(dismissSuccess());
+    },
+    dismissContactError: () => {
+      dispatch(dismissError());
+    },
+    updateContactField: (event) => {
+      dispatch(updateField(event));
+    },
+    updateContactFields: (fields) => {
+      dispatch(updateFields(fields));
     }
+
   }
 );
 

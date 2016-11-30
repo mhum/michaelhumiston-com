@@ -4,6 +4,7 @@ const Hapi = require('hapi');
 const Inert = require('inert');
 const Path = require('path');
 
+const config = require('./config');
 const routes = require('./routes/index');
 
 /**
@@ -11,8 +12,8 @@ const routes = require('./routes/index');
  */
 const server = new Hapi.Server();
 server.connection({
-  host: 'localhost',
-  port: 3000,
+  host: config.web.host,
+  port: config.web.port,
   routes: {
     files: {
       relativeTo: Path.join(__dirname, './views')
