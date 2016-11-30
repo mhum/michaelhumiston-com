@@ -2,7 +2,7 @@ import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import HeaderContainer from './layout/header/HeaderContainer';
-import { setPageTitle, getProjects, sendEmail } from '../redux/actions';
+import { setPageTitle, getProjects, sendEmail, dismissSuccess, dismissError } from '../redux/actions';
 
 class App extends React.Component {
   componentDidMount() {
@@ -22,7 +22,9 @@ class App extends React.Component {
             setTitle: this.props.setTitle,
             projects: this.props.projects.list,
             submitContact: this.props.submitContact,
-            contact: this.props.contact
+            contact: this.props.contact,
+            dismissContactSuccess: this.props.dismissContactSuccess,
+            dismissContactError: this.props.dismissContactError
           })
         }
       </Grid>
@@ -43,7 +45,10 @@ App.propTypes = {
   pageTitle: React.PropTypes.string,
   setTitle: React.PropTypes.func,
   getProjectList: React.PropTypes.func,
-  submitContact: React.PropTypes.func
+  submitContact: React.PropTypes.func,
+  contact: React.PropTypes.shape({}),
+  dismissContactSuccess: React.PropTypes.func,
+  dismissContactError: React.PropTypes.func
 };
 
 App.defaultProps = {
@@ -90,6 +95,12 @@ const mapDispatchToProps = dispatch => (
     },
     submitContact: (details) => {
       dispatch(sendEmail(details));
+    },
+    dismissContactSuccess: () => {
+      dispatch(dismissSuccess());
+    },
+    dismissContactError: () => {
+      dispatch(dismissError());
     }
   }
 );

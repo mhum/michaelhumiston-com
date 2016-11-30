@@ -42,15 +42,11 @@ class Contact extends React.Component {
   }
 
   onDismissSuccess() {
-    this.setState({
-      showSuccess: false
-    });
+    this.props.dismissContactSuccess();
   }
 
   onDismissError() {
-    this.setState({
-      showError: false
-    });
+    this.props.dismissContactError();
   }
 
   validateForm() {
@@ -112,7 +108,7 @@ class Contact extends React.Component {
       email: this.state.email.value,
       name: this.state.name.value,
       message: this.state.message.value
-    }
+    };
 
     this.props.submitContact(details);
 
@@ -229,7 +225,7 @@ class Contact extends React.Component {
                     glyph="refresh"
                     className={this.props.contact.isLoading ? 'spinning' : 'spinning-hidden'}
                   />
-                {this.props.contact.isLoading ? 'Submitting...' : 'Submit'}
+                  {this.props.contact.isLoading ? 'Submitting...' : 'Submit'}
                 </Button>
               </Col>
             </FormGroup>
@@ -245,10 +241,16 @@ Contact.defaultProps = {
 };
 
 Contact.propTypes = {
-  contact: React.PropTypes.shape({}).isRequired,
+  contact: React.PropTypes.shape({
+    isLoading: React.PropTypes.bool,
+    showError: React.PropTypes.bool,
+    showSuccess: React.PropTypes.bool
+  }).isRequired,
   pageTitle: React.PropTypes.string.isRequired,
   setTitle: React.PropTypes.func,
-  submitContact: React.PropTypes.func
+  submitContact: React.PropTypes.func,
+  dismissContactSuccess: React.PropTypes.func,
+  dismissContactError: React.PropTypes.func
 };
 
 export default Contact;

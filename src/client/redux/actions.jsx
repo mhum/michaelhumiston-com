@@ -3,6 +3,8 @@ export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const RECEIVE_PROJECTS = 'RECEIVE_PROJECTS';
 export const SEND_EMAIL = 'SEND_EMAIL';
 export const RECEIVE_EMAIL = 'RECEIVE_EMAIL';
+export const DISMISS_SUCCESS = 'DISMISS_SUCCESS';
+export const DISMISS_ERROR = 'DISMISS_ERROR';
 
 function requestProjects() {
   return { type: FETCH_PROJECTS };
@@ -42,4 +44,12 @@ export function sendEmail(details) {
     })
     .then(response => dispatch(receiveEmail(response)));
   };
+}
+
+export function dismissSuccess() {
+  return { type: DISMISS_SUCCESS };
+}
+
+export function dismissError() {
+  return { type: DISMISS_ERROR };
 }

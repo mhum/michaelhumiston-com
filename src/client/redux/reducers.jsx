@@ -1,6 +1,5 @@
-import { SET_TITLE,
-  FETCH_PROJECTS, RECEIVE_PROJECTS,
-  SEND_EMAIL, RECEIVE_EMAIL } from './actions';
+import { SET_TITLE, FETCH_PROJECTS, RECEIVE_PROJECTS,
+  SEND_EMAIL, RECEIVE_EMAIL, DISMISS_SUCCESS, DISMISS_ERROR } from './actions';
 
 const initialState = {
   pageTitle: 'Page Title',
@@ -56,6 +55,18 @@ function reduce(state = initialState, action) {
         contact: {
           isLoading: false,
           showError: true
+        }
+      });
+    case DISMISS_SUCCESS:
+      return Object.assign({}, state, {
+        contact: {
+          showSuccess: false
+        }
+      });
+    case DISMISS_ERROR:
+      return Object.assign({}, state, {
+        contact: {
+          showError: false
         }
       });
     default:
