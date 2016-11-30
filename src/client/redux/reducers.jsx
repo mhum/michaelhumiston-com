@@ -2,7 +2,7 @@ import _find from 'lodash/find';
 import _merge from 'lodash/merge';
 
 import { SET_TITLE, FETCH_PROJECTS, RECEIVE_PROJECTS, SEND_EMAIL, RECEIVE_EMAIL, DISMISS_SUCCESS,
-  DISMISS_ERROR, UPDATE_FIELD } from './actions';
+  DISMISS_ERROR, UPDATE_FIELD, UPDATE_FIELDS } from './actions';
 
 const initialState = {
   pageTitle: 'Page Title',
@@ -96,6 +96,13 @@ function reduce(state = initialState, action) {
       const tempState = Object.assign({}, state);
       const field = _find(tempState.contact.fields, { name: action.event.target.name });
       field.value = action.event.target.value;
+
+      return _merge({}, state, tempState);
+    }
+    case UPDATE_FIELDS: {
+      const tempState = Object.assign({}, state);
+      const fields = tempState.contact.fields;
+      tempState.contact.fields = _merge(fields, action.fields);
 
       return _merge({}, state, tempState);
     }

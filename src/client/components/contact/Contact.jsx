@@ -1,6 +1,4 @@
 import _find from 'lodash/find';
-import _forOwn from 'lodash/forOwn';
-import _merge from 'lodash/merge';
 import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
   Glyphicon, HelpBlock, Row } from 'react-bootstrap';
 import validate from 'validate.js';
@@ -13,6 +11,7 @@ class Contact extends React.Component {
     this.submitForm = this.submitForm.bind(this);
     this.onDismissSuccess = this.onDismissSuccess.bind(this);
     this.onDismissError = this.onDismissError.bind(this);
+    this.getField = this.getField.bind(this);
     this.validateForm = this.validateForm.bind(this);
   }
 
@@ -28,22 +27,14 @@ class Contact extends React.Component {
     this.props.dismissContactError();
   }
 
+  getField(name) {
+    return _find(this.props.contact.fields, { name });
+  }
+
   validateForm() {
-    let valid = true;
-    const newState = {
-      name: {
-        valid: true,
-        errorMsg: ''
-      },
-      email: {
-        valid: true,
-        errorMsg: ''
-      },
-      message: {
-        valid: true,
-        errorMsg: ''
-      }
-    };
+    let valid = false;
+
+    const fields = this.props.contact.fields;
     const constraints = {
       name: {
         presence: true
@@ -58,22 +49,27 @@ class Contact extends React.Component {
     };
 
     const errors = validate({
-      name: this.state.name.value,
-      email: this.state.email.value,
-      message: this.state.message.value
+      name: this.getField('name').value,
+      email: this.getField('email').value,
+      message: this.getField('message').value
     }, constraints);
 
     if (errors) {
-      _forOwn(errors, ((errs, key) => {
-        newState[key] = {};
-        newState[key].valid = false;
-        newState[key].errorMsg = errs[0];
-      }));
-
-      valid = false;
+      fields.forEach((field) => {
+        const f = this.getField(field.name);
+        if (errors[field.name]) {
+          f.valid = false;
+          f.errorMsg = errors[field.name][0];
+        } else {
+          f.valid = true;
+          f.errorMsg = '';
+        }
+      });
+    } else {
+      valid = true;
     }
 
-    this.setState(_merge(this.state, newState));
+    this.props.updateContactFields(fields);
 
     return valid;
   }
@@ -84,13 +80,12 @@ class Contact extends React.Component {
     }
 
     const details = {
-      email: this.state.email.value,
-      name: this.state.name.value,
-      message: this.state.message.value
+      name: this.getField('name').value,
+      email: this.getField('email').value,
+      message: this.getField('message').value
     };
 
     this.props.submitContact(details);
-
 
     return true;
   }
@@ -100,10 +95,9 @@ class Contact extends React.Component {
   }
 
   render() {
-    const fields = this.props.contact.fields;
-    const name = _find(fields, { name: 'name' });
-    const email = _find(fields, { name: 'email' });
-    const message = _find(fields, { name: 'message' });
+    const name = this.getField('name');
+    const email = this.getField('email');
+    const message = this.getField('message');
 
     return (
       <Row>
@@ -230,7 +224,8 @@ Contact.propTypes = {
   submitContact: React.PropTypes.func,
   dismissContactSuccess: React.PropTypes.func,
   dismissContactError: React.PropTypes.func,
-  updateContactField: React.PropTypes.func
+  updateContactField: React.PropTypes.func,
+  updateContactFields: React.PropTypes.func
 };
 
 export default Contact;
