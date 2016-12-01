@@ -32,6 +32,12 @@ const initialState = {
         value: '',
         valid: true,
         errorMsg: ''
+      },
+      {
+        name: 'captcha',
+        value: '',
+        valid: true,
+        errorMsg: ''
       }
     ]
   }
@@ -66,10 +72,21 @@ function reduce(state = initialState, action) {
       });
     case RECEIVE_EMAIL:
       if (action.response.ok) {
+        const tempState = Object.assign({}, state);
+        const fields = tempState.contact.fields;
+
+        fields.forEach((field) => {
+          field.value = '';
+          field.valid = true;
+          field.errorMsg = '';
+        });
+
+
         return _merge({}, state, {
           contact: {
             isLoading: false,
-            showSuccess: true
+            showSuccess: true,
+            showError: false
           }
         });
       }
@@ -94,8 +111,8 @@ function reduce(state = initialState, action) {
       });
     case UPDATE_FIELD: {
       const tempState = Object.assign({}, state);
-      const field = _find(tempState.contact.fields, { name: action.event.target.name });
-      field.value = action.event.target.value;
+      const field = _find(tempState.contact.fields, { name: action.name });
+      field.value = action.value;
 
       return _merge({}, state, tempState);
     }

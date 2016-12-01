@@ -1,3 +1,5 @@
+/* global grecaptcha */
+
 import _find from 'lodash/find';
 import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
   Glyphicon, HelpBlock, Row } from 'react-bootstrap';
@@ -17,6 +19,10 @@ class Contact extends React.Component {
 
   componentDidMount() {
     this.props.setTitle(this.props.pageTitle);
+    grecaptcha.render('recaptchaTarget', {
+      sitekey: '6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym',
+      callback: (resp => this.props.updateContactField('captcha', resp))
+    });
   }
 
   onDismissSuccess() {
@@ -45,13 +51,17 @@ class Contact extends React.Component {
       },
       message: {
         presence: true
+      },
+      captcha: {
+        presence: true
       }
     };
 
     const errors = validate({
       name: this.getField('name').value,
       email: this.getField('email').value,
-      message: this.getField('message').value
+      message: this.getField('message').value,
+      captcha: this.getField('captcha').value
     }, constraints);
 
     if (errors) {
@@ -82,7 +92,8 @@ class Contact extends React.Component {
     const details = {
       name: this.getField('name').value,
       email: this.getField('email').value,
-      message: this.getField('message').value
+      message: this.getField('message').value,
+      captcha: this.getField('captcha').value
     };
 
     this.props.submitContact(details);
@@ -91,13 +102,14 @@ class Contact extends React.Component {
   }
 
   handleChange(event) {
-    this.props.updateContactField(event);
+    this.props.updateContactField(event.target.name, event.target.value);
   }
 
   render() {
     const name = this.getField('name');
     const email = this.getField('email');
     const message = this.getField('message');
+    const captcha = this.getField('captcha');
 
     return (
       <Row>
@@ -186,6 +198,18 @@ class Contact extends React.Component {
               </Col>
             </FormGroup>
 
+            <FormGroup
+              controlId="formCaptcha"
+              validationState={captcha.valid ? null : 'error'}
+            >
+              <Col smOffset={2} sm={4}>
+                <div id="recaptchaTarget" />
+              </Col>
+              <Col sm={4}>
+                {captcha.valid ? null : <HelpBlock>{captcha.errorMsg}</HelpBlock>}
+              </Col>
+            </FormGroup>
+
             <FormGroup>
               <Col smOffset={2} sm={10}>
                 <Button
@@ -217,6 +241,7 @@ Contact.propTypes = {
     isLoading: React.PropTypes.bool,
     showError: React.PropTypes.bool,
     showSuccess: React.PropTypes.bool,
+    captcha: React.PropTypes.string,
     fields: React.PropTypes.arrayOf(React.PropTypes.object)
   }),
   pageTitle: React.PropTypes.string.isRequired,
@@ -225,7 +250,8 @@ Contact.propTypes = {
   dismissContactSuccess: React.PropTypes.func,
   dismissContactError: React.PropTypes.func,
   updateContactField: React.PropTypes.func,
-  updateContactFields: React.PropTypes.func
+  updateContactFields: React.PropTypes.func,
+  updateContactCaptcha: React.PropTypes.func
 };
 
 export default Contact;

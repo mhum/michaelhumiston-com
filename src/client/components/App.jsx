@@ -106,8 +106,8 @@ const mapDispatchToProps = dispatch => (
     dismissContactError: () => {
       dispatch(dismissError());
     },
-    updateContactField: (event) => {
-      dispatch(updateField(event));
+    updateContactField: (name, value) => {
+      dispatch(updateField(name, value));
     },
     updateContactFields: (fields) => {
       dispatch(updateFields(fields));
