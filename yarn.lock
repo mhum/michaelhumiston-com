@@ -1073,11 +1073,11 @@ bytes@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/bytes/-/bytes-0.3.0.tgz#78e2e0e28c7f9c7b988ea8aee0db4d5fa9941935"
 
-call@3.x.x:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/call/-/call-3.0.3.tgz#e4748ddbbb7f41ae40cee055f8b270b733bf7c8d"
+call@4.x.x:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/call/-/call-4.0.0.tgz#cd29381a98046a132db26e2628e70bd8321a1ddf"
   dependencies:
-    boom "3.x.x"
+    boom "4.x.x"
     hoek "4.x.x"
 
 caller-path@^0.1.0:
@@ -2453,14 +2453,14 @@ hapi-webpack-plugin@^1.3.0:
     webpack-dev-middleware "^1.4.0"
     webpack-hot-middleware "^2.6.0"
 
-hapi@^15.2.0:
-  version "15.2.0"
-  resolved "https://registry.yarnpkg.com/hapi/-/hapi-15.2.0.tgz#5704ca2c04b6386c03caf9ee901f1de080316d23"
+hapi@^16.0.0:
+  version "16.0.0"
+  resolved "https://registry.yarnpkg.com/hapi/-/hapi-16.0.0.tgz#9216e643c52882838fe3dfe81de13d31d6cb70de"
   dependencies:
     accept "2.x.x"
     ammo "2.x.x"
     boom "4.x.x"
-    call "3.x.x"
+    call "4.x.x"
     catbox "7.x.x"
     catbox-memory "2.x.x"
     cryptiles "3.x.x"
@@ -2468,7 +2468,7 @@ hapi@^15.2.0:
     hoek "4.x.x"
     iron "4.x.x"
     items "2.x.x"
-    joi "9.x.x"
+    joi "10.x.x"
     mimos "3.x.x"
     podium "^1.2.x"
     shot "3.x.x"

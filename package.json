@@ -23,7 +23,7 @@
   "dependencies": {
     "babel-polyfill": "^6.16.0",
     "boom": "^4.2.0",
-    "hapi": "^15.2.0",
+    "hapi": "^16.0.0",
     "inert": "^4.0.3",
     "lodash": "^4.16.6",
     "node-env-file": "^0.1.8",
