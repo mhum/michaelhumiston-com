@@ -250,8 +250,7 @@ Contact.propTypes = {
   dismissContactSuccess: React.PropTypes.func,
   dismissContactError: React.PropTypes.func,
   updateContactField: React.PropTypes.func,
-  updateContactFields: React.PropTypes.func,
-  updateContactCaptcha: React.PropTypes.func
+  updateContactFields: React.PropTypes.func
 };
 
 export default Contact;

@@ -59,5 +59,5 @@ function submitContact(request, reply) {
 }
 
 module.exports = [
-    { method: 'POST', path: '/contact', handler: submitContact }
+    { method: 'POST', path: `${Config.web.uri}/contact`, handler: submitContact }
 ];
