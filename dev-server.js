@@ -16,7 +16,7 @@ server.connection({
   port: 3000,
   routes: {
     files: {
-      relativeTo: Path.join(__dirname, '.')
+      relativeTo: Path.join(__dirname, './src/server')
     }
   }
 });
@@ -53,7 +53,7 @@ server.route({
   path: '/{param*}',
   handler: {
     directory: {
-      path: '.',
+      path: '../../',
       redirectToSlash: true,
       index: true
     }

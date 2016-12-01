@@ -31,7 +31,7 @@ export function setPageTitle(text) {
 export function getProjects() {
   return (dispatch) => {
     dispatch(requestProjects());
-    return fetch('/projects')
+    return fetch('/api/projects')
       .then(response => response.json())
       .then(json => dispatch(receiveProjects(json)));
   };
@@ -40,7 +40,7 @@ export function getProjects() {
 export function sendEmail(details) {
   return (dispatch) => {
     dispatch(requestEmail(details));
-    fetch('/contact', {
+    fetch('/api/contact', {
       method: 'POST',
       body: JSON.stringify(details)
     })

@@ -16,7 +16,7 @@ server.connection({
   port: config.web.port,
   routes: {
     files: {
-      relativeTo: Path.join(__dirname, './views')
+      relativeTo: Path.join(__dirname, '.')
     }
   }
 });

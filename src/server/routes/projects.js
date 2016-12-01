@@ -1,3 +1,5 @@
+const Config = require('../config');
+
 module.exports = [
-    { method: 'GET', path: '/projects', handler: { file: './src/server/views/projects.json' } }
+    { method: 'GET', path: `${Config.web.uri}/projects`, handler: { file: './views/projects.json' } }
 ];
