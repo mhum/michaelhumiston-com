@@ -56,8 +56,8 @@ export function dismissError() {
   return { type: DISMISS_ERROR };
 }
 
-export function updateField(event) {
-  return { type: UPDATE_FIELD, event };
+export function updateField(name, value) {
+  return { type: UPDATE_FIELD, name, value };
 }
 
 export function updateFields(fields) {
