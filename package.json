@@ -27,6 +27,7 @@
     "inert": "^4.0.3",
     "lodash": "^4.16.6",
     "node-env-file": "^0.1.8",
+    "node-fetch": "^1.6.3",
     "nodemailer": "^2.6.4",
     "react": "^15.3.2",
     "react-bootstrap": "^0.30.5",
