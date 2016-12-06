@@ -7,11 +7,12 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
   devtool: 'eval-source-map',
   entry: [
-    'webpack-hot-middleware/client',
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
     'react-hot-loader/patch',
     'babel-polyfill',
     'whatwg-fetch',
-    './src/client/index'
+    './src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -24,7 +25,7 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin(),
     new HtmlWebpackPlugin({
-      template: 'src/client/index.html',
+      template: 'src/index.html',
       inject: 'body'
     })
   ],
@@ -38,12 +39,16 @@ module.exports = {
     }]
   },
   resolve: {
-    root: [path.join(__dirname, './src/client')],
+    root: [path.join(__dirname, 'src')],
     extensions: ['', '.js', '.jsx']
   },
   assets: {
     stats: {
       colors: true
     }
+  },
+  devServer: {
+    hot: true,
+    contentBase: '/src'
   }
 };
