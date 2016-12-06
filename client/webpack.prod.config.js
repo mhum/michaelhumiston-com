@@ -7,9 +7,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: [
-    'babel-polyfill',
-    'whatwg-fetch',
-    './src/client/index'
+    'node_modules/babel-polyfill',
+    'node_modules/whatwg-fetch',
+    './client/src/index'
   ],
   output: {
     path: path.join(__dirname, 'dist/client'),
@@ -35,7 +35,7 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new ExtractTextPlugin('css/styles.css'),
     new HtmlWebpackPlugin({
-      template: 'src/client/index.prod.html',
+      template: 'client/src/index.prod.html',
       inject: 'body',
       filename: '../index.html',
       hash: true
@@ -51,7 +51,10 @@ module.exports = {
     }]
   },
   resolve: {
-    root: [path.join(__dirname, './src/client')],
+    root: [path.join(__dirname, '.')],
     extensions: ['', '.js', '.jsx']
+  },
+  resolveLoader: {
+    root: path.join(__dirname, 'node_modules')
   }
 };

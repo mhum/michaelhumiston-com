@@ -7,6 +7,9 @@ const eslint = require('gulp-eslint');
 const webpack = require('webpack-stream');
 const webpackConfig = require('./client/webpack.prod.config.js');
 
+const eslintFiles = ['client/src/**/*.jsx', '**/*.js',
+  '!node_modules/**', '!client/node_modules/**', '!server/node_modules/**', '!dist/**'];
+
 gulp.task('clean', () =>
   del([
     'dist/**/*'
@@ -14,14 +17,14 @@ gulp.task('clean', () =>
 );
 
 gulp.task('js-lint', () =>
-    gulp.src(['src/client/**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
+    gulp.src(eslintFiles)
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError())
 );
 
 gulp.task('lint-soft', () =>
-    gulp.src(['src/client/**/*.jsx', '**/*.js', '!node_modules/**', '!dist/**'])
+    gulp.src(eslintFiles)
         .pipe(eslint())
         .pipe(eslint.format())
 );
@@ -29,7 +32,7 @@ gulp.task('lint-soft', () =>
 gulp.task('test', ['js-lint']);
 
 gulp.task('build-assets', ['test', 'clean'], () =>
-  gulp.src('src/client/index.jsx')
+  gulp.src('client/src/index.jsx')
     .pipe(webpack(webpackConfig))
     .pipe(gulp.dest('dist/client/assets/'))
 );
@@ -40,7 +43,7 @@ gulp.task('copy-images', ['clean'], () =>
 );
 
 gulp.task('copy-server', ['clean'], () =>
-    gulp.src('./src/server/**/*')
+    gulp.src(['./server/src/**/*', './server/package.json', './server/yarn.lock'])
     .pipe(gulp.dest('./dist/server'))
 );
 
