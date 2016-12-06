@@ -15,7 +15,7 @@ config.contact.to = process.env.CONTACT_TO || 'email';
 config.contact.captcha = process.env.CONTACT_CAPTCHA || 'XXXXXX';
 
 config.web.host = process.env.HOST || 'localhost';
-config.web.port = process.env.PORT || '3000';
+config.web.port = process.env.PORT || '4000';
 config.web.uri = process.env.URI || '';
 
 module.exports = config;

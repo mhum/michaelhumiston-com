@@ -5,7 +5,7 @@ const del = require('del');
 const gzip = require('gulp-gzip');
 const eslint = require('gulp-eslint');
 const webpack = require('webpack-stream');
-const webpackConfig = require('./webpack.prod.config.js');
+const webpackConfig = require('./client/webpack.prod.config.js');
 
 gulp.task('clean', () =>
   del([
