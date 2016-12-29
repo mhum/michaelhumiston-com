@@ -11,6 +11,9 @@ new WebpackDevServer(webpack(config), {
   proxy: {
     '/api': {
       target: 'http://localhost:4000'
+    },
+    '/assets': {
+      target: 'http://localhost:4000'
     }
   }
 }).listen(3000, '0.0.0.0', (err) => {

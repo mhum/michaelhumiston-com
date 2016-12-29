@@ -39,6 +39,18 @@ server.register([
 /**
  * Add routes
  */
+if (config.env === 'development') {
+  server.route({
+    method: 'GET',
+    path: '/assets/{param*}',
+    handler: {
+      directory: {
+        path: '../../assets'
+      }
+    }
+  });
+}
+
 server.route(routes);
 
 /**
