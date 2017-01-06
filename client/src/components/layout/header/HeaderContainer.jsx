@@ -11,7 +11,7 @@ const HeaderContainer = ({ title, links, projects }) => (
 );
 
 HeaderContainer.propTypes = {
-  title: React.PropTypes.string.isRequired,
+  title: React.PropTypes.string,
   links: React.PropTypes.arrayOf(
     React.PropTypes.shape({})
   ).isRequired,
