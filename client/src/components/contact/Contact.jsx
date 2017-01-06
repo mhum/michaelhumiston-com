@@ -3,7 +3,10 @@
 import _find from 'lodash/find';
 import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
   Glyphicon, HelpBlock, Row } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import validate from 'validate.js';
+
+import { sendEmail, dismissSuccess, dismissError, updateField, updateFields } from '../../redux/actions';
 
 class Contact extends React.Component {
   constructor(props) {
@@ -106,6 +109,12 @@ class Contact extends React.Component {
   }
 
   render() {
+    if (!this.props.contact.fields) {
+      return (
+        <Row />
+      );
+    }
+
     const name = this.getField('name');
     const email = this.getField('email');
     const message = this.getField('message');
@@ -253,4 +262,30 @@ Contact.propTypes = {
   updateContactFields: React.PropTypes.func
 };
 
-export default Contact;
+const mapStateToProps = state => (
+  {
+    contact: state.reducers.contact
+  }
+);
+
+const mapDispatchToProps = dispatch => (
+  {
+    submitContact: (details) => {
+      dispatch(sendEmail(details));
+    },
+    dismissContactSuccess: () => {
+      dispatch(dismissSuccess());
+    },
+    dismissContactError: () => {
+      dispatch(dismissError());
+    },
+    updateContactField: (name, value) => {
+      dispatch(updateField(name, value));
+    },
+    updateContactFields: (fields) => {
+      dispatch(updateFields(fields));
+    }
+  }
+);
+
+export default connect(mapStateToProps, mapDispatchToProps)(Contact);

@@ -2,7 +2,7 @@ import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import HeaderContainer from './layout/header/HeaderContainer';
-import { setPageTitle, getProjects, sendEmail, dismissSuccess, dismissError, updateField, updateFields } from '../redux/actions';
+import { setPageTitle, getProjects } from '../redux/actions';
 
 class App extends React.Component {
   componentDidMount() {
@@ -20,13 +20,7 @@ class App extends React.Component {
         {
           React.cloneElement(this.props.children, {
             setTitle: this.props.setTitle,
-            projects: this.props.projects.list,
-            submitContact: this.props.submitContact,
-            contact: this.props.contact,
-            dismissContactSuccess: this.props.dismissContactSuccess,
-            dismissContactError: this.props.dismissContactError,
-            updateContactField: this.props.updateContactField,
-            updateContactFields: this.props.updateContactFields
+            projects: this.props.projects.list
           })
         }
       </Grid>
@@ -40,19 +34,13 @@ App.propTypes = {
     url: React.PropTypes.string
   }).isRequired,
   projects: React.PropTypes.shape({
-    list: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+    list: React.PropTypes.arrayOf(React.PropTypes.object),
     fetching: React.PropTypes.bool
   }).isRequired,
   links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
   pageTitle: React.PropTypes.string,
   setTitle: React.PropTypes.func,
-  getProjectList: React.PropTypes.func,
-  submitContact: React.PropTypes.func,
-  contact: React.PropTypes.shape({}),
-  dismissContactSuccess: React.PropTypes.func,
-  dismissContactError: React.PropTypes.func,
-  updateContactField: React.PropTypes.func,
-  updateContactFields: React.PropTypes.func
+  getProjectList: React.PropTypes.func
 };
 
 App.defaultProps = {
@@ -83,9 +71,8 @@ App.defaultProps = {
 
 const mapStateToProps = state => (
   {
-    pageTitle: state.reducers.pageTitle,
-    projects: state.reducers.projects,
-    contact: state.reducers.contact
+    pageTitle: state.reducers.pageTitle.title,
+    projects: state.reducers.projects
   }
 );
 
@@ -96,23 +83,7 @@ const mapDispatchToProps = dispatch => (
     },
     getProjectList: () => {
       dispatch(getProjects());
-    },
-    submitContact: (details) => {
-      dispatch(sendEmail(details));
-    },
-    dismissContactSuccess: () => {
-      dispatch(dismissSuccess());
-    },
-    dismissContactError: () => {
-      dispatch(dismissError());
-    },
-    updateContactField: (name, value) => {
-      dispatch(updateField(name, value));
-    },
-    updateContactFields: (fields) => {
-      dispatch(updateFields(fields));
     }
-
   }
 );
 
