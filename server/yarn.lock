@@ -781,7 +781,7 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
-joi@10.x.x:
+joi@10.x.x, joi@^10.1.0:
   version "10.1.0"
   resolved "https://registry.yarnpkg.com/joi/-/joi-10.1.0.tgz#8c3a87577c159ffeba129a5054f3238f9efd7159"
   dependencies:

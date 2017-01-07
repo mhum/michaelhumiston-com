@@ -1,5 +1,6 @@
 const Boom = require('boom');
 const Fetch = require('node-fetch');
+const Joi = require('joi');
 const Nodemailer = require('nodemailer');
 
 const Config = require('../config');
@@ -44,13 +45,13 @@ function validateCaptcha(captcha) {
     if (resp.success) {
       return Promise.resolve(resp);
     }
-    return Promise.reject(Boom.badRequest(resp['error-codes'][0]));
+    return Promise.reject(Boom.badRequest('Captcha validation failed'));
   })
   .catch(resp => Promise.reject(Boom.badRequest(resp)));
 }
 
 function submitContact(request, reply) {
-  const payload = JSON.parse(request.payload);
+  const payload = request.payload;
 
   validateCaptcha(payload.captcha)
   .then(() => sendEmail(payload))
@@ -59,5 +60,19 @@ function submitContact(request, reply) {
 }
 
 module.exports = [
-    { method: 'POST', path: `${Config.web.uri}/contact`, handler: submitContact }
+  {
+    method: 'POST',
+    path: `${Config.web.uri}/contact`,
+    handler: submitContact,
+    config: {
+      validate: {
+        payload: {
+          captcha: Joi.string().required(),
+          email: Joi.string().email().required(),
+          message: Joi.string().min(1).required(),
+          name: Joi.string().min(1).required()
+        }
+      }
+    }
+  }
 ];
