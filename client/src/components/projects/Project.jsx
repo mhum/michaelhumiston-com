@@ -5,50 +5,51 @@ import SideView from './SideView';
 
 class Project extends React.Component {
 
-  componentDidMount() {
-    const project = this.getProject(this.props.params.projectName);
-
-    this.props.setTitle(project.name);
+  static getProject(projectName, projects) {
+    return _find(projects, { shortName: projectName });
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (this.props.params.projectName !== nextProps.params.projectName) {
-      const project = this.getProject(nextProps.params.projectName);
+  componentDidMount() {
+    const project = Project.getProject(this.props.params.projectName, this.props.projects);
 
+    if (project) {
       this.props.setTitle(project.name);
     }
   }
 
-  getProject(projectName, reset = false) {
-    let project;
+  componentWillReceiveProps(nextProps) {
+    if (this.props.params.projectName !== nextProps.params.projectName ||
+      (this.props.projects.length === 0 && nextProps.projects.length > 0)) {
+      const project = Project.getProject(nextProps.params.projectName, nextProps.projects);
 
-    if (project || reset) {
-      return project;
+      if (project) {
+        this.props.setTitle(project.name);
+      }
     }
-
-    const projects = this.props.projects;
-    project = _find(projects, { id: projectName });
-
-    return project;
   }
 
   render() {
-    const project = this.getProject(this.props.params.projectName);
-    let View;
+    const project = Project.getProject(this.props.params.projectName, this.props.projects);
 
-    switch (project.pageStyle) {
-      case 'top':
-        View = TopView;
-        break;
-      case 'side':
-        View = SideView;
-        break;
-      default:
-        break;
+    if (project) {
+      let View;
+
+      switch (project.pageStyle) {
+        case 'top':
+          View = TopView;
+          break;
+        case 'side':
+          View = SideView;
+          break;
+        default:
+          break;
+      }
+      return (
+        <View project={project} />
+      );
     }
-    return (
-      <View project={project} />
-    );
+
+    return (<div />);
   }
 }
 
@@ -58,6 +59,11 @@ Project.propTypes = {
   }).isRequired,
   projects: React.PropTypes.arrayOf(React.PropTypes.object),
   setTitle: React.PropTypes.func
+};
+
+Project.defaultProps = {
+  projects: [],
+  setTitle: null
 };
 
 export default Project;
