@@ -44,7 +44,8 @@ class About extends React.Component {
 }
 
 About.defaultProps = {
-  pageTitle: 'About Me'
+  pageTitle: 'About Me',
+  setTitle: null
 };
 
 About.propTypes = {

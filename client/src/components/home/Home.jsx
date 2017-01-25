@@ -29,7 +29,8 @@ class Home extends React.Component {
 }
 
 Home.defaultProps = {
-  pageTitle: 'Home'
+  pageTitle: 'Home',
+  setTitle: null
 };
 
 Home.propTypes = {

@@ -5,7 +5,7 @@ const PageHeader = ({ title }) => (
 );
 
 PageHeader.propTypes = {
-  title: React.PropTypes.string
+  title: React.PropTypes.string.isRequired
 };
 
 export default PageHeader;

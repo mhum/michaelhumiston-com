@@ -252,14 +252,14 @@ Contact.propTypes = {
     showSuccess: React.PropTypes.bool,
     captcha: React.PropTypes.string,
     fields: React.PropTypes.arrayOf(React.PropTypes.object)
-  }),
+  }).isRequired,
   pageTitle: React.PropTypes.string.isRequired,
-  setTitle: React.PropTypes.func,
-  submitContact: React.PropTypes.func,
-  dismissContactSuccess: React.PropTypes.func,
-  dismissContactError: React.PropTypes.func,
-  updateContactField: React.PropTypes.func,
-  updateContactFields: React.PropTypes.func
+  setTitle: React.PropTypes.func.isRequired,
+  submitContact: React.PropTypes.func.isRequired,
+  dismissContactSuccess: React.PropTypes.func.isRequired,
+  dismissContactError: React.PropTypes.func.isRequired,
+  updateContactField: React.PropTypes.func.isRequired,
+  updateContactFields: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => (

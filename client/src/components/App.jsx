@@ -38,9 +38,9 @@ App.propTypes = {
     fetching: React.PropTypes.bool
   }).isRequired,
   links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  pageTitle: React.PropTypes.string,
-  setTitle: React.PropTypes.func,
-  getProjectList: React.PropTypes.func
+  pageTitle: React.PropTypes.string.isRequired,
+  setTitle: React.PropTypes.func.isRequired,
+  getProjectList: React.PropTypes.func.isRequired
 };
 
 App.defaultProps = {

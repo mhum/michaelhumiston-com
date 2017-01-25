@@ -13,7 +13,7 @@ const generateSubMenu = ((link, i, LinkClass, expanded, onClickLink, projects) =
     >
       {
         projects && projects.map((v, ii) =>
-          <LinkClass to={v.uri} key={ii}>
+          <LinkClass to={v.uri} key={v.id}>
             <MenuItem eventKey={`${i}.${ii}`}>{v.name}</MenuItem>
           </LinkClass>
         )

@@ -10,8 +10,12 @@ const HeaderContainer = ({ title, links, projects }) => (
   </div>
 );
 
+HeaderContainer.defaultProps = {
+  projects: []
+};
+
 HeaderContainer.propTypes = {
-  title: React.PropTypes.string,
+  title: React.PropTypes.string.isRequired,
   links: React.PropTypes.arrayOf(
     React.PropTypes.shape({})
   ).isRequired,

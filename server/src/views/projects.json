@@ -1,7 +1,8 @@
 {
 "projects": [
 {
-"id": "lean-coffee",
+"id": 1,
+"shortName": "lean-coffee",
 "name": "Lean Coffee",
 "description": "Simple Ruby on Rails web application for distributed Lean Coffee sessions.",
 "uri": "projects/lean-coffee",
@@ -14,7 +15,8 @@
 "currentVersion": "2.3"
 },
 {
-"id": "pia-updater",
+"id": 2,
+"shortName": "pia-updater",
 "name": "Private Internet Access Transmission Updater",
 "description": "Script for updating the port for Transmission with port from PIA.",
 "uri": "projects/pia-updater",
@@ -27,7 +29,8 @@
 "currentVersion": "2.1"
 },
 {
-"id": "nfs-dynamic-dns",
+"id": 3,
+"shortName": "nfs-dynamic-dns",
 "name": "NearlyFreeSpeech.NET Dynamic DNS",
 "description": "Script for updating NearlyFreeSpeech DNS entry",
 "uri": "projects/nfs-dynamic-dns",
@@ -40,7 +43,8 @@
 "currentVersion": "1.0"
 },
 {
-"id": "michael-humiston",
+"id": 4,
+"shortName": "michael-humiston",
 "name": "MichaelHumiston.com",
 "description": "This website! My personal website.",
 "uri": "projects/michael-humiston",
@@ -53,7 +57,8 @@
 "currentVersion": "N/A"
 },
 {
-"id": "workout-tracker",
+"id": 5,
+"shortName": "workout-tracker",
 "name": "Workout Tracker",
 "description": "A workout tracker written using the Ruby on Rails framework.",
 "uri": "projects/workout-tracker",
@@ -66,7 +71,8 @@
 "currentVersion": "1.0"
 },
 {
-"id": "world-clock",
+"id": 6,
+"shortName": "world-clock",
 "name": "World Office Clock",
 "description": "Dashboard for tracking current office times around the world written using Ext JS.",
 "uri": "projects/world-clock",
@@ -79,7 +85,8 @@
 "currentVersion": "N/A"
 },
 {
-"id": "enhanced-world-clock",
+"id": 7,
+"shortName": "enhanced-world-clock",
 "name": "Enhanced World Office Clock",
 "description": "Dashboard for tracking current office times around the world written using JavaServer Faces.",
 "uri": "projects/enhanced-world-clock",

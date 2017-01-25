@@ -23,8 +23,8 @@ class Projects extends React.Component {
             setTitle: this.props.setTitle,
             projects: this.props.projects
           }) :
-          projects.map((v, i) =>
-            <Col xs={12} md={6} key={i} className="project-block" >
+          projects.map(v =>
+            <Col xs={12} md={6} key={v.id} className="project-block" >
               <Link to={v.uri}>
                 <div>
                   <h3>{v.name}</h3>
@@ -41,7 +41,10 @@ class Projects extends React.Component {
 }
 
 Projects.defaultProps = {
-  pageTitle: 'Projects'
+  pageTitle: 'Projects',
+  children: {},
+  projects: [],
+  setTitle: null
 };
 
 Projects.propTypes = {
