@@ -36,12 +36,9 @@ ReactDOM.render(
 
 if (module.hot) {
   module.hot.accept('./components/Root', () => {
-    // If you use Webpack 2 in ES modules mode, you can
-    // use <Root /> here rather than require() a <NextRoot />.
-    const NextRoot = require('./components/Root').default;
     ReactDOM.render(
       <AppContainer>
-        <NextRoot store={store} history={history} />
+        <Root store={store} history={history} />
       </AppContainer>
     , document.getElementById('main'));
   });

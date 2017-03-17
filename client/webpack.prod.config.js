@@ -21,10 +21,6 @@ module.exports = {
       React: 'react'
     }),
     new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      },
-      minimize: true,
       comments: false
     }),
     new webpack.DefinePlugin({
@@ -39,22 +35,34 @@ module.exports = {
       inject: 'body',
       filename: '../index.html',
       hash: true
+    }),
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
+      debug: false
     })
   ],
   module: {
     loaders: [{
       test: /\.jsx?$/,
-      loader: 'babel'
+      loader: 'babel-loader'
     }, {
       test: /\.less$/,
-      loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
+      use: ExtractTextPlugin.extract({
+        fallback: 'style-loader',
+        use: ['css-loader', 'less-loader']
+      })
     }]
   },
   resolve: {
-    root: [path.join(__dirname, '.')],
-    extensions: ['', '.js', '.jsx']
+    modules: [
+      path.join(__dirname, '.'),
+      'node_modules'
+    ],
+    extensions: ['.js', '.jsx']
   },
   resolveLoader: {
-    root: path.join(__dirname, 'node_modules')
+    modules: [
+      path.join(__dirname, 'node_modules')
+    ]
   }
 };

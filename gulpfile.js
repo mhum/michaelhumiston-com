@@ -4,11 +4,14 @@ const gulp = require('gulp');
 const del = require('del');
 const gzip = require('gulp-gzip');
 const eslint = require('gulp-eslint');
-const webpack = require('webpack-stream');
+const webpack = require('webpack');
+const webpackStream = require('webpack-stream');
 const webpackConfig = require('./client/webpack.prod.config.js');
 
 const eslintFiles = ['client/src/**/*.jsx', '**/*.js',
-  '!node_modules/**', '!client/node_modules/**', '!server/node_modules/**', '!dist/**'];
+  '!dist/**', '!node_modules/**',
+  '!client/node_modules/**', '!client/dist/**',
+  '!server/node_modules/**'];
 
 gulp.task('clean', () =>
   del([
@@ -33,7 +36,7 @@ gulp.task('test', ['js-lint']);
 
 gulp.task('build-assets', ['test', 'clean'], () =>
   gulp.src('client/src/index.jsx')
-    .pipe(webpack(webpackConfig))
+    .pipe(webpackStream(webpackConfig, webpack))
     .pipe(gulp.dest('dist/client/assets/'))
 );
 
