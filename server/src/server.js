@@ -10,8 +10,7 @@ const routes = require('./routes/index');
 /**
  * Create server
  */
-const server = new Hapi.Server();
-server.connection({
+const server = Hapi.server({
   host: config.web.host,
   port: config.web.port,
   routes: {
@@ -22,43 +21,35 @@ server.connection({
 });
 
 /**
- * Register plugins
- */
-server.register([
-  {
-    register: Inert
-  }
-],
-(error) => {
-  if (error) {
-    return console.error(error);
-  }
-  return '';
-});
-
-/**
- * Add routes
- */
-if (config.env === 'development') {
-  server.route({
-    method: 'GET',
-    path: '/assets/{param*}',
-    handler: {
-      directory: {
-        path: '../../assets'
-      }
-    }
-  });
-}
-
-server.route(routes);
-
-/**
  * Start server
  */
-server.start((err) => {
-  if (err) {
-    throw err;
+const init = async () => {
+  await server.register(Inert);
+
+  /**
+   * Add routes
+   */
+  if (config.env === 'development') {
+    server.route({
+      method: 'GET',
+      path: '/assets/{param*}',
+      handler: {
+        directory: {
+          path: '../../assets'
+        }
+      }
+    });
   }
-  console.log('Server running at:', server.info.uri);
+
+  server.route(routes);
+
+  await server.start();
+  console.log(`Server running at: ${server.info.uri}`);
+};
+
+process.on('unhandledRejection', (err) => {
+  console.log(err);
+  process.exit(1);
 });
+
+init();
