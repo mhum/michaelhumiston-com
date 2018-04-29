@@ -23,9 +23,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true
-    }),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       inject: 'body'

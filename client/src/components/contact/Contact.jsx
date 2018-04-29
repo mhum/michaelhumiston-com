@@ -49,17 +49,21 @@ class Contact extends React.Component {
     const { fields } = this.props.contact;
     const constraints = {
       name: {
-        presence: true
+        presence: true,
+        allowEmpty: false
       },
       email: {
         presence: true,
+        allowEmpty: false,
         email: true
       },
       message: {
-        presence: true
+        presence: true,
+        allowEmpty: false
       },
       captcha: {
-        presence: true
+        presence: true,
+        allowEmpty: false
       }
     };
 

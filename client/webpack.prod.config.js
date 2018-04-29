@@ -20,9 +20,6 @@ module.exports = {
     new webpack.ProvidePlugin({
       React: 'react'
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      comments: false
-    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
@@ -42,7 +39,7 @@ module.exports = {
     })
   ],
   module: {
-    loaders: [{
+    rules: [{
       test: /\.jsx?$/,
       loader: 'babel-loader'
     }, {
