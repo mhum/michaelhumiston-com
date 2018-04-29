@@ -16,57 +16,48 @@ const eslintFiles = ['client/src/**/*.jsx', '**/*.js',
 gulp.task('clean', () =>
   del([
     'dist/**/*'
-  ])
-);
+  ]));
 
 gulp.task('js-lint', () =>
-    gulp.src(eslintFiles)
-        .pipe(eslint())
-        .pipe(eslint.format())
-        .pipe(eslint.failAfterError())
-);
+  gulp.src(eslintFiles)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError()));
 
 gulp.task('lint-soft', () =>
-    gulp.src(eslintFiles)
-        .pipe(eslint())
-        .pipe(eslint.format())
-);
+  gulp.src(eslintFiles)
+    .pipe(eslint())
+    .pipe(eslint.format()));
 
 gulp.task('test', ['js-lint']);
 
 gulp.task('build-assets', ['test', 'clean'], () =>
   gulp.src('client/src/index.jsx')
     .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest('dist/client/assets/'))
-);
+    .pipe(gulp.dest('dist/client/assets/')));
 
 gulp.task('copy-images', ['clean'], () =>
-    gulp.src('./assets/images/**/*')
-    .pipe(gulp.dest('./dist/client/assets/images'))
-);
+  gulp.src('./assets/images/**/*')
+    .pipe(gulp.dest('./dist/client/assets/images')));
 
 gulp.task('copy-server', ['clean'], () =>
-    gulp.src(['./server/src/**/*', './server/package.json', './server/yarn.lock'])
-    .pipe(gulp.dest('./dist/server'))
-);
+  gulp.src(['./server/src/**/*', './server/package.json', './server/yarn.lock'])
+    .pipe(gulp.dest('./dist/server')));
 
 gulp.task('compress-js', ['build-assets'], () =>
-    gulp.src('dist/client/assets/*.js')
+  gulp.src('dist/client/assets/*.js')
     .pipe(gzip())
-    .pipe(gulp.dest('./dist/client/assets'))
-);
+    .pipe(gulp.dest('./dist/client/assets')));
 
 gulp.task('compress-css', ['build-assets'], () =>
-    gulp.src('dist/client/assets/css/*')
+  gulp.src('dist/client/assets/css/*')
     .pipe(gzip())
-    .pipe(gulp.dest('./dist/client/assets/css'))
-);
+    .pipe(gulp.dest('./dist/client/assets/css')));
 
 gulp.task('compress-html', ['build-assets'], () =>
-    gulp.src('dist/client/*.html')
+  gulp.src('dist/client/*.html')
     .pipe(gzip())
-    .pipe(gulp.dest('./dist/client'))
-);
+    .pipe(gulp.dest('./dist/client')));
 
 gulp.task('compress', ['compress-js', 'compress-css', 'compress-html']);
 
