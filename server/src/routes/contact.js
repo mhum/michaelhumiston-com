@@ -8,7 +8,7 @@ const Config = require('../config');
 const user = Config.contact.user_name;
 const pass = Config.contact.password;
 
-function sendEmail(payload) {
+async function sendEmail(payload) {
   // create reusable transporter object using the default SMTP transport
   const transporter = Nodemailer.createTransport(`smtps://${user}:${pass}@smtp.gmail.com`);
 
@@ -24,39 +24,42 @@ function sendEmail(payload) {
   };
 
   // send mail with defined transport object
-  transporter.sendMail(mailOptions, (error, info) => {
-    if (error) {
-      console.log(error);
-      return Promise.reject(Boom.badRequest('Error sending message'));
-    }
+  try {
+    const info = await transporter.sendMail(mailOptions);
 
     console.log(`Message sent: ${info.response}`);
-    return Promise.resolve('success');
-  });
+    return 'success';
+  } catch (err) {
+    console.log(err);
+    throw Error('Error sending message');
+  }
 }
 
-function validateCaptcha(captcha) {
+async function validateCaptcha(captcha) {
   const secret = Config.contact.captcha;
-  return Fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${captcha}`, {
+
+  const request = await Fetch(`https://www.google.com/recaptcha/api/siteverify?secret=${secret}&response=${captcha}`, {
     method: 'POST'
-  })
-  .then(resp => resp.json())
-  .then((resp) => {
-    if (resp.success) {
-      return Promise.resolve(resp);
-    }
-    return Promise.reject(Boom.badRequest('Captcha validation failed'));
-  })
-  .catch(resp => Promise.reject(Boom.badRequest(resp)));
+  });
+  const resp = await request.json();
+
+  if (resp.success) {
+    return resp;
+  }
+  throw Error('Captcha validation failed');
 }
 
-function submitContact(request, reply) {
-  const payload = request.payload;
+async function submitContact(request) {
+  const { payload } = request;
 
-  validateCaptcha(payload.captcha)
-  .then(() => sendEmail(payload))
-  .then(resp => reply(resp))
-  .catch(resp => reply(resp));
+  try {
+    await validateCaptcha(payload.captcha);
+    const result = await sendEmail(payload);
+
+    return result;
+  } catch (err) {
+    return Boom.badRequest(err);
+  }
 }
 
 module.exports = [
