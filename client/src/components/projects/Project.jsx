@@ -5,7 +5,6 @@ import TopView from './TopView';
 import SideView from './SideView';
 
 class Project extends React.Component {
-
   static getProject(projectName, projects) {
     return _find(projects, { shortName: projectName });
   }

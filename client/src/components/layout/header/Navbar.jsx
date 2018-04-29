@@ -3,23 +3,25 @@ import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 const generateSubMenu = ((link, i, LinkClass, expanded, onClickLink, projects) =>
-  (<LinkContainer to={link.uri} key={i}>
-    <NavDropdown
-      eventKey={i}
-      title={link.name}
-      id="basic-nav-dropdown"
-      noCaret
-      open={expanded}
-      onToggle={onClickLink}
-    >
-      {
-        projects && projects.map((v, ii) =>
-          (<LinkClass to={v.uri} key={v.id}>
-            <MenuItem eventKey={`${i}.${ii}`}>{v.name}</MenuItem>
-           </LinkClass>))
-      }
-    </NavDropdown>
-   </LinkContainer>)
+  (
+    <LinkContainer to={link.uri} key={i}>
+      <NavDropdown
+        eventKey={i}
+        title={link.name}
+        id="basic-nav-dropdown"
+        noCaret
+        open={expanded}
+        onToggle={onClickLink}
+      >
+        {
+          projects && projects.map((v, ii) =>
+            (
+              <LinkClass to={v.uri} key={v.id}>
+                <MenuItem eventKey={`${i}.${ii}`}>{v.name}</MenuItem>
+              </LinkClass>))
+        }
+      </NavDropdown>
+    </LinkContainer>)
 );
 
 const generateLink = ((link, i, expanded, onClickLink, projects) => {

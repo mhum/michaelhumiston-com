@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
 
 const Logo = () => (
-  <Link to="/" className="logo">
+  <Link href="/" to="/" className="logo">
       Michael Humiston
   </Link>
 );

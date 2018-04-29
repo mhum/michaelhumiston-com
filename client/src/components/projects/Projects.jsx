@@ -16,7 +16,7 @@ class Projects extends React.Component {
   }
 
   render() {
-    const projects = this.props.projects;
+    const { projects } = this.props;
     return (
       <Row>
         {this.props.children ?
@@ -25,16 +25,16 @@ class Projects extends React.Component {
             projects: this.props.projects
           }) :
           projects.map(v =>
-            <Col xs={12} md={6} key={v.id} className="project-block" >
-              <Link to={v.uri}>
-                <div>
-                  <h3>{v.name}</h3>
-                  <p>{v.description}</p>
-                  <Image src={`assets/images/${v.image}`} responsive />
-                </div>
-              </Link>
-            </Col>
-          )
+            (
+              <Col xs={12} md={6} key={v.id} className="project-block" >
+                <Link href={v.uri} to={v.uri}>
+                  <div>
+                    <h3>{v.name}</h3>
+                    <p>{v.description}</p>
+                    <Image src={`assets/images/${v.image}`} responsive />
+                  </div>
+                </Link>
+              </Col>))
         }
       </Row>
     );

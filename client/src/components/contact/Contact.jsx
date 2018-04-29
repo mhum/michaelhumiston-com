@@ -46,7 +46,7 @@ class Contact extends React.Component {
   validateForm() {
     let valid = false;
 
-    const fields = this.props.contact.fields;
+    const { fields } = this.props.contact;
     const constraints = {
       name: {
         presence: true
@@ -75,7 +75,7 @@ class Contact extends React.Component {
         const f = this.getField(field.name);
         if (errors[field.name]) {
           f.valid = false;
-          f.errorMsg = errors[field.name][0];
+          [f.errorMsg] = errors[field.name];
         } else {
           f.valid = true;
           f.errorMsg = '';

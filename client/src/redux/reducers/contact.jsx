@@ -44,7 +44,7 @@ export default function counter(state = initialState, action) {
     case RECEIVE_EMAIL:
       if (action.response.ok) {
         const tempState = Object.assign({}, state);
-        const fields = tempState.fields;
+        const { fields } = tempState;
 
         fields.forEach((field) => {
           field.value = '';
@@ -80,7 +80,7 @@ export default function counter(state = initialState, action) {
     }
     case UPDATE_FIELDS: {
       const tempState = Object.assign({}, state);
-      const fields = tempState.fields;
+      const { fields } = tempState;
       tempState.fields = _merge(fields, action.fields);
 
       return _merge({}, state, tempState);

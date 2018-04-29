@@ -44,7 +44,7 @@ export function sendEmail(details) {
       method: 'POST',
       body: JSON.stringify(details)
     })
-    .then(response => dispatch(receiveEmail(response)));
+      .then(response => dispatch(receiveEmail(response)));
   };
 }
 

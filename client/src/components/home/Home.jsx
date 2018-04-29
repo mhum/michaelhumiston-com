@@ -13,13 +13,13 @@ class Home extends React.Component {
     return (
       <Row>
         <Col xs={12} md={4} className="home-link">
-          <Link to="projects">Projects</Link>
+          <Link href="#projects" to="projects">Projects</Link>
         </Col>
         <Col xs={12} md={4} className="home-link">
-          <Link to="about">About Me</Link>
+          <Link href="#about" to="about">About Me</Link>
         </Col>
         <Col xs={12} md={4} className="home-link">
-          <Link to="contact">Contact</Link>
+          <Link href="#contact" to="contact">Contact</Link>
         </Col>
         <Col xs={12}>
           <SocialLinks />

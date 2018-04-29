@@ -16,13 +16,15 @@ class About extends React.Component {
           <p>
             Information technology has been my calling for a long time. I was introduced to
             technology and the wider Internet at a young age through an old Packard Bell running
-            Windows 3.1. What really lit the fire under me was receiving a <a href="http://en.wikipedia.org/wiki/Casio_BE-300" target="_blank" rel="noreferrer noopener">
+            Windows 3.1. What really lit the fire under me was receiving a
+            <a href="http://en.wikipedia.org/wiki/Casio_BE-300" target="_blank" rel="noreferrer noopener">
             Casio BE-300
             </a> and being exposed to the immense possibilities that technology provided
             through software development, tinkering, and communities.
           </p>
           <p>
-            Previously, I did enterprise <a href="http://en.wikipedia.org/wiki/Java_Platform,_Enterprise_Edition" target="_blank" rel="noreferrer noopener">
+            Previously, I did enterprise
+            <a href="http://en.wikipedia.org/wiki/Java_Platform,_Enterprise_Edition" target="_blank" rel="noreferrer noopener">
             Java
             </a> web development using a variety of technologies such as <a href="http://spring.io/" target="_blank" rel="noreferrer noopener">Spring</a>
             , <a href="http://grails.org/" target="_blank" rel="noreferrer noopener">Grails</a>,
