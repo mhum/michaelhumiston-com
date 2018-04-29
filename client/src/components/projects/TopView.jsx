@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Col, Image } from 'react-bootstrap';
 
 import ProjectPoints from './ProjectPoints';
@@ -31,8 +32,8 @@ const TopView = ({ project }) => (
 );
 
 TopView.propTypes = {
-  project: React.PropTypes.shape({
-    image: React.PropTypes.string.isRequired
+  project: PropTypes.shape({
+    image: PropTypes.string.isRequired
   }).isRequired
 };
 

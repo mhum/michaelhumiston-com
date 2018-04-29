@@ -1,8 +1,11 @@
 /* global grecaptcha */
 
 import _find from 'lodash/find';
-import { Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
-  Glyphicon, HelpBlock, Row } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import {
+  Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
+  Glyphicon, HelpBlock, Row
+} from 'react-bootstrap';
 import { connect } from 'react-redux';
 import validate from 'validate.js';
 
@@ -246,20 +249,20 @@ Contact.defaultProps = {
 };
 
 Contact.propTypes = {
-  contact: React.PropTypes.shape({
-    isLoading: React.PropTypes.bool,
-    showError: React.PropTypes.bool,
-    showSuccess: React.PropTypes.bool,
-    captcha: React.PropTypes.string,
-    fields: React.PropTypes.arrayOf(React.PropTypes.object)
+  contact: PropTypes.shape({
+    isLoading: PropTypes.bool,
+    showError: PropTypes.bool,
+    showSuccess: PropTypes.bool,
+    captcha: PropTypes.string,
+    fields: PropTypes.arrayOf(PropTypes.object)
   }).isRequired,
-  pageTitle: React.PropTypes.string.isRequired,
-  setTitle: React.PropTypes.func.isRequired,
-  submitContact: React.PropTypes.func.isRequired,
-  dismissContactSuccess: React.PropTypes.func.isRequired,
-  dismissContactError: React.PropTypes.func.isRequired,
-  updateContactField: React.PropTypes.func.isRequired,
-  updateContactFields: React.PropTypes.func.isRequired
+  pageTitle: PropTypes.string,
+  setTitle: PropTypes.func.isRequired,
+  submitContact: PropTypes.func.isRequired,
+  dismissContactSuccess: PropTypes.func.isRequired,
+  dismissContactError: PropTypes.func.isRequired,
+  updateContactField: PropTypes.func.isRequired,
+  updateContactFields: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => (

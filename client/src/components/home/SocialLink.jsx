@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const SocialLink = ({ site }) => (
   <div className={`${site.name} icon-link`}>
     <div className="icon">
@@ -9,9 +11,9 @@ const SocialLink = ({ site }) => (
 );
 
 SocialLink.propTypes = {
-  site: React.PropTypes.shape({
-    name: React.PropTypes.string,
-    url: React.PropTypes.string
+  site: PropTypes.shape({
+    name: PropTypes.string,
+    url: PropTypes.string
   }).isRequired
 };
 

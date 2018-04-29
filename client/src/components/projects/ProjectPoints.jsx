@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const ProjectPoints = ({ project, className }) => (
   <div className={className}>
     <ul className="project-points">
@@ -19,14 +21,14 @@ const ProjectPoints = ({ project, className }) => (
 );
 
 ProjectPoints.propTypes = {
-  project: React.PropTypes.shape({
-    name: React.PropTypes.string.isRequired,
-    language: React.PropTypes.string.isRequired,
-    framework: React.PropTypes.string.isRequired,
-    repo: React.PropTypes.string.isRequired,
-    currentVersion: React.PropTypes.string.isRequired
+  project: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    language: PropTypes.string.isRequired,
+    framework: PropTypes.string.isRequired,
+    repo: PropTypes.string.isRequired,
+    currentVersion: PropTypes.string.isRequired
   }).isRequired,
-  className: React.PropTypes.string.isRequired
+  className: PropTypes.string.isRequired
 };
 
 export default ProjectPoints;

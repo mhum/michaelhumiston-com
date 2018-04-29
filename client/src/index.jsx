@@ -21,9 +21,7 @@ const store = createStore(
     reducers,
     routing: routerReducer
   }),
-  applyMiddleware(
-    thunkMiddleware
-  )
+  applyMiddleware(thunkMiddleware)
 );
 
 const history = syncHistoryWithStore(hashHistory, store);
@@ -32,7 +30,8 @@ ReactDOM.render(
   <AppContainer>
     <Root store={store} history={history} />
   </AppContainer>
-, document.getElementById('main'));
+  , document.getElementById('main')
+);
 
 if (module.hot) {
   module.hot.accept('./components/Root', () => {
@@ -40,6 +39,7 @@ if (module.hot) {
       <AppContainer>
         <Root store={store} history={history} />
       </AppContainer>
-    , document.getElementById('main'));
+      , document.getElementById('main')
+    );
   });
 }

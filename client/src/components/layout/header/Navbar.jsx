@@ -1,8 +1,9 @@
+import PropTypes from 'prop-types';
 import { MenuItem, Nav, Navbar, NavDropdown, NavItem } from 'react-bootstrap';
 import { IndexLinkContainer, LinkContainer } from 'react-router-bootstrap';
 
 const generateSubMenu = ((link, i, LinkClass, expanded, onClickLink, projects) =>
-  <LinkContainer to={link.uri} key={i}>
+  (<LinkContainer to={link.uri} key={i}>
     <NavDropdown
       eventKey={i}
       title={link.name}
@@ -13,13 +14,12 @@ const generateSubMenu = ((link, i, LinkClass, expanded, onClickLink, projects) =
     >
       {
         projects && projects.map((v, ii) =>
-          <LinkClass to={v.uri} key={v.id}>
+          (<LinkClass to={v.uri} key={v.id}>
             <MenuItem eventKey={`${i}.${ii}`}>{v.name}</MenuItem>
-          </LinkClass>
-        )
+           </LinkClass>))
       }
     </NavDropdown>
-  </LinkContainer>
+   </LinkContainer>)
 );
 
 const generateLink = ((link, i, expanded, onClickLink, projects) => {
@@ -37,7 +37,6 @@ const generateLink = ((link, i, expanded, onClickLink, projects) => {
 });
 
 class Navmenu extends React.Component {
-
   constructor(props) {
     super(props);
 
@@ -64,8 +63,7 @@ class Navmenu extends React.Component {
           <Nav>
             {
               this.props.links.map((v, i) =>
-                generateLink(v, i, this.state.expanded, this.onClickLink, this.props.projects)
-              )
+                generateLink(v, i, this.state.expanded, this.onClickLink, this.props.projects))
             }
           </Nav>
         </Navbar.Collapse>
@@ -74,11 +72,13 @@ class Navmenu extends React.Component {
   }
 }
 
+Navmenu.defaultProps = {
+  projects: []
+};
+
 Navmenu.propTypes = {
-  links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  projects: React.PropTypes.arrayOf(
-    React.PropTypes.shape({})
-  )
+  links: PropTypes.arrayOf(PropTypes.object).isRequired,
+  projects: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 export default Navmenu;

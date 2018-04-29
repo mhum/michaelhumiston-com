@@ -1,4 +1,5 @@
 import _find from 'lodash/find';
+import PropTypes from 'prop-types';
 
 import TopView from './TopView';
 import SideView from './SideView';
@@ -54,11 +55,11 @@ class Project extends React.Component {
 }
 
 Project.propTypes = {
-  params: React.PropTypes.shape({
-    projectName: React.PropTypes.string.isRequired
+  params: PropTypes.shape({
+    projectName: PropTypes.string.isRequired
   }).isRequired,
-  projects: React.PropTypes.arrayOf(React.PropTypes.object),
-  setTitle: React.PropTypes.func
+  projects: PropTypes.arrayOf(PropTypes.object),
+  setTitle: PropTypes.func
 };
 
 Project.defaultProps = {

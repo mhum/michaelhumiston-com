@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import SocialLink from './SocialLink';
 
 const Links = ({ sites }) => (
@@ -14,7 +16,7 @@ const Links = ({ sites }) => (
 );
 
 Links.propTypes = {
-  sites: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+  sites: PropTypes.arrayOf(PropTypes.object)
 };
 
 Links.defaultProps =

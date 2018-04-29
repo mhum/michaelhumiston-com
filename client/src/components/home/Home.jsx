@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Col, Row } from 'react-bootstrap';
 import { Link } from 'react-router';
 
@@ -34,8 +35,8 @@ Home.defaultProps = {
 };
 
 Home.propTypes = {
-  pageTitle: React.PropTypes.string.isRequired,
-  setTitle: React.PropTypes.func
+  pageTitle: PropTypes.string,
+  setTitle: PropTypes.func
 };
 
 export default Home;

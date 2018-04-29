@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 const PageHeader = ({ title }) => (
   <div id="page-header">
     <h1>{title}</h1>
@@ -5,7 +7,7 @@ const PageHeader = ({ title }) => (
 );
 
 PageHeader.propTypes = {
-  title: React.PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };
 
 export default PageHeader;

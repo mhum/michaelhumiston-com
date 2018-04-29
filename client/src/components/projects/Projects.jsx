@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Col, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router';
 
@@ -48,10 +49,10 @@ Projects.defaultProps = {
 };
 
 Projects.propTypes = {
-  children: React.PropTypes.shape({}),
-  pageTitle: React.PropTypes.string.isRequired,
-  projects: React.PropTypes.arrayOf(React.PropTypes.object),
-  setTitle: React.PropTypes.func
+  children: PropTypes.shape({}),
+  pageTitle: PropTypes.string,
+  projects: PropTypes.arrayOf(PropTypes.object),
+  setTitle: PropTypes.func
 };
 
 export default Projects;

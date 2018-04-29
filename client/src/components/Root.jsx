@@ -1,6 +1,7 @@
 import 'babel-polyfill';
 import 'whatwg-fetch';
 
+import PropTypes from 'prop-types';
 import { Router, Route, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 
@@ -27,8 +28,8 @@ const Root = ({ store, history }) => (
 );
 
 Root.propTypes = {
-  store: React.PropTypes.shape({}).isRequired,
-  history: React.PropTypes.shape({}).isRequired
+  store: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({}).isRequired
 };
 
 export default Root;

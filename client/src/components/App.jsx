@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
@@ -29,18 +30,18 @@ class App extends React.Component {
 }
 
 App.propTypes = {
-  children: React.PropTypes.shape({
-    name: React.PropTypes.string,
-    url: React.PropTypes.string
+  children: PropTypes.shape({
+    name: PropTypes.string,
+    url: PropTypes.string
   }).isRequired,
-  projects: React.PropTypes.shape({
-    list: React.PropTypes.arrayOf(React.PropTypes.object),
-    fetching: React.PropTypes.bool
+  projects: PropTypes.shape({
+    list: PropTypes.arrayOf(PropTypes.object),
+    fetching: PropTypes.bool
   }).isRequired,
-  links: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
-  pageTitle: React.PropTypes.string.isRequired,
-  setTitle: React.PropTypes.func.isRequired,
-  getProjectList: React.PropTypes.func.isRequired
+  links: PropTypes.arrayOf(PropTypes.object),
+  pageTitle: PropTypes.string.isRequired,
+  setTitle: PropTypes.func.isRequired,
+  getProjectList: PropTypes.func.isRequired
 };
 
 App.defaultProps = {

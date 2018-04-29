@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types';
+
 import Logo from './Logo';
 import Navbar from './Navbar';
 import PageHeader from './PageHeader';
@@ -15,13 +17,9 @@ HeaderContainer.defaultProps = {
 };
 
 HeaderContainer.propTypes = {
-  title: React.PropTypes.string.isRequired,
-  links: React.PropTypes.arrayOf(
-    React.PropTypes.shape({})
-  ).isRequired,
-  projects: React.PropTypes.arrayOf(
-    React.PropTypes.shape({})
-  )
+  title: PropTypes.string.isRequired,
+  links: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
+  projects: PropTypes.arrayOf(PropTypes.shape({}))
 };
 
 export default HeaderContainer;
