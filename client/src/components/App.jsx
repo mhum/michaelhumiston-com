@@ -7,21 +7,25 @@ import { setPageTitle, getProjects } from '../redux/actions';
 
 class App extends React.Component {
   componentDidMount() {
-    this.props.getProjectList();
+    const { getProjectList } = this.props;
+    getProjectList();
   }
 
   render() {
+    const {
+      children, pageTitle, links, projects, setTitle
+    } = this.props;
     return (
       <Grid id="container">
         <HeaderContainer
-          title={this.props.pageTitle}
-          links={this.props.links}
-          projects={this.props.projects.list}
+          title={pageTitle}
+          links={links}
+          projects={projects.list}
         />
         {
-          React.cloneElement(this.props.children, {
-            setTitle: this.props.setTitle,
-            projects: this.props.projects.list
+          React.cloneElement(children, {
+            setTitle,
+            projects: projects.list
           })
         }
       </Grid>

@@ -9,7 +9,9 @@ import {
 import { connect } from 'react-redux';
 import validate from 'validate.js';
 
-import { sendEmail, dismissSuccess, dismissError, updateField, updateFields } from '../../redux/actions';
+import {
+  sendEmail, dismissSuccess, dismissError, updateField, updateFields
+} from '../../redux/actions';
 
 class Contact extends React.Component {
   constructor(props) {
@@ -24,46 +26,55 @@ class Contact extends React.Component {
   }
 
   componentDidMount() {
-    this.props.setTitle(this.props.pageTitle);
+    const { pageTitle, setTitle, updateContactField } = this.props;
+    setTitle(pageTitle);
     grecaptcha.render('recaptchaTarget', {
       sitekey: '6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym',
-      callback: (resp => this.props.updateContactField('captcha', resp))
+      callback: (resp => updateContactField('captcha', resp))
     });
   }
 
   onDismissSuccess() {
-    this.props.dismissContactSuccess();
+    const { dismissContactSuccess } = this.props;
+    dismissContactSuccess();
   }
 
   onDismissError() {
-    this.props.dismissContactError();
+    const { dismissContactError } = this.props;
+    dismissContactError();
   }
 
   getField(name) {
-    return _find(this.props.contact.fields, { name });
+    const { contact } = this.props;
+    return _find(contact.fields, { name });
   }
 
   validateForm() {
+    const { contact, updateContactFields } = this.props;
     let valid = false;
 
-    const { fields } = this.props.contact;
+    const { fields } = contact;
     const constraints = {
       name: {
-        presence: true,
-        allowEmpty: false
+        presence: {
+          allowEmpty: false
+        }
       },
       email: {
-        presence: true,
-        allowEmpty: false,
+        presence: {
+          allowEmpty: false
+        },
         email: true
       },
       message: {
-        presence: true,
-        allowEmpty: false
+        presence: {
+          allowEmpty: false
+        }
       },
       captcha: {
-        presence: true,
-        allowEmpty: false
+        presence: {
+          allowEmpty: false
+        }
       }
     };
 
@@ -89,12 +100,13 @@ class Contact extends React.Component {
       valid = true;
     }
 
-    this.props.updateContactFields(fields);
+    updateContactFields(fields);
 
     return valid;
   }
 
   submitForm() {
+    const { submitContact } = this.props;
     if (!this.validateForm()) {
       return false;
     }
@@ -106,17 +118,19 @@ class Contact extends React.Component {
       captcha: this.getField('captcha').value
     };
 
-    this.props.submitContact(details);
+    submitContact(details);
 
     return true;
   }
 
   handleChange(event) {
-    this.props.updateContactField(event.target.name, event.target.value);
+    const { updateContactField } = this.props;
+    updateContactField(event.target.name, event.target.value);
   }
 
   render() {
-    if (!this.props.contact.fields) {
+    const { contact } = this.props;
+    if (!contact.fields) {
       return (
         <Row />
       );
@@ -132,7 +146,7 @@ class Contact extends React.Component {
         <Col xs={12}>
           <Alert
             bsStyle="success"
-            hidden={!this.props.contact.showSuccess}
+            hidden={!contact.showSuccess}
             onDismiss={this.onDismissSuccess}
           >
             <strong>Thanks! Message successfully sent.</strong>
@@ -140,7 +154,7 @@ class Contact extends React.Component {
 
           <Alert
             bsStyle="danger"
-            hidden={!this.props.contact.showError}
+            hidden={!contact.showError}
             onDismiss={this.onDismissError}
           >
             <strong>There was a problem sending the message...</strong>
@@ -165,7 +179,12 @@ class Contact extends React.Component {
                 <FormControl.Feedback />
               </Col>
               <Col sm={4}>
-                {name.valid ? null : <HelpBlock> {name.errorMsg}</HelpBlock>}
+                {name.valid ? null : (
+                  <HelpBlock>
+                    {' '}
+                    {name.errorMsg}
+                  </HelpBlock>
+                )}
               </Col>
             </FormGroup>
 
@@ -230,14 +249,14 @@ class Contact extends React.Component {
               <Col smOffset={2} sm={10}>
                 <Button
                   type="button"
-                  disabled={this.props.contact.isLoading}
-                  onClick={!this.props.contact.isLoading ? this.submitForm : null}
+                  disabled={contact.isLoading}
+                  onClick={!contact.isLoading ? this.submitForm : null}
                 >
                   <Glyphicon
                     glyph="refresh"
-                    className={this.props.contact.isLoading ? 'spinning' : 'spinning-hidden'}
+                    className={contact.isLoading ? 'spinning' : 'spinning-hidden'}
                   />
-                  {this.props.contact.isLoading ? 'Submitting...' : 'Submit'}
+                  {contact.isLoading ? 'Submitting...' : 'Submit'}
                 </Button>
               </Col>
             </FormGroup>

@@ -4,37 +4,39 @@ import { Link } from 'react-router';
 
 class Projects extends React.Component {
   componentDidMount() {
-    if (!this.props.children) {
-      this.props.setTitle(this.props.pageTitle);
+    const { children, pageTitle, setTitle } = this.props;
+    if (!children) {
+      setTitle(pageTitle);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!nextProps.children && this.props.children) {
-      this.props.setTitle(this.props.pageTitle);
+    const { children, pageTitle, setTitle } = this.props;
+    if (!nextProps.children && children) {
+      setTitle(pageTitle);
     }
   }
 
   render() {
-    const { projects } = this.props;
+    const { children, projects, setTitle } = this.props;
     return (
       <Row>
-        {this.props.children ?
-          React.cloneElement(this.props.children, {
-            setTitle: this.props.setTitle,
-            projects: this.props.projects
-          }) :
-          projects.map(v =>
-            (
-              <Col xs={12} md={6} key={v.id} className="project-block" >
-                <Link href={v.uri} to={v.uri}>
-                  <div>
-                    <h3>{v.name}</h3>
-                    <p>{v.description}</p>
-                    <Image src={`assets/images/${v.image}`} responsive />
-                  </div>
-                </Link>
-              </Col>))
+        {children
+          ? React.cloneElement(children, {
+            setTitle,
+            projects
+          })
+          : projects.map(v => (
+            <Col xs={12} md={6} key={v.id} className="project-block">
+              <Link href={v.uri} to={v.uri}>
+                <div>
+                  <h3>{v.name}</h3>
+                  <p>{v.description}</p>
+                  <Image src={`assets/images/${v.image}`} responsive />
+                </div>
+              </Link>
+            </Col>
+          ))
         }
       </Row>
     );

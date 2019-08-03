@@ -19,8 +19,7 @@ Links.propTypes = {
   sites: PropTypes.arrayOf(PropTypes.object)
 };
 
-Links.defaultProps =
-{
+Links.defaultProps = {
   sites: [
     {
       id: 1,

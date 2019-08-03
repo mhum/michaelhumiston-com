@@ -1,7 +1,9 @@
 import _find from 'lodash/find';
 import _merge from 'lodash/merge';
 
-import { SEND_EMAIL, RECEIVE_EMAIL, DISMISS_SUCCESS, DISMISS_ERROR, UPDATE_FIELD, UPDATE_FIELDS } from '../actions';
+import {
+  SEND_EMAIL, RECEIVE_EMAIL, DISMISS_SUCCESS, DISMISS_ERROR, UPDATE_FIELD, UPDATE_FIELDS
+} from '../actions';
 
 const initialState = {
   isLoading: false,

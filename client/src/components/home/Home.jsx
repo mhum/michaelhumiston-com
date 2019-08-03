@@ -6,7 +6,8 @@ import SocialLinks from './SocialLinks';
 
 class Home extends React.Component {
   componentDidMount() {
-    this.props.setTitle(this.props.pageTitle);
+    const { pageTitle, setTitle } = this.props;
+    setTitle(pageTitle);
   }
 
   render() {

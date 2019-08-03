@@ -29,8 +29,8 @@ const history = syncHistoryWithStore(hashHistory, store);
 ReactDOM.render(
   <AppContainer>
     <Root store={store} history={history} />
-  </AppContainer>
-  , document.getElementById('main')
+  </AppContainer>,
+  document.getElementById('main')
 );
 
 if (module.hot) {
@@ -38,8 +38,8 @@ if (module.hot) {
     ReactDOM.render(
       <AppContainer>
         <Root store={store} history={history} />
-      </AppContainer>
-      , document.getElementById('main')
+      </AppContainer>,
+      document.getElementById('main')
     );
   });
 }

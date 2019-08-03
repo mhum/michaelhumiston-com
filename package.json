@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "test": "./node_modules/.bin/gulp test",
-    "lint": "./node_modules/.bin/gulp lint-soft",
+    "lint": "./node_modules/.bin/gulp lintSoft",
     "build": "./node_modules/.bin/gulp build",
     "start-dev": "cd ./client && node ./dev-server.js --hot & cd ./server && ./node_modules/.bin/nodemon ./src/server.js"
   },
@@ -20,16 +20,16 @@
   },
   "homepage": "https://github.com/mhum/michaelhumiston-com#readme",
   "devDependencies": {
-    "del": "^3.0.0",
-    "eslint": "^4.19.1",
-    "eslint-config-airbnb": "^16.1.0",
+    "del": "^5.0.0",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.7.0",
-    "gulp": "^3.9.1",
-    "gulp-eslint": "^4.0.2",
+    "gulp": "^4.0.2",
+    "gulp-eslint": "^6.0.0",
     "gulp-gzip": "^1.4.0",
     "webpack": "^4.6.0",
-    "webpack-stream": "^4.0.3"
+    "webpack-stream": "^5.2.1"
   }
 }

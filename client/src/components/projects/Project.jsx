@@ -10,26 +10,29 @@ class Project extends React.Component {
   }
 
   componentDidMount() {
-    const project = Project.getProject(this.props.params.projectName, this.props.projects);
+    const { params, projects, setTitle } = this.props;
+    const project = Project.getProject(params.projectName, projects);
 
     if (project) {
-      this.props.setTitle(project.name);
+      setTitle(project.name);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    if (this.props.params.projectName !== nextProps.params.projectName ||
-      (this.props.projects.length === 0 && nextProps.projects.length > 0)) {
+    const { params, projects, setTitle } = this.props;
+    if (params.projectName !== nextProps.params.projectName
+      || (projects.length === 0 && nextProps.projects.length > 0)) {
       const project = Project.getProject(nextProps.params.projectName, nextProps.projects);
 
       if (project) {
-        this.props.setTitle(project.name);
+        setTitle(project.name);
       }
     }
   }
 
   render() {
-    const project = Project.getProject(this.props.params.projectName, this.props.projects);
+    const { params, projects } = this.props;
+    const project = Project.getProject(params.projectName, projects);
 
     if (project) {
       let View;

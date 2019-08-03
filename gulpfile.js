@@ -1,6 +1,8 @@
 /* eslint-disable import/no-extraneous-dependencies */
 
-const gulp = require('gulp');
+const {
+  dest, src, parallel, series
+} = require('gulp');
 const del = require('del');
 const gzip = require('gulp-gzip');
 const eslint = require('gulp-eslint');
@@ -13,52 +15,54 @@ const eslintFiles = ['client/src/**/*.jsx', '**/*.js',
   '!client/node_modules/**', '!client/dist/**',
   '!server/node_modules/**'];
 
-gulp.task('clean', () =>
-  del([
-    'dist/**/*'
-  ]));
+const jsLint = () => src(eslintFiles)
+  .pipe(eslint())
+  .pipe(eslint.format())
+  .pipe(eslint.failAfterError());
 
-gulp.task('js-lint', () =>
-  gulp.src(eslintFiles)
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError()));
+const lintSoft = () => src(eslintFiles)
+  .pipe(eslint())
+  .pipe(eslint.format());
 
-gulp.task('lint-soft', () =>
-  gulp.src(eslintFiles)
-    .pipe(eslint())
-    .pipe(eslint.format()));
+const clean = () => del([
+  'dist/**/*'
+]);
 
-gulp.task('test', ['js-lint']);
+const copyImages = () => src('./assets/images/**/*')
+  .pipe(dest('./dist/client/assets/images'));
 
-gulp.task('build-assets', ['test', 'clean'], () =>
-  gulp.src('client/src/index.jsx')
-    .pipe(webpackStream(webpackConfig, webpack))
-    .pipe(gulp.dest('dist/client/assets/')));
+const copyServer = () => src(['./server/src/**/*', './server/package.json', './server/yarn.lock'])
+  .pipe(dest('./dist/server'));
 
-gulp.task('copy-images', ['clean'], () =>
-  gulp.src('./assets/images/**/*')
-    .pipe(gulp.dest('./dist/client/assets/images')));
+const buildAssets = () => src('client/src/index.jsx')
+  .pipe(webpackStream(webpackConfig, webpack))
+  .pipe(dest('dist/client/assets/'));
 
-gulp.task('copy-server', ['clean'], () =>
-  gulp.src(['./server/src/**/*', './server/package.json', './server/yarn.lock'])
-    .pipe(gulp.dest('./dist/server')));
+const compressJS = () => src('dist/client/assets/*.js')
+  .pipe(gzip())
+  .pipe(dest('./dist/client/assets'));
 
-gulp.task('compress-js', ['build-assets'], () =>
-  gulp.src('dist/client/assets/*.js')
-    .pipe(gzip())
-    .pipe(gulp.dest('./dist/client/assets')));
+const compressCSS = () => src('dist/client/assets/css/*')
+  .pipe(gzip())
+  .pipe(dest('./dist/client/assets/css'));
 
-gulp.task('compress-css', ['build-assets'], () =>
-  gulp.src('dist/client/assets/css/*')
-    .pipe(gzip())
-    .pipe(gulp.dest('./dist/client/assets/css')));
+const compressHTML = () => src('dist/client/*.html')
+  .pipe(gzip())
+  .pipe(dest('./dist/client'));
 
-gulp.task('compress-html', ['build-assets'], () =>
-  gulp.src('dist/client/*.html')
-    .pipe(gzip())
-    .pipe(gulp.dest('./dist/client')));
-
-gulp.task('compress', ['compress-js', 'compress-css', 'compress-html']);
-
-gulp.task('build', ['copy-images', 'copy-server', 'compress']);
+exports.lintSoft = lintSoft;
+exports.test = jsLint;
+exports.build = series(
+  clean,
+  parallel(
+    copyImages,
+    copyServer
+  ),
+  jsLint,
+  buildAssets,
+  parallel(
+    compressJS,
+    compressCSS,
+    compressHTML
+  )
+);
