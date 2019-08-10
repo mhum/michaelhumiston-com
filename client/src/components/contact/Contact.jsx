@@ -31,10 +31,12 @@ class Contact extends React.Component {
     } = this.props;
     setTitle(pageTitle);
     setDescription(pageDescription);
-    grecaptcha.render('recaptchaTarget', {
-      sitekey: '6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym',
-      callback: (resp => updateContactField('captcha', resp))
-    });
+    if (grecaptcha && grecaptcha.render) {
+      grecaptcha.render('recaptchaTarget', {
+        sitekey: '6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym',
+        callback: (resp => updateContactField('captcha', resp))
+      });
+    }
   }
 
   onDismissSuccess() {
