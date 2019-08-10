@@ -4,26 +4,35 @@ import { Link } from 'react-router';
 
 class Projects extends React.Component {
   componentDidMount() {
-    const { children, pageTitle, setTitle } = this.props;
+    const {
+      children, pageTitle, pageDescription, setTitle, setDescription
+    } = this.props;
     if (!children) {
       setTitle(pageTitle);
+      setDescription(pageDescription);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { children, pageTitle, setTitle } = this.props;
+    const {
+      children, pageTitle, pageDescription, setTitle, setDescription
+    } = this.props;
     if (!nextProps.children && children) {
       setTitle(pageTitle);
+      setDescription(pageDescription);
     }
   }
 
   render() {
-    const { children, projects, setTitle } = this.props;
+    const {
+      children, projects, setTitle, setDescription
+    } = this.props;
     return (
       <Row>
         {children
           ? React.cloneElement(children, {
             setTitle,
+            setDescription,
             projects
           })
           : projects.map(v => (
@@ -45,16 +54,20 @@ class Projects extends React.Component {
 
 Projects.defaultProps = {
   pageTitle: 'Projects',
+  pageDescription: 'Michael Humiston\'s portfolio of personal projects',
   children: {},
   projects: [],
-  setTitle: null
+  setTitle: null,
+  setDescription: null
 };
 
 Projects.propTypes = {
   children: PropTypes.shape({}),
   pageTitle: PropTypes.string,
+  pageDescription: PropTypes.string,
   projects: PropTypes.arrayOf(PropTypes.object),
-  setTitle: PropTypes.func
+  setTitle: PropTypes.func,
+  setDescription: PropTypes.func
 };
 
 export default Projects;

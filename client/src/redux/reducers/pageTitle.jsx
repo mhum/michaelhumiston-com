@@ -9,7 +9,11 @@ const initialState = {
 export default function pageTitle(state = initialState, action) {
   switch (action.type) {
     case SET_TITLE:
-      document.title = `${action.text} - Michael Humiston`;
+      if (action.text === 'Home') {
+        document.title = 'Michael Humiston';
+      } else {
+        document.title = `Michael Humiston | ${action.text}`;
+      }
       return _merge({}, state, {
         title: action.text
       });

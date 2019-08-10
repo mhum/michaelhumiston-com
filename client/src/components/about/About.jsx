@@ -3,8 +3,11 @@ import { Col, Image, Row } from 'react-bootstrap';
 
 class About extends React.Component {
   componentDidMount() {
-    const { pageTitle, setTitle } = this.props;
+    const {
+      pageTitle, pageDescription, setTitle, setDescription
+    } = this.props;
     setTitle(pageTitle);
+    setDescription(pageDescription);
   }
 
   render() {
@@ -82,12 +85,16 @@ using
 
 About.defaultProps = {
   pageTitle: 'About Me',
-  setTitle: null
+  pageDescription: 'Information about Michael Humiston',
+  setTitle: null,
+  setDescription: null
 };
 
 About.propTypes = {
   pageTitle: PropTypes.string,
-  setTitle: PropTypes.func
+  pageDescription: PropTypes.string,
+  setTitle: PropTypes.func,
+  setDescription: PropTypes.func
 };
 
 export default About;

@@ -26,8 +26,11 @@ class Contact extends React.Component {
   }
 
   componentDidMount() {
-    const { pageTitle, setTitle, updateContactField } = this.props;
+    const {
+      pageTitle, pageDescription, setTitle, setDescription, updateContactField
+    } = this.props;
     setTitle(pageTitle);
+    setDescription(pageDescription);
     grecaptcha.render('recaptchaTarget', {
       sitekey: '6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym',
       callback: (resp => updateContactField('captcha', resp))
@@ -268,7 +271,8 @@ class Contact extends React.Component {
 }
 
 Contact.defaultProps = {
-  pageTitle: 'Contact'
+  pageTitle: 'Contact',
+  pageDescription: 'Form to contact Michael Humiston'
 };
 
 Contact.propTypes = {
@@ -280,7 +284,9 @@ Contact.propTypes = {
     fields: PropTypes.arrayOf(PropTypes.object)
   }).isRequired,
   pageTitle: PropTypes.string,
+  pageDescription: PropTypes.string,
   setTitle: PropTypes.func.isRequired,
+  setDescription: PropTypes.func.isRequired,
   submitContact: PropTypes.func.isRequired,
   dismissContactSuccess: PropTypes.func.isRequired,
   dismissContactError: PropTypes.func.isRequired,

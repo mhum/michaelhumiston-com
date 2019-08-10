@@ -10,22 +10,28 @@ class Project extends React.Component {
   }
 
   componentDidMount() {
-    const { params, projects, setTitle } = this.props;
+    const {
+      params, projects, setTitle, setDescription
+    } = this.props;
     const project = Project.getProject(params.projectName, projects);
 
     if (project) {
       setTitle(project.name);
+      setDescription(project.description);
     }
   }
 
   componentWillReceiveProps(nextProps) {
-    const { params, projects, setTitle } = this.props;
+    const {
+      params, projects, setTitle, setDescription
+    } = this.props;
     if (params.projectName !== nextProps.params.projectName
       || (projects.length === 0 && nextProps.projects.length > 0)) {
       const project = Project.getProject(nextProps.params.projectName, nextProps.projects);
 
       if (project) {
         setTitle(project.name);
+        setDescription(project.description);
       }
     }
   }
@@ -56,17 +62,19 @@ class Project extends React.Component {
   }
 }
 
+Project.defaultProps = {
+  projects: [],
+  setTitle: null,
+  setDescription: null
+};
+
 Project.propTypes = {
   params: PropTypes.shape({
     projectName: PropTypes.string.isRequired
   }).isRequired,
   projects: PropTypes.arrayOf(PropTypes.object),
-  setTitle: PropTypes.func
-};
-
-Project.defaultProps = {
-  projects: [],
-  setTitle: null
+  setTitle: PropTypes.func,
+  setDescription: PropTypes.func
 };
 
 export default Project;

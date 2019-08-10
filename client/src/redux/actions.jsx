@@ -1,4 +1,5 @@
 export const SET_TITLE = 'SET_TITLE';
+export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const RECEIVE_PROJECTS = 'RECEIVE_PROJECTS';
 export const SEND_EMAIL = 'SEND_EMAIL';
@@ -26,6 +27,10 @@ function receiveEmail(response) {
 
 export function setPageTitle(text) {
   return { type: SET_TITLE, text };
+}
+
+export function setPageDescription(text) {
+  return { type: SET_DESCRIPTION, text };
 }
 
 export function getProjects() {

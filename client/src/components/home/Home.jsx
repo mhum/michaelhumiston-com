@@ -6,8 +6,11 @@ import SocialLinks from './SocialLinks';
 
 class Home extends React.Component {
   componentDidMount() {
-    const { pageTitle, setTitle } = this.props;
+    const {
+      pageTitle, pageDescription, setTitle, setDescription
+    } = this.props;
     setTitle(pageTitle);
+    setDescription(pageDescription);
   }
 
   render() {
@@ -32,12 +35,16 @@ class Home extends React.Component {
 
 Home.defaultProps = {
   pageTitle: 'Home',
-  setTitle: null
+  pageDescription: 'Michael Humiston\'s personal home on the Internet',
+  setTitle: null,
+  setDescription: null
 };
 
 Home.propTypes = {
   pageTitle: PropTypes.string,
-  setTitle: PropTypes.func
+  pageDescription: PropTypes.string,
+  setTitle: PropTypes.func,
+  setDescription: PropTypes.func
 };
 
 export default Home;

@@ -3,7 +3,7 @@ import { Grid } from 'react-bootstrap';
 import { connect } from 'react-redux';
 
 import HeaderContainer from './layout/header/HeaderContainer';
-import { setPageTitle, getProjects } from '../redux/actions';
+import { setPageDescription, setPageTitle, getProjects } from '../redux/actions';
 
 class App extends React.Component {
   componentDidMount() {
@@ -13,7 +13,7 @@ class App extends React.Component {
 
   render() {
     const {
-      children, pageTitle, links, projects, setTitle
+      children, pageTitle, links, projects, setTitle, setDescription
     } = this.props;
     return (
       <Grid id="container">
@@ -25,6 +25,7 @@ class App extends React.Component {
         {
           React.cloneElement(children, {
             setTitle,
+            setDescription,
             projects: projects.list
           })
         }
@@ -44,6 +45,7 @@ App.propTypes = {
   }).isRequired,
   links: PropTypes.arrayOf(PropTypes.object),
   pageTitle: PropTypes.string.isRequired,
+  setDescription: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
   getProjectList: PropTypes.func.isRequired
 };
@@ -76,6 +78,7 @@ App.defaultProps = {
 
 const mapStateToProps = state => (
   {
+    pageDescription: state.reducers.pageDescription.description,
     pageTitle: state.reducers.pageTitle.title,
     projects: state.reducers.projects
   }
@@ -85,6 +88,9 @@ const mapDispatchToProps = dispatch => (
   {
     setTitle: (text) => {
       dispatch(setPageTitle(text));
+    },
+    setDescription: (text) => {
+      dispatch(setPageDescription(text));
     },
     getProjectList: () => {
       dispatch(getProjects());
