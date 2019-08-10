@@ -1,5 +1,3 @@
-/* global grecaptcha */
-
 import _find from 'lodash/find';
 import PropTypes from 'prop-types';
 import {
