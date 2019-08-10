@@ -6,6 +6,7 @@ import {
   Alert, Button, Col, ControlLabel, Form, FormControl, FormGroup,
   Glyphicon, HelpBlock, Row
 } from 'react-bootstrap';
+import ReCAPTCHA from 'react-google-recaptcha';
 import { connect } from 'react-redux';
 import validate from 'validate.js';
 
@@ -21,22 +22,22 @@ class Contact extends React.Component {
     this.submitForm = this.submitForm.bind(this);
     this.onDismissSuccess = this.onDismissSuccess.bind(this);
     this.onDismissError = this.onDismissError.bind(this);
+    this.onSubmitCaptcha = this.onSubmitCaptcha.bind(this);
     this.getField = this.getField.bind(this);
     this.validateForm = this.validateForm.bind(this);
   }
 
   componentDidMount() {
     const {
-      pageTitle, pageDescription, setTitle, setDescription, updateContactField
+      pageTitle, pageDescription, setTitle, setDescription
     } = this.props;
     setTitle(pageTitle);
     setDescription(pageDescription);
-    if (grecaptcha && grecaptcha.render) {
-      grecaptcha.render('recaptchaTarget', {
-        sitekey: '6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym',
-        callback: (resp => updateContactField('captcha', resp))
-      });
-    }
+  }
+
+  onSubmitCaptcha(resp) {
+    const { updateContactField } = this.props;
+    updateContactField('captcha', resp);
   }
 
   onDismissSuccess() {
@@ -243,7 +244,11 @@ class Contact extends React.Component {
               validationState={captcha.valid ? null : 'error'}
             >
               <Col smOffset={2} sm={4}>
-                <div id="recaptchaTarget" />
+                {/* <div id="recaptchaTarget" /> */}
+                <ReCAPTCHA
+                  sitekey="6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym"
+                  onChange={this.onSubmitCaptcha}
+                />
               </Col>
               <Col sm={4}>
                 {captcha.valid ? null : <HelpBlock>{captcha.errorMsg}</HelpBlock>}
