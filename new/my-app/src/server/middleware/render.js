@@ -4,8 +4,9 @@ import path from 'path';
 import escapeStringRegexp from 'escape-string-regexp';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
+import { StaticRouter } from 'react-router-dom';
 
-import App from '../../App';
+import Root from '../../client/components/Root';
 
 export default ctx => {
   const publicPath = path.join(__dirname, '/public');
@@ -16,7 +17,12 @@ export default ctx => {
         ctx.status = 500;
       }
   
-      const htmlContent = ReactDOMServer.renderToString(<App />);
+      const context = {};
+      const htmlContent = ReactDOMServer.renderToString(
+        <StaticRouter location={ctx.url} context={context}>
+          <Root />
+      </StaticRouter>
+      );
       const htmlReplacements = {
         HTML_CONTENT: htmlContent,
       };
