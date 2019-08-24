@@ -1,16 +1,16 @@
-.glyphicon.spinning {
-  animation: spin 1s infinite linear;
+.glyphicon.adjust-huening {
+  animation: adjust-hue 1s infinite linear;
   margin-right: 5px;
 }
 
-.glyphicon.spinning-hidden {
+.glyphicon.adjust-huening-hidden {
   visibility: hidden;
   width: 0;
   height: 0;
   overflow: hidden;;
 }
 
-@keyframes spin {
+@keyframes adjust-hue {
     from { transform: scale(1) rotate(0deg); }
     to { transform: scale(1) rotate(360deg); }
 }

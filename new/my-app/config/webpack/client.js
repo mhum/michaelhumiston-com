@@ -225,6 +225,14 @@ module.exports = function(webpackEnv) {
             },
           ],
           include: paths.appSrc,
+        }, 
+        {
+          test: /\.less$/,
+          use: [
+            'style-loader',
+            'css-loader',
+            'less-loader'
+          ]
         },
         {
           // "oneOf" will traverse all following loaders until one will

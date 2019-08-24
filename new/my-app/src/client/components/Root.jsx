@@ -7,7 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 //import { Provider } from 'react-redux';
 
 import App from './App';
-// import About from './about/About';
+import About from './about/About';
 // import Contact from './contact/Contact';
 import Home from './home/Home';
 // import Projects from './projects/Projects';
@@ -33,6 +33,7 @@ const Root = () => (
         <div>
             <Switch>
                 <Route exact path="/" component={Home}/>
+                <Route path="/about" component={About} />
             </Switch>
         </div>
     </App>

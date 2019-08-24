@@ -1,5 +1,5 @@
 #navbar {
-  background: @dark-blue;
+  background: $dark-blue;
   min-height: 30px;
   border-radius: initial;
   border: initial;
@@ -51,18 +51,18 @@
         }
 
         a {
-          color: @dark-blue;
+          color: $dark-blue;
           font-size: 12px;
           font-family: Lato;
 
           &:hover {
-            background: @light-grey;
+            background: $light-grey;
           }
         }
 
         > .active > a {
           background-color: transparent;
-          background: @light-grey;
+          background: $light-grey;
         }
       }
 
@@ -83,7 +83,7 @@
   font-weight: 400;
   font-style: normal;
   font-size: 44px;
-  color: @dark-blue;
+  color: $dark-blue;
 
   @media (max-width: 767px) {
     font-size: 36px;

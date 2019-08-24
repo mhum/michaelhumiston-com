@@ -1,18 +1,18 @@
-@github: #4078C0;
-@linkedin: #4875B4;
-@flickr: #FE0883;
-@facebook: #3b5998;
+$github: #4078C0;
+$linkedin: #4875B4;
+$flickr: #FE0883;
+$facebook: #3b5998;
 
-@social-background: @light-grey;
-@social-text: @dark-grey;
+$social-background: $light-grey;
+$social-text: $dark-grey;
 
-.social-links-boxes {
+@mixin social-links-boxes {
   display: block;
   padding: 5px;
-  background: @social-background;
+  background: $social-background;
   margin-left: 3px;
   margin-bottom: 3px;
-  color: @social-text;
+  color: $social-text;
   transition: background .6s ease-out;
 }
 
@@ -31,7 +31,7 @@
        width: 45px;
        line-height: 37px;
        text-align: center;
-       .social-links-boxes;
+       @include social-links-boxes;
       }
     }
 
@@ -48,7 +48,7 @@
        width: 310px;
        line-height: 42px;
        text-align: left;
-       .social-links-boxes;
+       @include social-links-boxes;
       }
     }
 
@@ -60,28 +60,28 @@
     .github {
      clear: both;
      &:hover a {
-        background: @github;
+        background: $github;
       }
     }
 
     .linkedin {
       clear: both;
       &:hover a {
-        background: @linkedin;
+        background: $linkedin;
       }
     }
 
     .flickr {
       clear: both;
       &:hover a {
-        background: @flickr;
+        background: $flickr;
       }
     }
 
     .facebook {
       clear: both;
       &:hover a {
-        background: @facebook;
+        background: $facebook;
       }
     }
   }
