@@ -1,14 +1,14 @@
 import path from 'path';
-import express from 'express';
 
-import htmlMiddleware from './middleware/html';
-import renderMiddleware from './middleware/render';
+import Koa from 'koa';
+import serve from 'koa-static'
+
+import router from './routes'
 
 const publicPath = path.join(__dirname, '/public');
-const app = express();
+const app = new Koa();
 
-app.use(express.static(publicPath));
-app.use(htmlMiddleware());
-app.use(renderMiddleware());
+app.use(serve(publicPath));
+app.use(router.routes())
 
 export default app;
