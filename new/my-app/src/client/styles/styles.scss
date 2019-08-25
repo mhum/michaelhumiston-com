@@ -53,4 +53,9 @@ h3 {
   padding-left: 15px;
   padding-right: 15px;
   padding-bottom: 30px;
+
+  @media (min-width: 1200px) {
+    width: 1170px;
+    max-width: 1170px;
+  }
 }

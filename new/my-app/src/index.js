@@ -2,19 +2,13 @@ import http from 'http';
 
 import app from './server';
 
-const appCallback = app.callback();
-const server = http.createServer(appCallback);
-
-let currentApp = appCallback;
-
-server.listen(process.env.PORT || 3000);
+const server = http.createServer(app.callback()).listen(`${process.env.PORT || 3000}`);
 
 if (module.hot) {
-  module.hot.accept('./server', () => {
-      server.removeListener('request', currentApp);
-      server.on('request', appCallback);
-      currentApp = appCallback;
-  });
+    module.hot.accept('./server', () => {
+        server.removeAllListeners('request', server);
+        server.on('request', app.callback())
+    });
 }
 
-console.log(`React SSR App is running: http://localhost:${process.env.PORT || 3000}` );
+console.log(`Server running on: http://localhost:${process.env.PORT || 3000}`);

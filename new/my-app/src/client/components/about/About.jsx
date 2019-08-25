@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Col, Image, Row } from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
 
 class About extends React.Component {
   componentDidMount() {
@@ -14,14 +16,14 @@ class About extends React.Component {
   render() {
     return (
       <Row>
-        <Col xs={12} sm={5} smPush={7}>
-          <Image src="assets/images/about.jpg" responsive />
+        <Col sm={12} md={5}>
+          <Image src="assets/images/about.jpg" fluid/>
         </Col>
-        <Col xs={12} sm={7} smPull={5}>
+        <Col sm={12} md={7}>
           <p>
             Information technology has been my calling for a long time. I was introduced to
             technology and the wider Internet at a young age through an old Packard Bell running
-            Windows 3.1. What really lit the fire under me was receiving a
+            Windows 3.1. What really lit the fire under me was receiving a{' '}
             <a href="http://en.wikipedia.org/wiki/Casio_BE-300" target="_blank" rel="noreferrer noopener">
             Casio BE-300
             </a>
@@ -30,7 +32,7 @@ and being exposed to the immense possibilities that technology provided
             through software development, tinkering, and communities.
           </p>
           <p>
-            Previously, I did enterprise
+            Previously, I did enterprise{' '}
             <a href="http://en.wikipedia.org/wiki/Java_Platform,_Enterprise_Edition" target="_blank" rel="noreferrer noopener">
             Java
             </a>

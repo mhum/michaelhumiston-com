@@ -147,7 +147,7 @@ checkBrowsers(paths.appPath, isInteractive)
     // Start server in watch mode
     serverCompiler.watch(
       {
-        quiet: true,
+        quiet: false,
         stats: 'none',
       },
       () => {}
