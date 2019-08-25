@@ -7,6 +7,7 @@ import { Route, Switch } from 'react-router-dom';
 import HeaderContainer from './layout/header/HeaderContainer';
 import About from './about/About';
 import Home from './home/Home';
+import Projects from './projects/Projects';
 import { setPageDescription, setPageTitle, getProjects } from '../redux/actions';
 
 class App extends React.Component {
@@ -30,6 +31,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" render={() => <Home setTitle={setTitle} setDescription={setDescription} />} />
           <Route path="/about" render={() => <About setTitle={setTitle} setDescription={setDescription} />} />
+          <Route path="/projects" render={() => <Projects projects={projects.list} setTitle={setTitle} setDescription={setDescription} />} />
         </Switch>
       </Container>
     );

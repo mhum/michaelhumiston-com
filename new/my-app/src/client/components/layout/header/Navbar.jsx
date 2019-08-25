@@ -19,11 +19,9 @@ const generateSubMenu = ((link, idx, expanded, onClickLink, projects) => (
       <NavDropdown.Divider />
       {
         projects && projects.map((v, ii) => (
-          // <NavLink to={v.uri}>
           <NavDropdown.Item to={v.uri} key={v.id} eventKey={`${idx}.${ii}`} as={Link}>
               {v.name}
           </NavDropdown.Item> 
-            // {/* </NavLink> */}
         ))
       }
     </NavDropdown>

@@ -1,0 +1,88 @@
+import React from 'react';
+
+import PropTypes from 'prop-types';
+import Col from 'react-bootstrap/Col';
+import Image from 'react-bootstrap/Image';
+import Row from 'react-bootstrap/Row';
+import { Link } from 'react-router-dom';
+
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
+
+class Projects extends React.Component {
+  componentDidMount() {
+    const {
+      pageTitle, pageDescription, setTitle, setDescription
+    } = this.props;
+    setTitle(pageTitle);
+    setDescription(pageDescription);
+  }
+
+  // componentWillReceiveProps(nextProps) {
+  //   const {
+  //     children, pageTitle, pageDescription, setTitle, setDescription
+  //   } = this.props;
+  //   if (!nextProps.children && children) {
+  //     setTitle(pageTitle);
+  //     setDescription(pageDescription);
+  //   }
+  // }
+
+  render() {
+    const {
+      projects, setTitle, setDescription
+    } = this.props;
+    return (
+      <Row>
+        {/* {children
+          ? React.cloneElement(children, {
+            setTitle,
+            setDescription,
+            projects
+          })
+          : projects.map(v => (
+            <Col xs={12} md={6} key={v.id} className="project-block">
+              <Link href={v.uri} to={v.uri}>
+                <div>
+                  <h3>{v.name}</h3>
+                  <p>{v.description}</p>
+                  <Image src={`assets/images/${v.image}`} responsive />
+                </div>
+              </Link>
+            </Col>
+          ))
+        } */}
+        {
+          projects && projects.map(v => (
+              <Col xs={12} md={6} key={v.id} className="project-block">
+                <Link href={v.uri} to={v.uri}>
+                  <div>
+                    <h3>{v.name}</h3>
+                    <p>{v.description}</p>
+                    <Image src={`assets/images/${v.image}`} fluid />
+                  </div>
+                </Link>
+              </Col>
+            ))
+        }
+      </Row>
+    );
+  }
+}
+
+Projects.defaultProps = {
+  pageTitle: PAGE_TITLES.projects,
+  pageDescription: PAGE_DESCRIPTIONS.projects,
+  projects: [],
+  setTitle: null,
+  setDescription: null
+};
+
+Projects.propTypes = {
+  pageTitle: PropTypes.string,
+  pageDescription: PropTypes.string,
+  projects: PropTypes.arrayOf(PropTypes.object),
+  setTitle: PropTypes.func,
+  setDescription: PropTypes.func
+};
+
+export default Projects;

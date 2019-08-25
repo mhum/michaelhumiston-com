@@ -18,11 +18,13 @@ import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../client/constants/pageInfo'
 const pageDescriptionMapping = {
   '/': PAGE_DESCRIPTIONS.home,
   '/about': PAGE_DESCRIPTIONS.about,
+  '/projects': PAGE_DESCRIPTIONS.projects,
 }
 
 const pageTitleMapping = {
   '/': PAGE_TITLES.home,
   '/about': PAGE_TITLES.about,
+  '/projects': PAGE_TITLES.projects,
 }
 
 function getInitialState(url) {
