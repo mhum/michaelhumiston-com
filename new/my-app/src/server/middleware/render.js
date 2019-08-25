@@ -8,7 +8,9 @@ import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunkMiddleware from 'redux-thunk';
 
+import { loadProjects } from '../lib/projects';
 import App from '../../client/components/App';
 import reducers from '../../client/redux/reducers';
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../client/constants/pageInfo';
@@ -32,6 +34,9 @@ function getInitialState(url) {
       pageTitle: {
         title: pageTitleMapping[url]
       },
+      projects: {
+        list: loadProjects().projects
+      }
     },
   };
 }
@@ -62,7 +67,7 @@ export default ctx => {
         compose(
             applyMiddleware(
                 routerMiddleware(history),
-                //thunkMiddleware,
+                thunkMiddleware,
             ),
         ),
       );
@@ -79,7 +84,7 @@ export default ctx => {
         HTML_CONTENT: htmlContent,
         INITIAL_STATE: JSON.stringify(preloadedState),
       };
-    
+
       Object.keys(htmlReplacements).forEach(key => {
         const value = htmlReplacements[key];
         html = html.replace(
@@ -87,7 +92,6 @@ export default ctx => {
           value
         );
       });
-    
       ctx.body = html;
       resolve();
     });

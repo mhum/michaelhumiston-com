@@ -5,7 +5,7 @@ import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-reac
 import { createBrowserHistory } from 'history'
 import { Provider } from 'react-redux';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
-//import thunkMiddleware from 'redux-thunk';
+import thunkMiddleware from 'redux-thunk';
 
 import './styles/styles.scss';
 
@@ -28,7 +28,7 @@ const store = createStore(
     compose(
         applyMiddleware(
             routerMiddleware(history),
-            //thunkMiddleware,
+            thunkMiddleware,
         ),
     ),
   );
