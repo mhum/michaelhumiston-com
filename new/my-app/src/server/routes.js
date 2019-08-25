@@ -5,6 +5,7 @@ import projects from './middleware/projects'
 
 const router = new Router();
 
+router.get('/favicon.ico', (ctx) => {})
 router.get('/api/projects', projects);
 router.get('*', render);
 

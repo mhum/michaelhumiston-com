@@ -48,6 +48,7 @@ export default ctx => {
     fs.readFile(`${publicPath}/app.html`, 'utf8', (err, html) => {
       if (err) {
         ctx.status = 500;
+        return resolve()
       }
 
       const history = createMemoryHistory({
@@ -93,7 +94,8 @@ export default ctx => {
         );
       });
       ctx.body = html;
-      resolve();
+
+      return resolve();
     });
   });
 };
