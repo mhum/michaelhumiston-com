@@ -1,15 +1,40 @@
 import fs from 'fs';
 import path from 'path';
 
+import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router'
 import escapeStringRegexp from 'escape-string-regexp';
+import { createMemoryHistory } from 'history'
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux'
-import { StaticRouter } from 'react-router-dom';
-import { createStore, combineReducers } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 
-import Root from '../../client/components/Root';
-import reducers from '../../client/redux/reducers'
+import App from '../../client/components/App';
+import reducers from '../../client/redux/reducers';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../client/constants/pageInfo';
+
+const pageDescriptionMapping = {
+  '/': PAGE_DESCRIPTIONS.home,
+  '/about': PAGE_DESCRIPTIONS.about,
+}
+
+const pageTitleMapping = {
+  '/': PAGE_TITLES.home,
+  '/about': PAGE_TITLES.about,
+}
+
+function getInitialState(url) {
+  return {
+    reducers: {
+      pageDescription: {
+        description: pageDescriptionMapping[url]
+      },
+      pageTitle: {
+        title: pageTitleMapping[url]
+      },
+    },
+  };
+}
 
 export default ctx => {
   const publicPath = path.join(__dirname, '/public');
@@ -19,20 +44,33 @@ export default ctx => {
       if (err) {
         ctx.status = 500;
       }
+
+      const history = createMemoryHistory({
+        initialEntries: [ctx.url]
+      });
+
+      const initialState = getInitialState(ctx.url);
+
+      const createRootReducer = (history) => combineReducers({
+        router: connectRouter(history),
+        reducers,
+      });
   
       const store = createStore(
-        combineReducers({
-          reducers,
-          //routing: routerReducer
-        }),
-        //applyMiddleware(thunkMiddleware)
+        createRootReducer(history),
+        initialState,
+        compose(
+            applyMiddleware(
+                routerMiddleware(history),
+                //thunkMiddleware,
+            ),
+        ),
       );
-      const context = {};
       const htmlContent = ReactDOMServer.renderToString(
         <Provider store={store}>
-          <StaticRouter location={ctx.url} context={context}>
-            <Root/>
-        </StaticRouter>
+          <ConnectedRouter history={history}>
+            <App/>
+        </ConnectedRouter>
       </Provider>
       );
       const preloadedState = store.getState()

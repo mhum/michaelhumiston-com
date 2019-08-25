@@ -9,7 +9,7 @@ const initialState = {
 export default function pageDescription(state = initialState, action) {
   switch (action.type) {
     case SET_DESCRIPTION:
-      document.getElementsByTagName('meta')[2].content = action.text;
+      document.getElementsByTagName('meta')[3].content = action.text;
       return _merge({}, state, {
         description: action.text
       });

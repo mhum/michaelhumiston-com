@@ -46,7 +46,7 @@ App.propTypes = {
     fetching: PropTypes.bool
   }).isRequired,
   links: PropTypes.arrayOf(PropTypes.object),
-  pageTitle: PropTypes.string.isRequired,
+  pageTitle: PropTypes.string,
   setDescription: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
 //   getProjectList: PropTypes.func.isRequired

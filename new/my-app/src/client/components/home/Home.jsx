@@ -5,6 +5,7 @@ import Row from 'react-bootstrap/Row';
 import { NavLink } from 'react-router-dom';
 
 import SocialLinks from './SocialLinks';
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -36,8 +37,8 @@ class Home extends React.Component {
 }
 
 Home.defaultProps = {
-  pageTitle: 'Home',
-  pageDescription: 'Michael Humiston\'s personal home on the Internet',
+  pageTitle: PAGE_TITLES.home,
+  pageDescription: PAGE_DESCRIPTIONS.home,
   setTitle: null,
   setDescription: null
 };

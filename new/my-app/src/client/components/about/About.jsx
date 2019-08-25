@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 
+import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
+
 class About extends React.Component {
   componentDidMount() {
     const {
@@ -87,17 +89,17 @@ using
 }
 
 About.defaultProps = {
-  pageTitle: 'About Me',
-  pageDescription: 'Information about Michael Humiston',
-  // setTitle: null,
-  // setDescription: null
+  pageTitle: PAGE_TITLES.about,
+  pageDescription: PAGE_DESCRIPTIONS.about,
+  setTitle: null,
+  setDescription: null
 };
 
 About.propTypes = {
   pageTitle: PropTypes.string,
   pageDescription: PropTypes.string,
-  // setTitle: PropTypes.func,
-  // setDescription: PropTypes.func
+  setTitle: PropTypes.func,
+  setDescription: PropTypes.func
 };
 
 export default About;

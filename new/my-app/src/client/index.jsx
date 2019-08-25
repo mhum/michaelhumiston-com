@@ -4,13 +4,12 @@ import ReactDOM from 'react-dom';
 import { connectRouter, routerMiddleware, ConnectedRouter } from 'connected-react-router'
 import { createBrowserHistory } from 'history'
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 //import thunkMiddleware from 'redux-thunk';
 
 import './styles/styles.scss';
 
-import Root from '../client/components/Root';
+import App from '../client/components/App';
 import reducers from '../client/redux/reducers';
 
 const preloadedState = window.__PRELOADED_STATE__;
@@ -37,7 +36,7 @@ const store = createStore(
 ReactDOM.hydrate(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <Root/>
+            <App/>
         </ConnectedRouter>
     </Provider>, 
     document.getElementById('root')
