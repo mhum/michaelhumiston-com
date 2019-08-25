@@ -1,31 +1,48 @@
 #navbar {
   background: $dark-blue;
-  min-height: 30px;
+  min-height: 35px;
   border-radius: initial;
   border: initial;
+  padding: 0px 15px;
+  margin-bottom: 20px;
   margin-left: -15px;
   margin-right: -15px;
 
   .navbar-collapse {
     padding-left: 5px;
-    li {
+    .nav-item {
       @media (max-width: 767px) {
         padding-left: 5px;
+      }
+
+      .dropdown-toggle::after {
+        display:none;
       }
     }
   }
 
-  .icon-bar {
-    background-color: #fff;
+  .navbar-toggler {
+    margin-top: 8px;
+    margin-bottom: 8px;
+    border-color: #ddd;
+    
+    .navbar-toggler-icon{
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
   }
 
-  .nav {
+  .navbar-nav {
     font-size: 12px;
     font-family: Lato;
 
+    .nav-link {
+      display: inline;
+    }
+
     a {
+      display: inline;
       color: #fff;
-      padding: 7px;
+      padding: 11px;
       transition: background .5s;
 
       &:hover {
@@ -40,20 +57,25 @@
     }
 
     .dropdown {
+      .nav-link {
+        display: block;
+      }
       .dropdown-menu {
         @media (max-width: 767px) {
-          display: block;
           position: static;
           float: none;
           width: auto;
           margin-top: 0;
           border: 0;
+          display: block;
         }
 
-        a {
+        .dropdown-item {
+          padding: .25rem 1.5rem;
           color: $dark-blue;
           font-size: 12px;
           font-family: Lato;
+          display: block;
 
           &:hover {
             background: $light-grey;
@@ -69,7 +91,7 @@
       @media (min-width: 786px) {
         &:hover {
           .dropdown-menu {
-              display: block;
+            display: block;
           }
         }
       }

@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Logo from './Logo';
-// import Navbar from './Navbar';
+import Navbar from './Navbar';
 import PageHeader from './PageHeader';
 
 const HeaderContainer = ({ title, links, projects }) => (
   <div>
-    {/* <Navbar links={links} projects={projects} /> */}
+    <Navbar links={links} projects={projects} />
     <Logo />
     <PageHeader title={title} />
   </div>
