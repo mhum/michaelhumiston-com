@@ -2,14 +2,12 @@ import React from 'react';
 // import 'babel-polyfill';
 // import 'whatwg-fetch';
 
-// import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-//import { Provider } from 'react-redux';
 
 import App from './App';
-import About from './about/About';
 // import Contact from './contact/Contact';
-import Home from './home/Home';
+
 // import Projects from './projects/Projects';
 // import Project from './projects/Project';
 
@@ -29,19 +27,14 @@ import Home from './home/Home';
 // );
 
 const Root = () => (
-    <App>
-        <div>
-            <Switch>
-                <Route exact path="/" component={Home}/>
-                <Route path="/about" component={About} />
-            </Switch>
-        </div>
-    </App>
+    <Switch>
+        <Route exact path="/" component={App}/>
+        <Route path="/about" component={App}/>
+    </Switch>
 );
 
 // Root.propTypes = {
-//   store: PropTypes.shape({}).isRequired,
-//   history: PropTypes.shape({}).isRequired
+// history: PropTypes.shape({}).isRequired
 // };
 
 export default Root;

@@ -6,11 +6,11 @@ import Row from 'react-bootstrap/Row';
 
 class About extends React.Component {
   componentDidMount() {
-    // const {
-    //   pageTitle, pageDescription, setTitle, setDescription
-    // } = this.props;
-    // setTitle(pageTitle);
-    // setDescription(pageDescription);
+    const {
+      pageTitle, pageDescription, setTitle, setDescription
+    } = this.props;
+    setTitle(pageTitle);
+    setDescription(pageDescription);
   }
 
   render() {
