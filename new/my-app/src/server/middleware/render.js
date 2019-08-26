@@ -86,6 +86,8 @@ export default ctx => {
       const htmlReplacements = {
         HTML_CONTENT: htmlContent,
         INITIAL_STATE: JSON.stringify(preloadedState),
+        DESCRIPTION: pageDescriptionMapping[ctx.url],
+        TITLE: pageTitleMapping[ctx.url] === 'Home' ? 'Michael Humiston' : `Michael Humiston | ${pageTitleMapping[ctx.url]}`,
       };
 
       Object.keys(htmlReplacements).forEach(key => {
