@@ -17,40 +17,10 @@ class Projects extends React.Component {
     setDescription(pageDescription);
   }
 
-  // componentWillReceiveProps(nextProps) {
-  //   const {
-  //     children, pageTitle, pageDescription, setTitle, setDescription
-  //   } = this.props;
-  //   if (!nextProps.children && children) {
-  //     setTitle(pageTitle);
-  //     setDescription(pageDescription);
-  //   }
-  // }
-
   render() {
-    const {
-      projects, setTitle, setDescription
-    } = this.props;
+    const {  projects } = this.props;
     return (
       <Row>
-        {/* {children
-          ? React.cloneElement(children, {
-            setTitle,
-            setDescription,
-            projects
-          })
-          : projects.map(v => (
-            <Col xs={12} md={6} key={v.id} className="project-block">
-              <Link href={v.uri} to={v.uri}>
-                <div>
-                  <h3>{v.name}</h3>
-                  <p>{v.description}</p>
-                  <Image src={`assets/images/${v.image}`} responsive />
-                </div>
-              </Link>
-            </Col>
-          ))
-        } */}
         {
           projects && projects.map(v => (
               <Col xs={12} md={6} key={v.id} className="project-block">

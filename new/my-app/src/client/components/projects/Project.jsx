@@ -1,4 +1,4 @@
-import _find from 'lodash/find';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 import TopView from './TopView';
@@ -6,7 +6,7 @@ import SideView from './SideView';
 
 class Project extends React.Component {
   static getProject(projectName, projects) {
-    return _find(projects, { shortName: projectName });
+    return projects.find(project => project.shortName === projectName);
   }
 
   componentDidMount() {
@@ -21,22 +21,7 @@ class Project extends React.Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    const {
-      params, projects, setTitle, setDescription
-    } = this.props;
-    if (params.projectName !== nextProps.params.projectName
-      || (projects.length === 0 && nextProps.projects.length > 0)) {
-      const project = Project.getProject(nextProps.params.projectName, nextProps.projects);
-
-      if (project) {
-        setTitle(project.name);
-        setDescription(project.description);
-      }
-    }
-  }
-
-  render() {
+render() {
     const { params, projects } = this.props;
     const project = Project.getProject(params.projectName, projects);
 

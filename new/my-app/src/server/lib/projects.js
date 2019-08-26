@@ -17,7 +17,7 @@ export const loadProjects = () => {
           },
           {
             id: 2,
-            shortname: "pia-updater",
+            shortName: "pia-updater",
             name: "Private Internet Access Transmission Updater",
             description: "Script for updating the port for Transmission with port from PIA.",
             uri: "projects/pia-updater",
@@ -31,7 +31,7 @@ export const loadProjects = () => {
           },
           {
             id: 3,
-            shortname: "nfs-dynamic-dns",
+            shortName: "nfs-dynamic-dns",
             name: "NearlyFreeSpeech.NET Dynamic DNS",
             description: "Script for updating NearlyFreeSpeech DNS entry",
             uri: "projects/nfs-dynamic-dns",
@@ -45,7 +45,7 @@ export const loadProjects = () => {
           },
           {
             id: 4,
-            shortname: "michael-humiston",
+            shortName: "michael-humiston",
             name: "MichaelHumiston.com",
             description: "This website! My personal website.",
             uri: "projects/michael-humiston",
@@ -59,7 +59,7 @@ export const loadProjects = () => {
           },
           {
             id: 5,
-            shortname: "workout-tracker",
+            shortName: "workout-tracker",
             name: "Workout Tracker",
             description: "A workout tracker written using the Ruby on Rails framework.",
             uri: "projects/workout-tracker",
@@ -73,7 +73,7 @@ export const loadProjects = () => {
           },
           {
             id: 6,
-            shortname: "world-clock",
+            shortName: "world-clock",
             name: "World Office Clock",
             description: "Dashboard for tracking current office times around the world written using Ext JS.",
             uri: "projects/world-clock",
@@ -87,7 +87,7 @@ export const loadProjects = () => {
           },
           {
             id: 7,
-            shortname: "enhanced-world-clock",
+            shortName: "enhanced-world-clock",
             name: "Enhanced World Office Clock",
             description: "Dashboard for tracking current office times around the world written using JavaServer Faces.",
             uri: "projects/enhanced-world-clock",

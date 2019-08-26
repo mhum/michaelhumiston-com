@@ -19,7 +19,7 @@ class About extends React.Component {
     return (
       <Row>
         <Col sm={12} md={5}>
-          <Image src="assets/images/about.jpg" fluid/>
+          <Image src="/assets/images/about.jpg" fluid/>
         </Col>
         <Col sm={12} md={7}>
           <p>
