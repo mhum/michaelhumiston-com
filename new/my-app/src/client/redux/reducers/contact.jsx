@@ -40,6 +40,12 @@ const initialState = {
 export default function counter(state = initialState, action) {
   switch (action.type) {
     case SEND_EMAIL:
+        const tempState = Object.assign({}, state);
+        const { fields } = tempState;
+
+        fields.forEach((field) => {
+          field.valid = true;
+        });
       return _merge({}, state, {
         isLoading: true
       });
@@ -50,7 +56,6 @@ export default function counter(state = initialState, action) {
 
         fields.forEach((field) => {
           field.value = '';
-          field.valid = true;
           field.errorMsg = '';
         });
 

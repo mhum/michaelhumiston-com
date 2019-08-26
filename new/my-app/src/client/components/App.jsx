@@ -6,6 +6,7 @@ import { Route, Switch } from 'react-router-dom';
 
 import HeaderContainer from './layout/header/HeaderContainer';
 import About from './about/About';
+import Contact from './contact/Contact';
 import Home from './home/Home';
 import Project from './projects/Project';
 import Projects from './projects/Projects';
@@ -32,6 +33,7 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/" render={() => <Home setTitle={setTitle} setDescription={setDescription} />} />
           <Route path="/about" render={() => <About setTitle={setTitle} setDescription={setDescription} />} />
+          <Route path="/contact" render={() => <Contact setTitle={setTitle} setDescription={setDescription} />} />
           <Route path="/projects/:projectName" render={(props) => <Project params={props.match.params} projects={projects.list} setTitle={setTitle} setDescription={setDescription} />} />
           <Route path="/projects" render={() => <Projects projects={projects.list} setTitle={setTitle} setDescription={setDescription} />} />
         </Switch>
