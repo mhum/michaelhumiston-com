@@ -25,7 +25,7 @@ const pageDescriptionMapping = {
 const pageTitleMapping = {
   '/': PAGE_TITLES.home,
   '/about': PAGE_TITLES.about,
-  '/contact': PAGE_DESCRIPTIONS.contact,
+  '/contact': PAGE_TITLES.contact,
   '/projects': PAGE_TITLES.projects,
 }
 
