@@ -29,17 +29,49 @@ const pageTitleMapping = {
   '/projects': PAGE_TITLES.projects,
 }
 
-function getInitialState(url) {
+function getPageDescription(url, project) {
+  if (project) {
+    return project.description;
+  }
+
+  return pageDescriptionMapping[url];
+}
+
+function getPageTitle(url, project) {
+  if (project) {
+    return project.name;
+  }
+
+  return pageTitleMapping[url];
+}
+
+function getPageInfo(ctx, projects) {
+  let project;
+
+  if (ctx.params.projectName) {
+    project = projects.find(project => project.shortName === ctx.params.projectName);
+  }
+
+  return {
+    description: getPageDescription(ctx.url, project),
+    title: getPageTitle(ctx.url, project),
+  }
+}
+
+function getInitialState(ctx) {
+  const projects = loadProjects().projects;
+  const pageInfo = getPageInfo(ctx, projects);
+
   return {
     reducers: {
       pageDescription: {
-        description: pageDescriptionMapping[url]
+        description: pageInfo.description
       },
       pageTitle: {
-        title: pageTitleMapping[url]
+        title: pageInfo.title
       },
       projects: {
-        list: loadProjects().projects
+        list: projects
       }
     },
   };
@@ -59,7 +91,7 @@ export default ctx => {
         initialEntries: [ctx.url]
       });
 
-      const initialState = getInitialState(ctx.url);
+      const initialState = getInitialState(ctx);
 
       const createRootReducer = (history) => combineReducers({
         router: connectRouter(history),
@@ -88,8 +120,8 @@ export default ctx => {
       const htmlReplacements = {
         HTML_CONTENT: htmlContent,
         INITIAL_STATE: JSON.stringify(preloadedState),
-        DESCRIPTION: pageDescriptionMapping[ctx.url],
-        TITLE: pageTitleMapping[ctx.url] === 'Home' ? 'Michael Humiston' : `Michael Humiston | ${pageTitleMapping[ctx.url]}`,
+        DESCRIPTION: initialState.reducers.pageDescription.description,
+        TITLE: initialState.reducers.pageTitle.title === 'Home' ? 'Michael Humiston' : `Michael Humiston | ${initialState.reducers.pageTitle.title}`,
       };
 
       Object.keys(htmlReplacements).forEach(key => {
