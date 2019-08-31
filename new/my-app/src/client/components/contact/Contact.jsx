@@ -27,6 +27,7 @@ class Contact extends React.Component {
     this.onSubmitCaptcha = this.onSubmitCaptcha.bind(this);
     this.getField = this.getField.bind(this);
     this.validateForm = this.validateForm.bind(this);
+    this.recaptchaRef = React.createRef();
   }
 
   componentDidMount() {
@@ -127,6 +128,7 @@ class Contact extends React.Component {
     };
 
     submitContact(details);
+    this.recaptchaRef.current.reset();
 
     return true;
   }
@@ -220,6 +222,7 @@ class Contact extends React.Component {
             <Form.Group as={Row} controlId="formCaptcha" >
               <Col sm={{ span: 10, offset: 2 }}>
                 <ReCAPTCHA
+                  ref={this.recaptchaRef}
                   sitekey="6LeKIg0TAAAAACb_BCdlKpcG9__3g-2uremLfZym"
                   onChange={this.onSubmitCaptcha}
                 />

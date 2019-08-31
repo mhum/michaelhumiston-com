@@ -1,5 +1,6 @@
 import Router from 'koa-router';
 
+import contact from './middleware/contact'
 import render from './middleware/render'
 import projects from './middleware/projects'
 
@@ -13,6 +14,7 @@ const reactRoutes = [
 
 const router = new Router();
 
+router.post('/api/contact', contact);
 router.get('/api/projects', projects);
 
 for (let route of reactRoutes) {
