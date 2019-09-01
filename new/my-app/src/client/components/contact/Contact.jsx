@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import Alert from 'react-bootstrap/Alert';
 import Button from 'react-bootstrap/Button';
@@ -12,6 +11,7 @@ import { connect } from 'react-redux';
 import validate from 'validate.js';
 
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
+import { reportPageview } from '../../utils/ga';
 import {
   sendEmail, dismissSuccess, dismissError, updateField, updateFields
 } from '../../redux/actions';
@@ -36,6 +36,7 @@ class Contact extends React.Component {
     } = this.props;
     setTitle(pageTitle);
     setDescription(pageDescription);
+    reportPageview();
   }
 
   onSubmitCaptcha(resp) {

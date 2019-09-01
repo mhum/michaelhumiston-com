@@ -5,6 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
+import { reportPageview } from '../../utils/ga';
 
 class About extends React.Component {
   componentDidMount() {
@@ -13,6 +14,7 @@ class About extends React.Component {
     } = this.props;
     setTitle(pageTitle);
     setDescription(pageDescription);
+    reportPageview();
   }
 
   render() {

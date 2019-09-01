@@ -22,6 +22,7 @@ const createRootReducer = (history) => combineReducers({
 
 export const history = createBrowserHistory();
 
+
 const store = createStore(
     createRootReducer(history),
     preloadedState,
@@ -36,7 +37,7 @@ const store = createStore(
 ReactDOM.hydrate(
     <Provider store={store}>
         <ConnectedRouter history={history}>
-            <App/>
+            <App history={history}/>
         </ConnectedRouter>
     </Provider>, 
     document.getElementById('root')

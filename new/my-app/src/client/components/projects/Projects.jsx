@@ -1,5 +1,4 @@
 import React from 'react';
-
 import PropTypes from 'prop-types';
 import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
@@ -7,6 +6,7 @@ import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
 
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
+import { reportPageview } from '../../utils/ga';
 
 class Projects extends React.Component {
   componentDidMount() {
@@ -15,6 +15,7 @@ class Projects extends React.Component {
     } = this.props;
     setTitle(pageTitle);
     setDescription(pageDescription);
+    reportPageview();
   }
 
   render() {

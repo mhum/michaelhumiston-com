@@ -6,6 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 import SocialLinks from './SocialLinks';
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
+import { reportPageview } from '../../utils/ga';
 
 class Home extends React.Component {
   componentDidMount() {
@@ -14,6 +15,7 @@ class Home extends React.Component {
     } = this.props;
     setTitle(pageTitle);
     setDescription(pageDescription);
+    reportPageview();
   }
 
   render() {
