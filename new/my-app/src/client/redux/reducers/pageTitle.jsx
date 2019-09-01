@@ -1,5 +1,3 @@
-import _merge from 'lodash/merge';
-
 import { SET_TITLE } from '../actions';
 
 const initialState = {
@@ -14,7 +12,7 @@ export default function pageTitle(state = initialState, action) {
       } else {
         document.title = `Michael Humiston | ${action.text}`;
       }
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         title: action.text
       });
     default:

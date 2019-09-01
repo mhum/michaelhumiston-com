@@ -1,5 +1,3 @@
-import _merge from 'lodash/merge';
-
 import { SET_DESCRIPTION } from '../actions';
 
 const initialState = {
@@ -10,7 +8,7 @@ export default function pageDescription(state = initialState, action) {
   switch (action.type) {
     case SET_DESCRIPTION:
       document.getElementsByTagName('meta')[3].content = action.text;
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         description: action.text
       });
     default:

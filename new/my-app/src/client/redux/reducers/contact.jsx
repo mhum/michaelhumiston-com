@@ -1,6 +1,3 @@
-import _find from 'lodash/find';
-import _merge from 'lodash/merge';
-
 import {
   SEND_EMAIL, RECEIVE_EMAIL, DISMISS_SUCCESS, DISMISS_ERROR, UPDATE_FIELD, UPDATE_FIELDS
 } from '../actions';
@@ -46,7 +43,7 @@ export default function counter(state = initialState, action) {
         fields.forEach((field) => {
           field.valid = true;
         });
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         isLoading: true
       });
     case RECEIVE_EMAIL:
@@ -59,38 +56,38 @@ export default function counter(state = initialState, action) {
           field.errorMsg = '';
         });
 
-        return _merge({}, state, {
+        return Object.assign({}, state, {
           isLoading: false,
           showSuccess: true,
           showError: false
         });
       }
 
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         isLoading: false,
         showError: true
       });
     case DISMISS_SUCCESS:
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         showSuccess: false
       });
     case DISMISS_ERROR:
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         showError: false
       });
     case UPDATE_FIELD: {
       const tempState = Object.assign({}, state);
-      const field = _find(tempState.fields, { name: action.name });
+      const field = tempState.fields.find(field => field.name === action.name);
       field.value = action.value;
 
-      return _merge({}, state, tempState);
+      return Object.assign({}, state, tempState);
     }
     case UPDATE_FIELDS: {
       const tempState = Object.assign({}, state);
       const { fields } = tempState;
-      tempState.fields = _merge(fields, action.fields);
+      tempState.fields = Object.assign(fields, action.fields);
 
-      return _merge({}, state, tempState);
+      return Object.assign({}, state, tempState);
     }
     default:
       return state;

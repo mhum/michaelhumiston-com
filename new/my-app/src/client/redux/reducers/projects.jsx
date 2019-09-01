@@ -1,5 +1,3 @@
-import _merge from 'lodash/merge';
-
 import { FETCH_PROJECTS, RECEIVE_PROJECTS } from '../actions';
 
 const initialState = {
@@ -10,12 +8,12 @@ const initialState = {
 export default function projects(state = initialState, action) {
   switch (action.type) {
     case FETCH_PROJECTS:
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         list: [],
         fetching: true
       });
     case RECEIVE_PROJECTS:
-      return _merge({}, state, {
+      return Object.assign({}, state, {
         list: action.response.projects,
         fetching: false
       });
