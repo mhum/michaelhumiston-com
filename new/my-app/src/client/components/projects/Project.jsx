@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import TopView from './TopView';
 import SideView from './SideView';
-import { reportPageview } from '../../utils/ga';
+import reportPageview from '../../utils/ga';
 
 class Project extends React.Component {
   static getProject(projectName, projects) {
@@ -23,7 +23,7 @@ class Project extends React.Component {
     }
   }
 
-render() {
+  render() {
     const { params, projects } = this.props;
     const project = Project.getProject(params.projectName, projects);
 

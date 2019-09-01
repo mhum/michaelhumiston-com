@@ -16,6 +16,7 @@
     "koa-static": "^5.0.0",
     "node-fetch": "^2.6.0",
     "nodemailer": "^6.3.0",
+    "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-bootstrap": "^1.0.0-beta.12",
     "react-dom": "^16.9.0",
@@ -45,12 +46,13 @@
     "dotenv": "8.1.0",
     "dotenv-expand": "5.1.0",
     "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
     "eslint-config-react-app": "^5.0.1",
     "eslint-loader": "3.0.0",
     "eslint-plugin-flowtype": "4.2.0",
     "eslint-plugin-import": "2.18.2",
     "eslint-plugin-jsx-a11y": "6.2.3",
-    "eslint-plugin-react": "7.14.3",
+    "eslint-plugin-react": "^7.14.3",
     "eslint-plugin-react-hooks": "^2.0.1",
     "file-loader": "4.2.0",
     "html-webpack-plugin": "4.0.0-beta.5",
@@ -69,7 +71,6 @@
     "postcss-normalize": "8.0.1",
     "postcss-preset-env": "6.7.0",
     "postcss-safe-parser": "4.0.1",
-    "prop-types": "^15.7.2",
     "react-app-polyfill": "^1.0.2",
     "react-ssr-dev-utils": "^2.2.1",
     "resolve": "1.12.0",
@@ -94,7 +95,32 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "eslint:recommended",
+      "plugin:react/recommended",
+      "airbnb"
+    ],
+    "rules": {
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-param-reassign": [
+        "error",
+        {
+          "props": false
+        }
+      ],
+      "max-len": [
+        "error",
+        {
+          "code": 120,
+          "ignoreUrls": true,
+          "ignoreStrings": true
+        }
+      ]
+    }
   },
   "browserslist": {
     "production": [

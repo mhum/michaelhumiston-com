@@ -18,7 +18,7 @@ HeaderContainer.defaultProps = {
 };
 
 HeaderContainer.propTypes = {
-  // title: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   links: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape({}))
 };

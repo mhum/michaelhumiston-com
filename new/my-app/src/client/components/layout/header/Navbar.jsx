@@ -6,7 +6,7 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import { withRouter, Link } from 'react-router-dom';
 
 const generateSubMenu = ((link, idx, expanded, onClickLink, projects, currentPath) => {
-  const dropdownActiveClass = currentPath.startsWith(link.uri) ? 'active':  '';
+  const dropdownActiveClass = currentPath.startsWith(link.uri) ? 'active' : '';
 
   return (
     <NavDropdown
@@ -23,16 +23,22 @@ const generateSubMenu = ((link, idx, expanded, onClickLink, projects, currentPat
       <NavDropdown.Divider />
       {
         projects && projects.map((v, ii) => {
-          const dropdownItemActiveClass = v.uri === currentPath ? 'active':  '';
+          const dropdownItemActiveClass = v.uri === currentPath ? 'active' : '';
           return (
-            <NavDropdown.Item to={v.uri} key={v.id} eventKey={`${idx}.${ii}`} as={Link} className={dropdownItemActiveClass}>
-                {v.name}
-            </NavDropdown.Item> 
-          )
+            <NavDropdown.Item
+              to={v.uri}
+              key={v.id}
+              eventKey={`${idx}.${ii}`}
+              as={Link}
+              className={dropdownItemActiveClass}
+            >
+              {v.name}
+            </NavDropdown.Item>
+          );
         })
       }
     </NavDropdown>
-  )
+  );
 });
 
 const generateLink = ((link, idx, expanded, onClickLink, projects, currentPath) => {
@@ -40,9 +46,9 @@ const generateLink = ((link, idx, expanded, onClickLink, projects, currentPath) 
     return generateSubMenu(link, idx, expanded, onClickLink, projects, currentPath);
   }
 
-  const activeClass = link.uri === currentPath ? 'active':  '';
+  const activeClass = link.uri === currentPath ? 'active' : '';
 
-  return ( 
+  return (
     <Nav.Link to={link.uri} as={Link} key={idx} className={`nav-link ${activeClass}`}>
       {link.name}
     </Nav.Link>
@@ -71,8 +77,8 @@ class Navmenu extends React.Component {
     const { expanded } = this.state;
 
     return (
-      <Navbar id="navbar" expand="md" collapseOnSelect> 
-        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+      <Navbar id="navbar" expand="md" collapseOnSelect>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav>
             {
@@ -91,6 +97,9 @@ Navmenu.defaultProps = {
 
 Navmenu.propTypes = {
   links: PropTypes.arrayOf(PropTypes.object).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string
+  }).isRequired,
   projects: PropTypes.arrayOf(PropTypes.shape({}))
 };
 

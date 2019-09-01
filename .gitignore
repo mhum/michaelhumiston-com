@@ -10,3 +10,4 @@ client/node_modules/*
 server/node_modules/*
 server/src/.env
 new/my-app/.env
+.vscode

@@ -36,17 +36,18 @@ const initialState = {
 
 export default function counter(state = initialState, action) {
   switch (action.type) {
-    case SEND_EMAIL:
-        const tempState = Object.assign({}, state);
-        const { fields } = tempState;
+    case SEND_EMAIL: {
+      const tempState = Object.assign({}, state);
+      const { fields } = tempState;
 
-        fields.forEach((field) => {
-          field.valid = true;
-        });
+      fields.forEach((field) => {
+        field.valid = true;
+      });
       return Object.assign({}, state, {
         isLoading: true
       });
-    case RECEIVE_EMAIL:
+    }
+    case RECEIVE_EMAIL: {
       if (action.response.ok) {
         const tempState = Object.assign({}, state);
         const { fields } = tempState;
@@ -67,17 +68,20 @@ export default function counter(state = initialState, action) {
         isLoading: false,
         showError: true
       });
-    case DISMISS_SUCCESS:
+    }
+    case DISMISS_SUCCESS: {
       return Object.assign({}, state, {
         showSuccess: false
       });
-    case DISMISS_ERROR:
+    }
+    case DISMISS_ERROR: {
       return Object.assign({}, state, {
         showError: false
       });
+    }
     case UPDATE_FIELD: {
       const tempState = Object.assign({}, state);
-      const field = tempState.fields.find(field => field.name === action.name);
+      const field = tempState.fields.find(tempField => tempField.name === action.name);
       field.value = action.value;
 
       return Object.assign({}, state, tempState);

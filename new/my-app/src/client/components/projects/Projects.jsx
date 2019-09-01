@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 import { Link } from 'react-router-dom';
 
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
-import { reportPageview } from '../../utils/ga';
+import reportPageview from '../../utils/ga';
 
 class Projects extends React.Component {
   componentDidMount() {
@@ -19,21 +19,21 @@ class Projects extends React.Component {
   }
 
   render() {
-    const {  projects } = this.props;
+    const { projects } = this.props;
     return (
       <Row>
         {
           projects && projects.map(v => (
-              <Col xs={12} md={6} key={v.id} className="project-block">
-                <Link href={v.uri} to={v.uri}>
-                  <div>
-                    <h3>{v.name}</h3>
-                    <p>{v.description}</p>
-                    <Image src={`assets/images/${v.image}`} fluid />
-                  </div>
-                </Link>
-              </Col>
-            ))
+            <Col xs={12} md={6} key={v.id} className="project-block">
+              <Link href={v.uri} to={v.uri}>
+                <div>
+                  <h3>{v.name}</h3>
+                  <p>{v.description}</p>
+                  <Image src={`assets/images/${v.image}`} fluid />
+                </div>
+              </Link>
+            </Col>
+          ))
         }
       </Row>
     );

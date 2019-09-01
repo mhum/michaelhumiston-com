@@ -7,7 +7,7 @@ import Config from '../config';
 
 const user = Config.contact.user_name;
 const pass = Config.contact.password;
-  
+
 function validateForm(payload) {
   const schema = Joi.object().keys({
     captcha: Joi.string().required(),
@@ -58,8 +58,10 @@ async function sendEmail(payload) {
   }
 }
 
-export const submitContact = async (payload) => {
+const submitContact = async (payload) => {
   validateForm(payload);
   await validateCaptcha(payload.captcha);
-  return await sendEmail(payload);
-}
+  return sendEmail(payload);
+};
+
+export { submitContact as default };

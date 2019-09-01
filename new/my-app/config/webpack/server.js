@@ -86,24 +86,6 @@ module.exports = function(webpackEnv) {
       rules: [
         { parser: { requireEnsure: false } },
         {
-          test: /\.(js|mjs|jsx)$/,
-          enforce: 'pre',
-          use: [
-            {
-              options: {
-                formatter: require.resolve(
-                  'react-ssr-dev-utils/eslintFormatter'
-                ),
-                eslintPath: require.resolve('eslint'),
-                resolvePluginsRelativeTo: __dirname,
-                
-              },
-              loader: require.resolve('eslint-loader'),
-            },
-          ],
-          include: paths.appSrc,
-        },
-        {
           oneOf: serverLoaders,
         },
       ],

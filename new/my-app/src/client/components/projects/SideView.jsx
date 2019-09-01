@@ -14,11 +14,11 @@ const getProjectDescription = project => (
 
 const TopView = ({ project }) => (
   <Row>
-    <Col sm={12} md={7}  className="project-image">
+    <Col sm={12} md={7} className="project-image">
       <Image src={`/assets/images/${project.image}`} fluid />
     </Col>
     <Col sm={12} md={5}>
-    <Col xs={12}>
+      <Col xs={12}>
         <ProjectPoints
           className="project-points-side"
           project={project}

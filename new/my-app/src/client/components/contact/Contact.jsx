@@ -11,7 +11,7 @@ import { connect } from 'react-redux';
 import validate from 'validate.js';
 
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
-import { reportPageview } from '../../utils/ga';
+import reportPageview from '../../utils/ga';
 import {
   sendEmail, dismissSuccess, dismissError, updateField, updateFields
 } from '../../redux/actions';
@@ -156,7 +156,7 @@ class Contact extends React.Component {
       <Row>
         <Col sm={{ span: 11, offset: 1 }}>
           <Alert
-            variant={"success"}
+            variant="success"
             dismissible
             show={contact.showSuccess}
             onClose={this.onDismissSuccess}
@@ -165,7 +165,7 @@ class Contact extends React.Component {
           </Alert>
 
           <Alert
-            variant={"danger"}
+            variant="danger"
             dismissible
             show={contact.showError}
             onClose={this.onDismissError}
@@ -220,7 +220,7 @@ class Contact extends React.Component {
               </Col>
             </Form.Group>
 
-            <Form.Group as={Row} controlId="formCaptcha" >
+            <Form.Group as={Row} controlId="formCaptcha">
               <Col sm={{ span: 10, offset: 2 }}>
                 <ReCAPTCHA
                   ref={this.recaptchaRef}
@@ -228,7 +228,7 @@ class Contact extends React.Component {
                   onChange={this.onSubmitCaptcha}
                 />
                 {captcha.valid ? null : (
-                  <div className={"captcha-feedback"}>
+                  <div className="captcha-feedback">
                     {' '}
                     {captcha.errorMsg}
                   </div>
@@ -255,7 +255,7 @@ class Contact extends React.Component {
 
 Contact.defaultProps = {
   pageTitle: PAGE_TITLES.contact,
-  pageDescription: PAGE_DESCRIPTIONS.contact,
+  pageDescription: PAGE_DESCRIPTIONS.contact
 };
 
 Contact.propTypes = {

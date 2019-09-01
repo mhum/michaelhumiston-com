@@ -1,5 +1,5 @@
-import { loadProjects } from '../lib/projects';
+import loadProjects from '../lib/projects';
 
-export default ctx => {
-    ctx.body = loadProjects();
-}
+export default (ctx) => {
+  ctx.body = loadProjects();
+};

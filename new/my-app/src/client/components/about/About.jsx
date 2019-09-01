@@ -5,7 +5,7 @@ import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
 
 import { PAGE_DESCRIPTIONS, PAGE_TITLES } from '../../constants/pageInfo';
-import { reportPageview } from '../../utils/ga';
+import reportPageview from '../../utils/ga';
 
 class About extends React.Component {
   componentDidMount() {
@@ -21,13 +21,14 @@ class About extends React.Component {
     return (
       <Row>
         <Col sm={12} md={5}>
-          <Image src="/assets/images/about.jpg" fluid/>
+          <Image src="/assets/images/about.jpg" fluid />
         </Col>
         <Col sm={12} md={7}>
           <p>
             Information technology has been my calling for a long time. I was introduced to
             technology and the wider Internet at a young age through an old Packard Bell running
-            Windows 3.1. What really lit the fire under me was receiving a{' '}
+            Windows 3.1. What really lit the fire under me was receiving a
+            {' '}
             <a href="http://en.wikipedia.org/wiki/Casio_BE-300" target="_blank" rel="noreferrer noopener">
             Casio BE-300
             </a>
@@ -36,7 +37,8 @@ and being exposed to the immense possibilities that technology provided
             through software development, tinkering, and communities.
           </p>
           <p>
-            Previously, I did enterprise{' '}
+            Previously, I did enterprise
+            {' '}
             <a href="http://en.wikipedia.org/wiki/Java_Platform,_Enterprise_Edition" target="_blank" rel="noreferrer noopener">
             Java
             </a>
