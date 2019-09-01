@@ -1,9 +1,9 @@
 {
-  "short_name": "React SSR App",
-  "name": "Create React SSR App Sample",
+  "short_name": "Michael Humiston",
+  "name": "Michael Humiston's personal home on the Internet",
   "icons": [],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
+  "theme_color": "#2d5c88",
   "background_color": "#ffffff"
 }
