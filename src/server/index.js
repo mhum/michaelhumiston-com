@@ -9,7 +9,7 @@ import router from './routes';
 const publicPath = path.join(__dirname, '/public');
 const app = new Koa();
 
-app.use(serve(publicPath));
+app.use(serve(publicPath, { hidden: true }));
 app.use(bodyParser());
 app.use(router.routes());
 
