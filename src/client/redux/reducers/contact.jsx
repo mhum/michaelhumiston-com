@@ -1,5 +1,5 @@
 import {
-  SEND_EMAIL, RECEIVE_EMAIL, DISMISS_SUCCESS, DISMISS_ERROR, UPDATE_FIELD, UPDATE_FIELDS
+  SEND_EMAIL, RECEIVE_EMAIL_ERROR, RECEIVE_EMAIL_SUCCESS, DISMISS_SUCCESS, DISMISS_ERROR, UPDATE_FIELD, UPDATE_FIELDS
 } from '../actions';
 
 const initialState = {
@@ -34,7 +34,7 @@ const initialState = {
   ]
 };
 
-export default function counter(state = initialState, action) {
+export default function contact(state = initialState, action) {
   switch (action.type) {
     case SEND_EMAIL: {
       const tempState = { ...state };
@@ -45,20 +45,36 @@ export default function counter(state = initialState, action) {
       });
       return { ...state, isLoading: true };
     }
-    case RECEIVE_EMAIL: {
-      if (action.response.ok) {
-        const tempState = { ...state };
-        const { fields } = tempState;
+    case RECEIVE_EMAIL_SUCCESS: {
+      const tempState = { ...state };
+      const { fields } = tempState;
 
-        fields.forEach((field) => {
-          field.value = '';
-          field.errorMsg = '';
+      fields.forEach((field) => {
+        field.value = '';
+        field.errorMsg = '';
+      });
+
+      return {
+        ...state,
+        isLoading: false,
+        showSuccess: true,
+        showError: false
+      };
+    }
+    case RECEIVE_EMAIL_ERROR: {
+      const tempState = { ...state };
+      const { fields } = tempState;
+
+      if (action.response.status === 400 && action.json.type === 'validation_failed') {
+        action.json.errors.forEach((error) => {
+          const field = fields.find((f) => f.name === error.field);
+          field.errorMsg = error.message;
+          field.valid = false;
         });
 
         return {
           ...state,
           isLoading: false,
-          showSuccess: true,
           showError: false
         };
       }

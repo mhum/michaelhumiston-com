@@ -13,9 +13,26 @@ function validateForm(payload) {
     name: Joi.string().min(1).required()
   });
 
-  const result = schema.validate(payload);
+  const result = schema.validate(payload, {
+    abortEarly: false,
+  });
   if (result.error) {
-    throw Boom.badRequest(result.error.details[0].message);
+    const errors = result.error.details.map((error) => ({
+      field: error.path[0],
+      message: error.message
+    }));
+
+    const response = {
+      type: 'validation_failed',
+      errors
+    };
+
+    const errorResult = Boom.badRequest(JSON.stringify(response));
+    errorResult.output.headers = {
+      'Content-Type': 'application/json',
+    };
+
+    throw errorResult;
   }
 }
 

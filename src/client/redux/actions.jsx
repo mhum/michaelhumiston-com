@@ -3,7 +3,8 @@ export const SET_DESCRIPTION = 'SET_DESCRIPTION';
 export const FETCH_PROJECTS = 'FETCH_PROJECTS';
 export const RECEIVE_PROJECTS = 'RECEIVE_PROJECTS';
 export const SEND_EMAIL = 'SEND_EMAIL';
-export const RECEIVE_EMAIL = 'RECEIVE_EMAIL';
+export const RECEIVE_EMAIL_ERROR = 'RECEIVE_EMAIL_ERROR';
+export const RECEIVE_EMAIL_SUCCESS = 'RECEIVE_EMAIL_SUCCESS';
 export const DISMISS_SUCCESS = 'DISMISS_SUCCESS';
 export const DISMISS_ERROR = 'DISMISS_ERROR';
 export const UPDATE_FIELD = 'UPDATE_FIELD';
@@ -21,8 +22,12 @@ function requestEmail(details) {
   return { type: SEND_EMAIL, details };
 }
 
-function receiveEmail(response) {
-  return { type: RECEIVE_EMAIL, response };
+function receiveEmailSuccess() {
+  return { type: RECEIVE_EMAIL_SUCCESS };
+}
+
+function receiveEmailError(response, json) {
+  return { type: RECEIVE_EMAIL_ERROR, response, json };
 }
 
 export function setPageTitle(text) {
@@ -36,7 +41,11 @@ export function setPageDescription(text) {
 export function getProjects() {
   return (dispatch) => {
     dispatch(requestProjects());
-    return fetch('/api/projects')
+    return fetch('/api/projects', {
+      headers: {
+        Accept: 'application/json',
+      }
+    })
       .then((response) => response.json())
       .then((json) => dispatch(receiveProjects(json)));
   };
@@ -47,9 +56,21 @@ export function sendEmail(details) {
     dispatch(requestEmail(details));
     fetch('/api/contact', {
       method: 'POST',
-      body: JSON.stringify(details)
+      body: JSON.stringify(details),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
     })
-      .then((response) => dispatch(receiveEmail(response)));
+      .then((response) => {
+        if (response.ok) {
+          dispatch(receiveEmailSuccess(response));
+        } else if (response.status === 500) {
+          dispatch(receiveEmailError(response, {}));
+        } else {
+          response.json().then((json) => dispatch(receiveEmailError(response, json)));
+        }
+      });
   };
 }
 
