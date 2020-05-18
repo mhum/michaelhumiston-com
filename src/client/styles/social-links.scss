@@ -70,19 +70,5 @@ $social-text: $dark-grey;
         background: $linkedin;
       }
     }
-
-    .flickr {
-      clear: both;
-      &:hover a {
-        background: $flickr;
-      }
-    }
-
-    .facebook {
-      clear: both;
-      &:hover a {
-        background: $facebook;
-      }
-    }
   }
 }
