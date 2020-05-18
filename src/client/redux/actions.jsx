@@ -37,8 +37,8 @@ export function getProjects() {
   return (dispatch) => {
     dispatch(requestProjects());
     return fetch('/api/projects')
-      .then(response => response.json())
-      .then(json => dispatch(receiveProjects(json)));
+      .then((response) => response.json())
+      .then((json) => dispatch(receiveProjects(json)));
   };
 }
 
@@ -49,7 +49,7 @@ export function sendEmail(details) {
       method: 'POST',
       body: JSON.stringify(details)
     })
-      .then(response => dispatch(receiveEmail(response)));
+      .then((response) => dispatch(receiveEmail(response)));
   };
 }
 

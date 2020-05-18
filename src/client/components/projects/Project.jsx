@@ -7,7 +7,7 @@ import reportPageview from '../../utils/ga';
 
 class Project extends React.Component {
   static getProject(projectName, projects) {
-    return projects.find(project => project.shortName === projectName);
+    return projects.find((project) => project.shortName === projectName);
   }
 
   componentDidMount() {

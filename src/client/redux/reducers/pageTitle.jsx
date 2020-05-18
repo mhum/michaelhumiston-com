@@ -12,9 +12,7 @@ export default function pageTitle(state = initialState, action) {
       } else {
         document.title = `Michael Humiston | ${action.text}`;
       }
-      return Object.assign({}, state, {
-        title: action.text
-      });
+      return { ...state, title: action.text };
     default:
       return state;
   }

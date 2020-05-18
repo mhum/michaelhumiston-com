@@ -51,7 +51,7 @@ function getPageInfo(ctx, projects) {
   let project;
 
   if (ctx.params.projectName) {
-    project = projects.find(projectTemp => projectTemp.shortName === ctx.params.projectName);
+    project = projects.find((projectTemp) => projectTemp.shortName === ctx.params.projectName);
   }
 
   return {

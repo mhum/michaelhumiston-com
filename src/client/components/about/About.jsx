@@ -30,31 +30,31 @@ class About extends React.Component {
             Windows 3.1. What really lit the fire under me was receiving a
             {' '}
             <a href="http://en.wikipedia.org/wiki/Casio_BE-300" target="_blank" rel="noreferrer noopener">
-            Casio BE-300
+              Casio BE-300
             </a>
             {' '}
-and being exposed to the immense possibilities that technology provided
+            and being exposed to the immense possibilities that technology provided
             through software development, tinkering, and communities.
           </p>
           <p>
             Previously, I did enterprise
             {' '}
             <a href="http://en.wikipedia.org/wiki/Java_Platform,_Enterprise_Edition" target="_blank" rel="noreferrer noopener">
-            Java
+              Java
             </a>
             {' '}
-web development using a variety of technologies such as
+            web development using a variety of technologies such as
             {' '}
             <a href="http://spring.io/" target="_blank" rel="noreferrer noopener">Spring</a>
             ,
             {' '}
             <a href="http://grails.org/" target="_blank" rel="noreferrer noopener">Grails</a>
-,
+            ,
             and
             {' '}
             <a href="http://www.sencha.com/products/extjs/" target="_blank" rel="noreferrer noopener">ExtJS</a>
             {' '}
-for internal projects.
+            for internal projects.
           </p>
           <p>
             I also worked as a consultant developing online gambling and betting software.
@@ -69,12 +69,12 @@ for internal projects.
             ,
             {' '}
             <a href="http://www.java.com/en" target="_blank" rel="noreferrer noopener">Java</a>
-,
+            ,
             and
             {' '}
             <a href="https://en.wikipedia.org/wiki/JavaScript" target="_blank" rel="noreferrer noopener">JavaScript</a>
             {' '}
-using
+            using
             frameworks such as
             {' '}
             <a href="https://facebook.github.io/react/" target="_blank" rel="noreferrer noopener">React</a>
@@ -84,7 +84,7 @@ using
             , and
             {' '}
             <a href="http://spring.io/" target="_blank" rel="noreferrer noopener">Spring</a>
-.
+            .
           </p>
         </Col>
       </Row>

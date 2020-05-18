@@ -1,5 +1,5 @@
 import React from 'react';
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const PageHeader = ({ title }) => (
   <div id="page-header">
@@ -8,7 +8,7 @@ const PageHeader = ({ title }) => (
 );
 
 PageHeader.propTypes = {
-  // title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired
 };
 
 export default PageHeader;

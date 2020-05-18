@@ -37,19 +37,17 @@ const initialState = {
 export default function counter(state = initialState, action) {
   switch (action.type) {
     case SEND_EMAIL: {
-      const tempState = Object.assign({}, state);
+      const tempState = { ...state };
       const { fields } = tempState;
 
       fields.forEach((field) => {
         field.valid = true;
       });
-      return Object.assign({}, state, {
-        isLoading: true
-      });
+      return { ...state, isLoading: true };
     }
     case RECEIVE_EMAIL: {
       if (action.response.ok) {
-        const tempState = Object.assign({}, state);
+        const tempState = { ...state };
         const { fields } = tempState;
 
         fields.forEach((field) => {
@@ -57,41 +55,39 @@ export default function counter(state = initialState, action) {
           field.errorMsg = '';
         });
 
-        return Object.assign({}, state, {
+        return {
+          ...state,
           isLoading: false,
           showSuccess: true,
           showError: false
-        });
+        };
       }
 
-      return Object.assign({}, state, {
+      return {
+        ...state,
         isLoading: false,
         showError: true
-      });
+      };
     }
     case DISMISS_SUCCESS: {
-      return Object.assign({}, state, {
-        showSuccess: false
-      });
+      return { ...state, showSuccess: false };
     }
     case DISMISS_ERROR: {
-      return Object.assign({}, state, {
-        showError: false
-      });
+      return { ...state, showError: false };
     }
     case UPDATE_FIELD: {
-      const tempState = Object.assign({}, state);
-      const field = tempState.fields.find(tempField => tempField.name === action.name);
+      const tempState = { ...state };
+      const field = tempState.fields.find((tempField) => tempField.name === action.name);
       field.value = action.value;
 
-      return Object.assign({}, state, tempState);
+      return { ...state, ...tempState };
     }
     case UPDATE_FIELDS: {
-      const tempState = Object.assign({}, state);
+      const tempState = { ...state };
       const { fields } = tempState;
       tempState.fields = Object.assign(fields, action.fields);
 
-      return Object.assign({}, state, tempState);
+      return { ...state, ...tempState };
     }
     default:
       return state;

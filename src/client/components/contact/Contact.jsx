@@ -56,7 +56,7 @@ class Contact extends React.Component {
 
   getField(name) {
     const { contact } = this.props;
-    return contact.fields.find(field => field.name === name);
+    return contact.fields.find((field) => field.name === name);
   }
 
   validateForm() {
@@ -277,13 +277,13 @@ Contact.propTypes = {
   updateContactFields: PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => (
+const mapStateToProps = (state) => (
   {
     contact: state.reducers.contact
   }
 );
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch) => (
   {
     submitContact: (details) => {
       dispatch(sendEmail(details));

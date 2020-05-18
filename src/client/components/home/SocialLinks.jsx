@@ -8,7 +8,7 @@ const Links = ({ sites }) => (
     <h1>Social Links</h1>
     <div className="link-container">
       {
-        sites.map(v => (
+        sites.map((v) => (
           <SocialLink key={v.id} site={v} />
         ))
       }

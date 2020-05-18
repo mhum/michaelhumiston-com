@@ -18,7 +18,7 @@ const generateSubMenu = ((link, idx, expanded, onClickLink, projects, currentPat
       className={dropdownActiveClass}
     >
       <NavDropdown.Item to={link.uri} eventKey={`${idx}`} as={Link}>
-          All
+        All
       </NavDropdown.Item>
       <NavDropdown.Divider />
       {

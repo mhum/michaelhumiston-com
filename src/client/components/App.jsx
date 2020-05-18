@@ -21,8 +21,8 @@ class App extends React.Component {
   render() {
     const {
       pageTitle, links, projects, setTitle, setDescription
-    } = this.props;   
-    
+    } = this.props;
+
     return (
       <Container id="container">
         <HeaderContainer
@@ -48,7 +48,7 @@ App.propTypes = {
     fetching: PropTypes.bool
   }).isRequired,
   links: PropTypes.arrayOf(PropTypes.object),
-  pageTitle: PropTypes.string,
+  pageTitle: PropTypes.string.isRequired,
   setDescription: PropTypes.func.isRequired,
   setTitle: PropTypes.func.isRequired,
   getProjectList: PropTypes.func.isRequired
@@ -80,7 +80,7 @@ App.defaultProps = {
   ]
 };
 
-const mapStateToProps = state => (
+const mapStateToProps = (state) => (
   {
     pageDescription: state.reducers.pageDescription.description,
     pageTitle: state.reducers.pageTitle.title,
@@ -88,7 +88,7 @@ const mapStateToProps = state => (
   }
 );
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch) => (
   {
     setTitle: (text) => {
       dispatch(setPageTitle(text));

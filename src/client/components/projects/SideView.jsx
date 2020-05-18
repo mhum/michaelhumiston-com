@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row';
 
 import ProjectPoints from './ProjectPoints';
 
-const getProjectDescription = project => (
+const getProjectDescription = (project) => (
   {
     __html: project.descriptionExtended
   }

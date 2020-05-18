@@ -103,10 +103,7 @@
       "airbnb"
     ],
     "rules": {
-      "comma-dangle": [
-        "error",
-        "never"
-      ],
+      "comma-dangle": "off",
       "no-param-reassign": [
         "error",
         {

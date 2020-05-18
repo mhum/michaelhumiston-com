@@ -23,7 +23,7 @@ class Projects extends React.Component {
     return (
       <Row>
         {
-          projects && projects.map(v => (
+          projects && projects.map((v) => (
             <Col xs={12} md={6} key={v.id} className="project-block">
               <Link href={v.uri} to={v.uri}>
                 <div>

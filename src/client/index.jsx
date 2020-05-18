@@ -19,7 +19,7 @@ const preloadedState = window.__PRELOADED_STATE__;
 // eslint-disable-next-line no-underscore-dangle
 delete window.__PRELOADED_STATE__;
 
-const createRootReducer = history => combineReducers({
+const createRootReducer = (history) => combineReducers({
   router: connectRouter(history),
   reducers
 });

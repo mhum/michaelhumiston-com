@@ -8,15 +8,17 @@ const initialState = {
 export default function projects(state = initialState, action) {
   switch (action.type) {
     case FETCH_PROJECTS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         list: [],
         fetching: true
-      });
+      };
     case RECEIVE_PROJECTS:
-      return Object.assign({}, state, {
+      return {
+        ...state,
         list: action.response.projects,
         fetching: false
-      });
+      };
     default:
       return state;
   }
