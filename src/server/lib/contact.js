@@ -5,9 +5,6 @@ import Nodemailer from 'nodemailer';
 
 import Config from '../config';
 
-const user = Config.contact.user_name;
-const pass = Config.contact.password;
-
 function validateForm(payload) {
   const schema = Joi.object().keys({
     captcha: Joi.string().required(),
@@ -37,11 +34,21 @@ async function validateCaptcha(captcha) {
 }
 
 async function sendEmail(payload) {
-  const transporter = Nodemailer.createTransport(`smtps://${user}:${pass}@smtp.gmail.com`);
-
   try {
+    const transporter = Nodemailer.createTransport(
+      {
+        service: 'Gmail',
+        auth: {
+          type: 'OAuth2',
+          user: Config.contact.userName,
+          serviceClient: Config.contact.clientID,
+          privateKey: Config.contact.clientKey.split('\\n').join('\n')
+        },
+      }
+    );
+
     const info = await transporter.sendMail({
-      from: `"Contact" <${user}>`,
+      from: `"Contact" <${Config.contact.userName}>`,
       replyTo: payload.email,
       to: Config.contact.to,
       subject: Config.contact.subject,
